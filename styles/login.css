@@ -338,12 +338,12 @@ input[type="password"]:hover {
   }
 
   60% {
-    transform: translateX(6%) scale(1.095);
+    transform: translateX(-4%) scale(1.095);
     border-radius: 66% 34% 34% 66% / 52% 52% 48% 48%;
   }
 
   100% {
-    transform: translateX(0) scale(1.08);
+    transform: translateX(-8%) scale(1.08);
     border-radius: 62% 38% 38% 62% / 52% 52% 48% 48%;
   }
 }
