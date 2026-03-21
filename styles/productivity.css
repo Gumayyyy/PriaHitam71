@@ -1,0 +1,277 @@
+/* PRODUCTIVITY COLOR TOKENS */
+:root {
+  --db-study: #2aa876;
+  --db-sleep: #2f80c0;
+  --db-phone: #8d64c7;
+  --db-progress-study: linear-gradient(90deg, #2aa876, #4cc38e);
+  --db-progress-sleep: linear-gradient(90deg, #2f80c0, #3ea7d4);
+  --db-progress-phone: linear-gradient(90deg, #7b59b8, #9d7ad8);
+  --db-chart-text: #334155;
+  --db-chart-grid: rgba(51, 65, 85, 0.16);
+  --db-tooltip-bg: #1f2937;
+}
+
+body.dark-mode {
+  --db-study: #7edfa8;
+  --db-sleep: #8bc7f1;
+  --db-phone: #bf9aef;
+  --db-progress-study: linear-gradient(90deg, #62c796, #98efbf);
+  --db-progress-sleep: linear-gradient(90deg, #6fb3e2, #96d6f7);
+  --db-progress-phone: linear-gradient(90deg, #ab84e0, #d2b4fb);
+  --db-chart-text: #e2e8f0;
+  --db-chart-grid: rgba(226, 232, 240, 0.2);
+  --db-tooltip-bg: #0f172a;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--color-card-light);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(44, 83, 100, 1) -70%,
+    transparent 70%
+  );
+  top: -50%;
+  left: -50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #000000;
+}
+
+.card h1 {
+  margin: 0 0 15px 0;
+  font-size: 36px;
+  color: #0f2027;
+}
+
+.progress {
+  height: 8px;
+  background: #9ca3af;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress div {
+  height: 100%;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+#progBelajar {
+  background: var(--db-progress-study);
+}
+
+#progTidur {
+  background: var(--db-progress-sleep);
+}
+
+#progHP {
+  background: var(--db-progress-phone);
+}
+
+.unit {
+  font-size: 20px;
+  color: #000000;
+  margin-left: 4px;
+}
+
+/* CONTENT: Flex column */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  margin-right: 15px;
+}
+
+/* CHART + ANALYSIS: Side by Side */
+.chart-analysis-row {
+  display: flex;
+  gap: 20px;
+}
+
+.chart-box {
+  flex: 1;
+  background: var(--color-card-light);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.chart-box:hover {
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1);
+  transform: translateY(-5px);
+}
+
+.analysis-box {
+  flex: 0 0 350px;
+  background: var(--color-card-light);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.analysis-box h3 {
+  color: #000000;
+}
+
+.analysis-box:hover {
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1);
+  transform: translateY(-5px);
+}
+
+.chart-panel {
+  position: relative;
+}
+
+.chart-panel.no-data-preview canvas {
+  opacity: 0.55;
+  filter: saturate(0.72);
+}
+
+.insight-panel .empty-state-text {
+  display: none;
+}
+
+.insight-panel.is-empty .empty-state-text {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--color-card-light);
+  color: #0f2027;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.insight-panel.is-empty #analysisBoxes,
+.insight-panel.is-empty #rekomendasiList,
+.insight-panel.is-empty .notes-title {
+  display: none;
+}
+
+/* Rekomendasi styling */
+.analysis-box ul {
+  font-size: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+.analysis-box ul li {
+  padding: 10px 0;
+  color: #000000;
+}
+
+#rekomendasiList {
+  list-style: circle;
+  margin-left: 15px;
+}
+
+/* DARK MODE */
+.dark-mode .chart-box,
+.dark-mode .analysis-box {
+  background: #1e293b;
+  color: #ffffff !important;
+}
+
+.dark-mode .insight-panel.is-empty .empty-state-text {
+  background: #1e293b;
+  color: #dbeafe;
+}
+
+.dark-mode .card {
+  background: #1e293b;
+}
+
+.dark-mode .card h3 {
+  color: #ffffff;
+}
+
+.dark-mode .card h1 {
+  color: #fff;
+}
+
+.dark-mode .card:hover {
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1) !important;
+}
+
+.dark-mode .chart-box:hover,
+.dark-mode .analysis-box:hover {
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1);
+}
+
+/* Analysis Boxes */
+.boxes {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.boxes .box {
+  flex: 1;
+  min-width: 180px;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.boxes .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Colors untuk boxes */
+.box.stable {
+  background: linear-gradient(90deg, #2AA876, #4CC38E);
+}
+.box.risk {
+  background: linear-gradient(90deg, #e35b66, #f07474);
+}
+
+/* Responsive: Stack on smaller screens */

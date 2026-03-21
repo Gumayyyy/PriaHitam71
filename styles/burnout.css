@@ -1,0 +1,224 @@
+/* DASHBOARD COLOR TOKENS */
+:root {
+  --db-sleep: #2f80c0;
+  --db-mood: #e45757;
+  --db-chart-text: #334155;
+  --db-chart-grid: rgba(51, 65, 85, 0.16);
+  --db-tooltip-bg: #1f2937;
+  --db-circle-stroke: #1fa8b6;
+  --db-circle-bg: #9ca3af;
+}
+
+body.dark-mode {
+  --db-sleep: #8bc7f1;
+  --db-mood: #ff9b9b;
+  --db-chart-text: #e2e8f0;
+  --db-chart-grid: rgba(226, 232, 240, 0.2);
+  --db-tooltip-bg: #0f172a;
+  --db-circle-stroke: #73d7e7;
+  --db-circle-bg: #64748b;
+}
+
+/* ANALYSIS CONTAINER */
+.analysis-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+}
+
+/* Card styles with box-shadow - like dashboard */
+.card,
+.chart-box,
+.analysis-box,
+.tips-card {
+  background: var(--color-card-light);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(44, 83, 100, 1) -70%,
+    transparent 70%
+  );
+  top: -50%;
+  left: -50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover,
+.chart-box:hover,
+.analysis-box:hover {
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 1);
+  transform: translateY(-5px);
+}
+
+.chart-panel {
+  position: relative;
+}
+
+.chart-panel.no-data-preview canvas {
+  opacity: 0.56;
+  filter: saturate(0.72);
+}
+
+.insight-panel.is-empty {
+  background: var(--color-card-light);
+  color: #0f2027;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.circular-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-chart {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  max-height: 250px;
+  width: 200px;
+  height: 200px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: var(--db-circle-bg);
+  stroke-width: 3.8;
+}
+
+.circle-path {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+}
+
+.circle svg {
+  display: block;
+  max-width: 100%;
+  max-height: 250px;
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.blue .circle-path {
+  stroke: var(--db-circle-stroke);
+  filter: drop-shadow(0 0 6px rgba(44, 83, 100, 0.25));
+}
+
+.percentage {
+  fill: #000000;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+.dark-mode .percentage {
+  fill: #ffffff;
+}
+
+.analysis-card {
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.personal-panel {
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.tips-text,
+.tips-heading {
+  font-weight: bold;
+}
+
+#insightBox,
+#tipsBox {
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+#insightBox #insight-heading,
+#tipsBox #tips-heading {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 1rem;
+}
+
+#insightBox .insight-text,
+#tipsBox .tips-text {
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+#tipsBox {
+  background: transparent;
+}
+
+#tipsBox.personal-panel.is-empty {
+  background: var(--color-card-light);
+}
+
+/* Dark mode adjustments */
+.dark-mode .card,
+.dark-mode .chart-box,
+.dark-mode .analysis-box,
+.dark-mode .tips-card {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.dark-mode .insight-panel.is-empty {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.dark-mode .personal-panel.is-empty {
+  background: #1e293b !important;
+  color: #ffffff;
+}
+
+#insightBox.is-empty,
+#tipsBox.is-empty {
+  font-weight: 700;
+}

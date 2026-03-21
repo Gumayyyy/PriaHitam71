@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Productivity Tracker - Home</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png" />
+    <link rel="stylesheet" href="../styles/home.css" />
+  </head>
+  <body>
+    <div class="home-page">
+      <header class="home-navbar">
+        <a href="home.html" class="brand"
+          ><img
+            src="../assets/logo.png"
+            alt="Student Productivity Tracker Logo"
+        /></a>
+
+        <nav class="home-nav" aria-label="Home navigation">
+          <a href="home.html" class="active">Home</a>
+          <a href="profile.html">About Us</a>
+          <a href="guide.html">How it Works</a>
+        </nav>
+
+        <label class="theme-toggle" title="Toggle dark mode">
+          <input type="checkbox" id="toggleMode" />
+          <span class="slider">
+            <span class="icon moon-icon">🌙</span>
+            <span class="icon sun-icon">☀️</span>
+          </span>
+        </label>
+      </header>
+
+      <main class="hero-wrap">
+        <section class="hero-copy">
+          <p class="kicker">Student Productivity Tracker</p>
+          <h1>Pantau kebiasaan, jaga fokus, dan cegah burnout lebih awal.</h1>
+          <p class="lead">
+            Platform ini membantu kamu melihat pola belajar, tidur, penggunaan
+            handphone, dan mood harian agar progres akademik lebih konsisten.
+          </p>
+          <a href="dashboard.html" class="get-started-btn">Get Started</a>
+        </section>
+
+        <section class="hero-mascot" aria-label="Mascot illustration">
+          <div class="mascot-composition">
+            <div class="mascot-chat-bubble">
+              Halo, aku Hero! Siap nemenin kamu jadi lebih produktif.
+            </div>
+            <img
+              class="mascot-body"
+              src="../assets/body-mascot.png"
+              alt="Mascot body"
+            />
+            <img
+              class="mascot-crown"
+              src="../assets/crown.png"
+              alt="Mascot crown"
+            />
+            <div class="mascot-hand-wrap">
+              <img
+                class="mascot-hand"
+                src="../assets/right-hand.png"
+                alt="Mascot right hand"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="home-footer">
+      <p>&copy; 2026 Student Productivity Tracker. All rights reserved.</p>
+    </footer>
+
+    <script src="../scripts/global.js"></script>
+  </body>
+</html>
