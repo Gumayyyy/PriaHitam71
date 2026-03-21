@@ -147,6 +147,7 @@ form {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 14px 16px;
@@ -164,12 +165,14 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(21, 96, 100, 0.15);
 }
 
 input[type="text"]:hover,
+input[type="email"]:hover,
 input[type="password"]:hover {
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(21, 96, 100, 0.15);
@@ -515,4 +518,12 @@ body.dark-mode .brand,
 body.dark-mode .options a,
 body.dark-mode .register-text a {
   color: #f8fafc;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 20px;
 }
