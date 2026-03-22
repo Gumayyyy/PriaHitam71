@@ -111,6 +111,7 @@ body.dark-mode {
   background: rgba(44, 83, 100, 0.14);
   border: 1px solid rgba(44, 83, 100, 0.22);
   border-radius: 999px;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .auth-forms {
@@ -284,6 +285,14 @@ input[type="password"]:hover {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+.login-container.signup-mode .auth-forms {
+  transform: translateY(-38px);
+}
+
+.login-container.signup-mode .brand {
+  transform: translateY(-35px);
 }
 
 @keyframes formToSignup {
