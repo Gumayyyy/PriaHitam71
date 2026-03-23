@@ -1,0 +1,448 @@
+:root {
+  --content-max-width: 1200px;
+  --notes-primary: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+  --notes-primary-hover: #10b981;
+  --notes-accent: linear-gradient(90deg, #2c5364, #1d8f8f);
+  --notes-accent-dark: linear-gradient(90deg, #38bdf8, #2dd4bf);
+  --notes-danger: #ef4444;
+  --notes-soft-border: #e0e0e0;
+  --notes-muted: #666666;
+  --notes-focus: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  --notes-card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --notes-card-shadow-hover: 0 15px 40px rgba(44, 83, 100, 0.35);
+}
+
+.main .navbar {
+  width: calc(100% - (20px + var(--sidebar-width) + (var(--spacing-main) * 2)));
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.notes-page {
+  margin-top: 0;
+  padding: 0;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.notes-page button {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.notes-page button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(44, 83, 100, 0.45);
+}
+
+.notes-page button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 20px rgba(44, 83, 100, 0.35);
+}
+
+.notes-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "todo boost"
+    "mind mind";
+  gap: 20px;
+  align-items: stretch;
+}
+
+.card {
+  background: var(--color-card-light);
+  border: 1px solid var(--notes-soft-border);
+  border-radius: 16px;
+  box-shadow: var(--notes-card-shadow);
+  padding: 22px;
+  color: #000000;
+  transition: all 0.3s ease;
+  min-height: 460px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--notes-card-shadow-hover);
+}
+
+.todo-card {
+  grid-area: todo;
+}
+
+.boost-card {
+  grid-area: boost;
+}
+
+.mind-card {
+  grid-area: mind;
+}
+
+.mind-card textarea {
+  min-height: 260px;
+}
+
+.boost-card textarea {
+  min-height: 260px;
+}
+
+.stats-container {
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--notes-soft-border);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  background: var(--color-card-light);
+}
+
+.details {
+  width: 100%;
+}
+
+.details p {
+  color: var(--notes-muted);
+}
+
+#progressBar {
+  width: 100%;
+  height: 10px;
+  background-color: #d1d5db;
+  border-radius: 6px;
+  margin-top: 18px;
+}
+
+#progress {
+  width: 0;
+  height: 10px;
+  background: var(--notes-accent);
+  border-radius: 6px;
+  transition: width 0.25s ease;
+}
+
+#numbers {
+  width: 88px;
+  height: 88px;
+  background: var(--notes-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.todo-card form {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 12px 14px;
+  background: var(--color-card-light);
+  border: 2px solid var(--notes-soft-border);
+  border-radius: 10px;
+  outline: none;
+  color: #333333;
+  font-size: 15px;
+}
+
+#taskInput::placeholder {
+  color: #999999;
+}
+
+#taskInput:focus {
+  border-color: var(--notes-primary-hover);
+  box-shadow: var(--notes-focus);
+}
+
+#newTask {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#newTask:hover {
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+}
+
+#task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+#task-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--notes-soft-border);
+  background: var(--color-bg-white);
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.task input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--notes-primary);
+}
+
+.task p {
+  color: #333333;
+  line-height: 1.25;
+  word-break: break-word;
+  position: relative;
+  top: -4px;
+}
+
+.completed p {
+  text-decoration: line-through;
+  color: #888888;
+}
+
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.task-actions i {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.task-actions .edit-icon {
+  color: var(--notes-accent);
+}
+
+.task-actions .delete-icon {
+  color: var(--notes-danger);
+}
+
+.notes-section h2 {
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.desc {
+  color: var(--notes-muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.notes-section textarea {
+  width: 100%;
+  min-height: 250px;
+  resize: vertical;
+  border: 2px solid var(--notes-soft-border);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--color-card-light);
+  color: #333333;
+  outline: none;
+  font-size: 14px;
+}
+
+.notes-section textarea::placeholder {
+  color: #999999;
+}
+
+.notes-section textarea:focus {
+  border-color: var(--notes-primary-hover);
+  box-shadow: var(--notes-focus);
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.notes-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--notes-primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notes-btn.secondary {
+  background: #64748b;
+}
+
+.notes-list {
+  display: none;
+  margin-top: 12px;
+  gap: 10px;
+}
+
+.notes-list.visible {
+  display: grid;
+}
+
+.note-card {
+  background: var(--color-bg-white);
+  border: 1px solid var(--notes-soft-border);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.note-card p {
+  color: #333333;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.note-action-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.note-action-btn.edit {
+  background: var(--notes-accent);
+}
+
+.note-action-btn.delete {
+  background: var(--notes-danger);
+}
+
+body.dark-mode .card {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .stats-container,
+body.dark-mode .taskItem,
+body.dark-mode .note-card {
+  background: #0b1220;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+body.dark-mode .notes-section h2,
+body.dark-mode .task p,
+body.dark-mode .note-card p,
+body.dark-mode .details h1,
+body.dark-mode #numbers {
+  color: #ffffff;
+}
+
+body.dark-mode .details p,
+body.dark-mode .desc,
+body.dark-mode .completed p {
+  color: #cbd5e1;
+}
+
+body.dark-mode #taskInput,
+body.dark-mode .notes-section textarea {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode #taskInput::placeholder,
+body.dark-mode .notes-section textarea::placeholder {
+  color: #b0b0b0;
+}
+
+body.dark-mode #taskInput:focus,
+body.dark-mode .notes-section textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(139, 158, 252, 0.25);
+}
+
+body.dark-mode #progressBar {
+  background: #64748b;
+}
+
+body.dark-mode #progress {
+  background: var(--notes-accent-dark);
+}
+
+body.dark-mode .notes-btn.secondary {
+  background: #334155;
+}
+
+@media (max-width: 900px) {
+  .main .navbar {
+    max-width: none;
+    width: calc(
+      100% - (20px + var(--sidebar-width) + (var(--spacing-main) * 2))
+    );
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "todo"
+      "boost"
+      "mind";
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .mind-card textarea {
+    min-height: 160px;
+  }
+
+  .boost-card textarea {
+    min-height: 160px;
+  }
+}

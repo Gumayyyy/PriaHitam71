@@ -1,0 +1,267 @@
+body {
+  margin: 0;
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+body.dark-mode {
+  background: var(--color-dark-bg);
+  color: var(--color-dark-text);
+}
+
+.logout-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+/* Overlay */
+.logout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.271);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+body.dark-mode .logout-modal {
+  background: rgba(2, 6, 23, 0.76);
+}
+
+/* Active state */
+.logout-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal box */
+.modal-box {
+  background: var(--color-card-light);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-border);
+  padding: 32px;
+  border-radius: 20px;
+  width: min(800px, calc(100vw - 32px));
+  min-height: 320px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px var(--color-shadow);
+
+  transform: scale(0.9);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.modal-box::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(44, 83, 100, 0.32) -70%,
+    transparent 70%
+  );
+  top: -50%;
+  left: -50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.modal-box:hover::before {
+  opacity: 1;
+}
+
+.modal-box:hover {
+  transform: scale(1.01) translateY(-5px);
+  box-shadow: 0 15px 40px rgba(44, 83, 100, 0.55);
+}
+
+body.dark-mode .modal-box {
+  background: var(--color-dark-bg-alt);
+  color: var(--color-dark-text);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.45);
+}
+
+body.dark-mode .modal-box:hover {
+  box-shadow: 0 15px 40px rgba(115, 215, 231, 0.28);
+}
+
+/* Animate in */
+.logout-modal.active .modal-box {
+  transform: scale(1);
+}
+
+/* Icon */
+.modal-icon {
+  font-size: 60px;
+  color: #d64545;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-mode .modal-icon {
+  color: #f87171;
+}
+
+/* Title */
+.modal-box h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Description */
+.modal-box p {
+  font-size: 16px;
+  color: #52606d;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-mode .modal-box p {
+  color: var(--color-dark-text-secondary);
+}
+
+/* Info row */
+.modal-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #52606d;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-mode .modal-info {
+  color: var(--color-dark-text-secondary);
+}
+
+/* Dot separator */
+.modal-info .dot {
+  width: 4px;
+  height: 4px;
+  background: #52606d;
+  border-radius: 50%;
+}
+
+body.dark-mode .modal-info .dot {
+  background: var(--color-dark-text-secondary);
+}
+
+/* Actions */
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Cancel button */
+.btn.cancel {
+  background: var(--color-hover-bg);
+  color: var(--color-text-dark);
+  border-color: var(--color-border);
+}
+
+.btn.cancel:hover {
+  background: var(--color-border);
+}
+
+body.dark-mode .btn.cancel {
+  background: var(--color-dark-bg);
+  color: var(--color-dark-text);
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+body.dark-mode .btn.cancel:hover {
+  background: var(--color-dark-bg-deep);
+}
+
+/* Confirm button */
+.btn.confirm {
+  background: #d64545;
+  color: var(--color-bg-white);
+}
+
+.btn.confirm:hover {
+  transform: scale(1.05);
+}
+
+body.dark-mode .btn.confirm {
+  color: var(--color-dark-bg);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .logout-theme-toggle {
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal-box {
+    padding: 24px 18px;
+  }
+
+  .modal-box h2 {
+    font-size: 22px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

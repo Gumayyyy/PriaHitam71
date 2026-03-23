@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Productivity Tracker</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/logout.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="logout-theme-toggle">
+      <label class="theme-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="toggleMode" />
+        <span class="slider">
+          <span class="icon moon-icon">🌙</span>
+          <span class="icon sun-icon">☀️</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="logout-modal active" id="logoutModal">
+      <div class="modal-box">
+        <!-- Icon -->
+        <div class="modal-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+
+        <!-- Title -->
+        <h2>Log out of your account?</h2>
+
+        <!-- Description -->
+        <p>
+          You’re about to end your current session. Make sure all your progress
+          is saved.
+        </p>
+
+        <!-- Small info -->
+        <div class="modal-info">
+          <span><i class="fas fa-user"></i> Active user</span>
+          <span class="dot"></span>
+          <span>Status: Online</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <!-- Cancel = kembali ke halaman sebelumnya -->
+          <button class="btn cancel" id="cancelLogoutBtn" type="button">
+            Cancel
+          </button>
+
+          <!-- Logout = pindah ke login -->
+          <a class="btn confirm" href="../login.html">Yes, Log out</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/logout.js"></script>
+    <script src="../scripts/global.js"></script>
+  </body>
+</html>
