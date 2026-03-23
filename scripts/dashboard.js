@@ -11,7 +11,26 @@ const PREVIEW_SERIES = Array(CHART_LABELS.length).fill(null);
 let productivityChart = null;
 let burnoutChart = null;
 
-function parseTrackerData() {
+async function parseTrackerData() {
+  // Try to load from Firestore first
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const data = userData.trackerData || [];
+          return Array.isArray(data) ? data : [];
+        }
+      }
+    } catch (error) {
+      console.error("Error loading from Firestore:", error);
+    }
+  }
+
+  // Fallback to localStorage
   const raw = localStorage.getItem("trackerData");
   if (!raw) return [];
 
@@ -445,8 +464,8 @@ function renderBurnoutInsight(avgTidur, avgMood) {
   }
 }
 
-function renderDashboard() {
-  const data = parseTrackerData();
+async function renderDashboard() {
+  const data = await parseTrackerData();
 
   if (!hasValidData(data, ["belajar", "tidur", "hp", "mood"])) {
     renderEmptyState();
@@ -483,14 +502,14 @@ function renderDashboard() {
   renderBurnoutInsight(avgTidur, avgMood);
 }
 
-window.addEventListener("load", function () {
-  renderDashboard();
+window.addEventListener("load", async function () {
+  await renderDashboard();
 
   const themeToggle = document.getElementById("toggleMode");
   if (themeToggle) {
-    themeToggle.addEventListener("change", () => {
-      requestAnimationFrame(() => {
-        renderDashboard();
+    themeToggle.addEventListener("change", async () => {
+      requestAnimationFrame(async () => {
+        await renderDashboard();
       });
     });
   }

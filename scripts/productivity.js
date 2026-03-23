@@ -10,7 +10,26 @@ const PREVIEW_SERIES = Array(CHART_LABELS.length).fill(null);
 
 let myChart = null;
 
-function parseTrackerData() {
+async function parseTrackerData() {
+  // Try to load from Firestore first
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const data = userData.trackerData || [];
+          return Array.isArray(data) ? data : [];
+        }
+      }
+    } catch (error) {
+      console.error("Error loading from Firestore:", error);
+    }
+  }
+
+  // Fallback to localStorage
   const raw = localStorage.getItem("trackerData");
   if (!raw) return [];
 
@@ -271,8 +290,8 @@ function renderAnalysis(belajar, tidur, hp, avgBelajar, avgTidur, avgHP) {
   }
 }
 
-function renderProductivityPage() {
-  const data = parseTrackerData();
+async function renderProductivityPage() {
+  const data = await parseTrackerData();
 
   if (!hasValidData(data, ["belajar", "tidur", "hp"])) {
     showEmptyState();
@@ -304,14 +323,14 @@ function renderProductivityPage() {
   renderAnalysis(belajar, tidur, hp, avgBelajar, avgTidur, avgHP);
 }
 
-window.addEventListener("load", function () {
-  renderProductivityPage();
+window.addEventListener("load", async function () {
+  await renderProductivityPage();
 
   const themeToggle = document.getElementById("toggleMode");
   if (themeToggle) {
-    themeToggle.addEventListener("change", () => {
-      requestAnimationFrame(() => {
-        renderProductivityPage();
+    themeToggle.addEventListener("change", async () => {
+      requestAnimationFrame(async () => {
+        await renderProductivityPage();
       });
     });
   }

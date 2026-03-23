@@ -48,6 +48,7 @@
             </p>
             <form id="signupForm">
               <input type="text" id="fullName" placeholder="Full name" required />
+              <input type="text" id="nickname" placeholder="Nickname" required />
               <input type="email" id="signupEmail" placeholder="Email" required />
               <input type="password" id="signupPassword" placeholder="Password" required />
               <input type="password" id="confirmPassword" placeholder="Confirm password" required />
@@ -83,6 +84,7 @@
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
       const firebaseConfig = {
   apiKey: "AIzaSyCI1lghCfgBf5S-PEfZ_6DEHaSYu76aUT4",
@@ -96,6 +98,7 @@
 
       const app = initializeApp(firebaseConfig);
       window.auth = getAuth(app);
+      window.db = getFirestore(app);
     </script>
 
     <script src="scripts/global.js"></script>

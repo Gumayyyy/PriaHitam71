@@ -1,6 +1,104 @@
 let tasks = [];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Notes page loaded, checking authentication...");
+  if (window.auth) {
+    window.auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        console.log("User authenticated:", user.uid);
+        await loadNotesData();
+      } else {
+        console.log("User not authenticated, loading from localStorage");
+        await loadNotesData();
+      }
+    });
+  } else {
+    console.log("Firebase auth not initialized");
+    await loadNotesData();
+  }
+  initNotesSections();
+});
+
+const loadNotesData = async () => {
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        console.log("Loading user data for user:", user.uid);
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          console.log("User data loaded:", userData);
+
+          // Load tasks
+          if (userData.tasks) {
+            tasks = userData.tasks;
+            console.log("Tasks loaded:", tasks);
+            updateTasksList();
+            updateStats();
+          }
+
+          // Load boost notes
+          if (userData.boostNotes) {
+            localStorage.setItem("boostNotes", JSON.stringify(userData.boostNotes));
+            console.log("Boost notes loaded:", userData.boostNotes);
+            // Show boost notes if they exist
+            if (userData.boostNotes.length > 0) {
+              boostListVisible = true;
+              // Update button text after init
+              setTimeout(() => {
+                const toggleBtn = document.getElementById("toggleBoostBtn");
+                if (toggleBtn) {
+                  toggleBtn.textContent = "Hide Notes";
+                  const list = document.getElementById("boostList");
+                  if (list) {
+                    list.classList.add("visible");
+                    displayBoost();
+                  }
+                }
+              }, 100);
+            }
+          }
+
+          // Load mind notes
+          if (userData.mindNotes) {
+            localStorage.setItem("mindNotes", JSON.stringify(userData.mindNotes));
+            console.log("Mind notes loaded:", userData.mindNotes);
+            // Show mind notes if they exist
+            if (userData.mindNotes.length > 0) {
+              mindListVisible = true;
+              // Update button text after init
+              setTimeout(() => {
+                const toggleBtn = document.getElementById("toggleMindBtn");
+                if (toggleBtn) {
+                  toggleBtn.textContent = "Hide Notes";
+                  const list = document.getElementById("mindList");
+                  if (list) {
+                    list.classList.add("visible");
+                    displayMind();
+                  }
+                }
+              }, 100);
+            }
+          }
+
+          return;
+        } else {
+          console.log("No user data document found");
+        }
+      } else {
+        console.log("No authenticated user");
+      }
+    } catch (error) {
+      console.error("Error loading from Firestore:", error);
+    }
+  } else {
+    console.log("Firebase not initialized");
+  }
+
+  // Fallback to localStorage
+  console.log("Falling back to localStorage");
   const storedTasks = JSON.parse(localStorage.getItem("tasks"));
   if (storedTasks) {
     storedTasks.forEach((task) => tasks.push(task));
@@ -8,11 +106,67 @@ document.addEventListener("DOMContentLoaded", () => {
     updateStats();
   }
 
-  initNotesSections();
-});
+  // Check for boost notes in localStorage
+  const boostNotes = JSON.parse(localStorage.getItem("boostNotes")) || [];
+  if (boostNotes.length > 0) {
+    boostListVisible = true;
+    setTimeout(() => {
+      const toggleBtn = document.getElementById("toggleBoostBtn");
+      if (toggleBtn) {
+        toggleBtn.textContent = "Hide Notes";
+        const list = document.getElementById("boostList");
+        if (list) {
+          list.classList.add("visible");
+          displayBoost();
+        }
+      }
+    }, 100);
+  }
 
-const saveTasks = () => {
+  // Check for mind notes in localStorage
+  const mindNotes = JSON.parse(localStorage.getItem("mindNotes")) || [];
+  if (mindNotes.length > 0) {
+    mindListVisible = true;
+    setTimeout(() => {
+      const toggleBtn = document.getElementById("toggleMindBtn");
+      if (toggleBtn) {
+        toggleBtn.textContent = "Hide Notes";
+        const list = document.getElementById("mindList");
+        if (list) {
+          list.classList.add("visible");
+          displayMind();
+        }
+      }
+    }, 100);
+  }
+};
+
+const saveTasks = async () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  console.log("Tasks saved to localStorage:", tasks);
+
+  // Save to Firestore if user is logged in
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        // Get existing user data
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        const userData = userDoc.exists() ? userDoc.data() : {};
+
+        // Update with new tasks and preserve other data
+        await setDoc(doc(window.db, "userData", user.uid), {
+          ...userData,
+          tasks: tasks,
+          lastUpdated: new Date()
+        });
+        console.log("Tasks saved to Firestore for user:", user.uid);
+      }
+    } catch (error) {
+      console.error("Error saving tasks to Firestore:", error);
+    }
+  }
 };
 
 const addTask = () => {
@@ -126,8 +280,35 @@ function getData(key) {
   return JSON.parse(localStorage.getItem(key)) || [];
 }
 
-function saveData(key, data) {
+async function saveData(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
+  console.log(`${key} saved to localStorage:`, data);
+
+  // Save to Firestore if user is logged in
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        // Get existing user data
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        const userData = userDoc.exists() ? userDoc.data() : {};
+
+        // Determine which field to update based on key
+        const firestoreKey = key === "boostNotes" ? "boostNotes" : key === "mindNotes" ? "mindNotes" : key;
+
+        // Update with new data and preserve other data
+        await setDoc(doc(window.db, "userData", user.uid), {
+          ...userData,
+          [firestoreKey]: data,
+          lastUpdated: new Date()
+        });
+        console.log(`${key} saved to Firestore for user:`, user.uid);
+      }
+    } catch (error) {
+      console.error(`Error saving ${key} to Firestore:`, error);
+    }
+  }
 }
 
 function initNotesSections() {
@@ -192,7 +373,7 @@ function renderNoteList(listElement, notes, onEdit, onDelete) {
   });
 }
 
-function saveBoost() {
+async function saveBoost() {
   const input = document.getElementById("boostInput");
   const notes = getData("boostNotes");
   const text = input.value.trim();
@@ -207,7 +388,7 @@ function saveBoost() {
     notes.push(text);
   }
 
-  saveData("boostNotes", notes);
+  await saveData("boostNotes", notes);
   input.value = "";
   editIndexBoost = null;
 
@@ -245,14 +426,14 @@ function editBoost(index) {
   input.focus();
 }
 
-function deleteBoost(index) {
+async function deleteBoost(index) {
   const notes = getData("boostNotes");
   notes.splice(index, 1);
-  saveData("boostNotes", notes);
+  await saveData("boostNotes", notes);
   displayBoost();
 }
 
-function saveMind() {
+async function saveMind() {
   const input = document.getElementById("mindInput");
   const notes = getData("mindNotes");
   const text = input.value.trim();
@@ -267,7 +448,7 @@ function saveMind() {
     notes.push(text);
   }
 
-  saveData("mindNotes", notes);
+  await saveData("mindNotes", notes);
   input.value = "";
   editIndexMind = null;
 
@@ -305,9 +486,9 @@ function editMind(index) {
   input.focus();
 }
 
-function deleteMind(index) {
+async function deleteMind(index) {
   const notes = getData("mindNotes");
   notes.splice(index, 1);
-  saveData("mindNotes", notes);
+  await saveData("mindNotes", notes);
   displayMind();
 }

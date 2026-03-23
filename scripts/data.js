@@ -14,9 +14,8 @@ hari.forEach((h) => {
 });
 
 // Initialize form, load saved data, and wire all input validators.
-document.addEventListener("DOMContentLoaded", function () {
-  loadData();
-  hitungData();
+document.addEventListener("DOMContentLoaded", async function () {
+  await loadData();
 
   const inputs = document.querySelectorAll(".jam-input");
 
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("blur", () => {
       if (input.value === "" || input.value === ".") {
         input.value = "";
-        saveData();
         return;
       }
 
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (isNaN(num)) {
         input.value = "";
-        saveData();
         return;
       }
 
@@ -61,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         num = Math.round(num * 2) / 2;
 
         input.value = num;
-        saveData();
         return;
       }
 
@@ -73,14 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
       num = Math.round(num * 2) / 2;
 
       input.value = num;
-
-      saveData();
     });
   });
 });
 
 function saveData() {
-  // Persist table content into localStorage in day-order.
+  // Persist table content into Firestore in day-order.
   const data = [];
 
   const rows = document.querySelectorAll("tr");
@@ -96,16 +90,68 @@ function saveData() {
     data.push({ belajar, tidur, hp, mood });
   });
 
+  // Save to localStorage for immediate UI update
   localStorage.setItem("trackerData", JSON.stringify(data));
+
+  // Save to Firestore if user is logged in
+  if (window.auth && window.db) {
+    window.auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          await setDoc(doc(window.db, "userData", user.uid), {
+            trackerData: data,
+            lastUpdated: new Date()
+          });
+        } catch (error) {
+          console.error("Error saving to Firestore:", error);
+        }
+      }
+    });
+  }
+
   hitungData(); // Update chart setelah save
 }
 
-function loadData() {
-  // Restore saved tracker data into each row input.
+async function loadData() {
+  // Try to load from Firestore first, fallback to localStorage
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const data = userData.trackerData || [];
+          populateTable(data);
+          // Also save to localStorage for consistency
+          localStorage.setItem("trackerData", JSON.stringify(data));
+          // Display chart if there's data
+          if (data.some(item => item.belajar || item.tidur || item.hp || item.mood)) {
+            loadAndDisplayChart(data);
+          }
+          return;
+        }
+      }
+    } catch (error) {
+      console.error("Error loading from Firestore:", error);
+    }
+  }
+
+  // Fallback to localStorage
   const saved = localStorage.getItem("trackerData");
   if (!saved) return;
 
   const data = JSON.parse(saved);
+  populateTable(data);
+  // Display chart if there's data
+  if (data.some(item => item.belajar || item.tidur || item.hp || item.mood)) {
+    loadAndDisplayChart(data);
+  }
+}
+
+function populateTable(data) {
   const rows = document.querySelectorAll("tr");
 
   data.forEach((item, index) => {
@@ -119,72 +165,21 @@ function loadData() {
   });
 }
 
-let chart;
-
-function hasAnyFilledInput(data) {
-  if (!Array.isArray(data) || data.length === 0) return false;
-
-  return data.some((item) => {
-    if (!item || typeof item !== "object") return false;
-
-    return [item.belajar, item.tidur, item.hp, item.mood].some((value) => {
-      if (value === null || value === undefined) return false;
-      return String(value).trim() !== "";
-    });
-  });
-}
-
-function setChartEmptyState(isEmpty) {
-  const chartPanel = document.getElementById("inputDataChartPanel");
-  if (!chartPanel) return;
-
-  chartPanel.classList.toggle("no-data-preview", isEmpty);
-}
-
-function getCssVar(name) {
-  return getComputedStyle(document.body).getPropertyValue(name).trim();
-}
-
-function getInputChartPalette() {
-  return {
-    fills: [
-      getCssVar("--in-chart-sleep"),
-      getCssVar("--in-chart-study"),
-      getCssVar("--in-chart-phone"),
-      getCssVar("--in-chart-mood"),
-    ],
-    borders: [
-      getCssVar("--in-chart-sleep-border"),
-      getCssVar("--in-chart-study-border"),
-      getCssVar("--in-chart-phone-border"),
-      getCssVar("--in-chart-mood-border"),
-    ],
-    ticks: getCssVar("--in-chart-text"),
-    grid: getCssVar("--in-chart-grid"),
-    legend: getCssVar("--in-chart-legend"),
-  };
-}
-
-function hitungData() {
-  // Read saved values and rebuild the weekly bar chart.
-  const saved = localStorage.getItem("trackerData");
+function loadAndDisplayChart(data) {
+  // Display the chart with the provided data without saving
   const palette = getInputChartPalette();
-  let isEmpty = true;
+  let isEmpty = !hasAnyFilledInput(data);
   let dataBelajar = [],
     dataTidur = [],
     dataHP = [],
     dataMood = [];
 
-  if (saved) {
-    const data = JSON.parse(saved);
-    isEmpty = !hasAnyFilledInput(data);
-    data.forEach((item) => {
-      dataBelajar.push(Number(item.belajar || 0));
-      dataTidur.push(Number(item.tidur || 0));
-      dataHP.push(Number(item.hp || 0));
-      dataMood.push(Number(item.mood || 0));
-    });
-  }
+  data.forEach((item) => {
+    dataBelajar.push(Number(item.belajar || 0));
+    dataTidur.push(Number(item.tidur || 0));
+    dataHP.push(Number(item.hp || 0));
+    dataMood.push(Number(item.mood || 0));
+  });
 
   setChartEmptyState(isEmpty);
 
@@ -256,11 +251,103 @@ function hitungData() {
   });
 }
 
+let chart;
+
+function hasAnyFilledInput(data) {
+  if (!Array.isArray(data) || data.length === 0) return false;
+
+  return data.some((item) => {
+    if (!item || typeof item !== "object") return false;
+
+    return [item.belajar, item.tidur, item.hp, item.mood].some((value) => {
+      if (value === null || value === undefined) return false;
+      return String(value).trim() !== "";
+    });
+  });
+}
+
+function setChartEmptyState(isEmpty) {
+  const chartPanel = document.getElementById("inputDataChartPanel");
+  if (!chartPanel) return;
+
+  chartPanel.classList.toggle("no-data-preview", isEmpty);
+}
+
+function getCssVar(name) {
+  return getComputedStyle(document.body).getPropertyValue(name).trim();
+}
+
+function getInputChartPalette() {
+  return {
+    fills: [
+      getCssVar("--in-chart-sleep"),
+      getCssVar("--in-chart-study"),
+      getCssVar("--in-chart-phone"),
+      getCssVar("--in-chart-mood"),
+    ],
+    borders: [
+      getCssVar("--in-chart-sleep-border"),
+      getCssVar("--in-chart-study-border"),
+      getCssVar("--in-chart-phone-border"),
+      getCssVar("--in-chart-mood-border"),
+    ],
+    ticks: getCssVar("--in-chart-text"),
+    grid: getCssVar("--in-chart-grid"),
+    legend: getCssVar("--in-chart-legend"),
+  };
+}
+
+function hitungData() {
+  // Collect current form data and save it
+  const data = [];
+
+  const rows = document.querySelectorAll("tr");
+
+  rows.forEach((row, index) => {
+    if (index === 0) return; // skip header
+
+    const belajar = row.querySelector(".belajar")?.value || "";
+    const tidur = row.querySelector(".tidur")?.value || "";
+    const hp = row.querySelector(".hp")?.value || "";
+    const mood = row.querySelector(".mood")?.value || "";
+
+    data.push({ belajar, tidur, hp, mood });
+  });
+
+  // Save to localStorage and Firestore
+  localStorage.setItem("trackerData", JSON.stringify(data));
+
+  // Save to Firestore if user is logged in
+  if (window.auth && window.db) {
+    window.auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          await setDoc(doc(window.db, "userData", user.uid), {
+            trackerData: data,
+            lastUpdated: new Date()
+          });
+        } catch (error) {
+          console.error("Error saving to Firestore:", error);
+        }
+      }
+    });
+  }
+
+  // Display the chart
+  loadAndDisplayChart(data);
+}
+
 const themeToggle = document.getElementById("toggleMode");
 if (themeToggle) {
   themeToggle.addEventListener("change", () => {
     requestAnimationFrame(() => {
-      hitungData();
+      // Re-render chart with current data without saving
+      const saved = localStorage.getItem("trackerData");
+      if (saved) {
+        const data = JSON.parse(saved);
+        loadAndDisplayChart(data);
+      }
     });
   });
 }
@@ -268,6 +355,10 @@ if (themeToggle) {
 // Sync chart ketika tab lain mengubah data di localStorage
 window.addEventListener("storage", (e) => {
   if (e.key === "trackerData") {
-    hitungData();
+    const saved = localStorage.getItem("trackerData");
+    if (saved) {
+      const data = JSON.parse(saved);
+      loadAndDisplayChart(data);
+    }
   }
 });

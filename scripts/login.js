@@ -3,6 +3,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { 
+  doc, 
+  setDoc 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginContainer = document.querySelector(".login-container");
@@ -44,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   signupForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const fullName = document.getElementById("fullName").value;
+    const username = document.getElementById("nickname").value;
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -67,6 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update user profile with full name
       await updateProfile(userCredential.user, {
         displayName: fullName
+      });
+
+      // Save user data to Firestore
+      await setDoc(doc(window.db, "users", userCredential.user.uid), {
+        fullName: fullName,
+        username: username,
+        email: email
       });
 
       // Signup successful - redirect to home

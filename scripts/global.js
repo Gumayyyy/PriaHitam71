@@ -57,3 +57,33 @@ const showSocial = (btnId, socialId) => {
   });
 };
 showSocial("user-btn", "user-social");
+
+// Function to load user data
+const loadUserData = async () => {
+  if (!window.auth || !window.db) return;
+
+  const { onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+  const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+
+  onAuthStateChanged(window.auth, async (user) => {
+    if (user) {
+      try {
+        const userDoc = await getDoc(doc(window.db, "users", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const username = userData.username;
+          // Update all user-name elements
+          const userNameElements = document.querySelectorAll('.user-name');
+          userNameElements.forEach(el => {
+            el.textContent = username;
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+  });
+};
+
+// Load user data when DOM is ready
+document.addEventListener("DOMContentLoaded", loadUserData);

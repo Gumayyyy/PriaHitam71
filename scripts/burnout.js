@@ -56,7 +56,26 @@ function chartOptions() {
   };
 }
 
-function parseTrackerData() {
+async function parseTrackerData() {
+  // Try to load from Firestore first
+  if (window.auth && window.db) {
+    try {
+      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = window.auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(window.db, "userData", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const data = userData.trackerData || [];
+          return Array.isArray(data) ? data : [];
+        }
+      }
+    } catch (error) {
+      console.error("Error loading from Firestore:", error);
+    }
+  }
+
+  // Fallback to localStorage
   const saved = localStorage.getItem("trackerData");
   if (!saved) return [];
 
@@ -264,8 +283,8 @@ function renderSleepChart(sleepData, moodData, isPreview = false) {
   });
 }
 
-function hitungBurnout() {
-  const data = parseTrackerData();
+async function hitungBurnout() {
+  const data = await parseTrackerData();
 
   if (!hasValidData(data, ["tidur", "mood"])) {
     showEmptyState();
@@ -301,14 +320,14 @@ function hitungBurnout() {
   renderSleepChart(chartSleepData, chartMoodData, false);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  hitungBurnout();
+document.addEventListener("DOMContentLoaded", async () => {
+  await hitungBurnout();
 
   const themeToggle = document.getElementById("toggleMode");
   if (themeToggle) {
-    themeToggle.addEventListener("change", () => {
-      requestAnimationFrame(() => {
-        hitungBurnout();
+    themeToggle.addEventListener("change", async () => {
+      requestAnimationFrame(async () => {
+        await hitungBurnout();
       });
     });
   }
