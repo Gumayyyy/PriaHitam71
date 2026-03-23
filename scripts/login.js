@@ -11,18 +11,34 @@ import {
 document.addEventListener("DOMContentLoaded", () => {
   const loginContainer = document.querySelector(".login-container");
   const signupBtn = document.getElementById("signupBtn");
+  const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
   const backLogin = document.getElementById("backLogin");
+  const backFromForgot = document.getElementById("backFromForgot");
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
 
   // Toggle between login and signup
   signupBtn?.addEventListener("click", (e) => {
     e.preventDefault();
+    loginContainer?.classList.remove("forgot-mode");
     loginContainer?.classList.add("signup-mode");
   });
 
   backLogin?.addEventListener("click", (e) => {
     e.preventDefault();
+    loginContainer?.classList.remove("forgot-mode");
+    loginContainer?.classList.remove("signup-mode");
+  });
+
+  forgotPasswordBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginContainer?.classList.remove("signup-mode");
+    loginContainer?.classList.add("forgot-mode");
+  });
+
+  backFromForgot?.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginContainer?.classList.remove("forgot-mode");
     loginContainer?.classList.remove("signup-mode");
   });
 

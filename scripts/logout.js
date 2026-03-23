@@ -15,15 +15,15 @@
           const { signOut } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
           await signOut(window.auth);
           // Redirect to login after sign out
-          window.location.href = "../login.html";
+          window.location.href = "../index.html";
         } catch (error) {
           console.error("Error signing out:", error);
           // Still redirect even if error
-          window.location.href = "../login.html";
+          window.location.href = "../index.html";
         }
       } else {
         // Fallback if auth not loaded
-        window.location.href = "../login.html";
+        window.location.href = "../index.html";
       }
     });
   }

@@ -127,6 +127,14 @@ body.dark-mode {
   pointer-events: none;
 }
 
+.forgot-form {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .form-box h2 {
   margin: 0;
   font-family: "Outfit", "Segoe UI", sans-serif;
@@ -265,7 +273,7 @@ input[type="password"]:hover {
 }
 
 .login-container.signup-mode .form-box {
-  transform: translateX(75%);
+  transform: translate(75%, -28px);
   animation: formToSignup 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -289,31 +297,97 @@ input[type="password"]:hover {
   pointer-events: auto;
 }
 
+.login-container.forgot-mode {
+  grid-template-columns: 1fr;
+  place-items: center;
+  height: 100vh;
+  margin-top: 0;
+  overflow: hidden !important;
+}
+
+.login-container.forgot-mode .form-box {
+  width: min(100%, 640px);
+  max-height: 100%;
+  transform: translateY(100px) !important;
+  align-items: center;
+  transform: translateX(0);
+  animation: formToForgot 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-container.forgot-mode .brand {
+  margin-right: 135px;
+}
+
+.login-container.forgot-mode .auth-forms {
+  min-height: 0;
+}
+
+.login-container.forgot-mode .login-form-content,
+.login-container.forgot-mode .signup-form {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.login-container.forgot-mode .forgot-form {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: forgotFormFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-container.forgot-mode .info-circle {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  animation: circleToForgot 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @keyframes formToSignup {
   0% {
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
 
   70% {
-    transform: translateX(78%);
+    transform: translate(78%, -30px);
   }
 
   100% {
-    transform: translateX(75%);
+    transform: translate(75%, -28px);
   }
 }
 
 @keyframes formToLogin {
   0% {
-    transform: translateX(75%);
+    transform: translate(75%, -28px);
   }
 
   70% {
-    transform: translateX(-3%);
+    transform: translate(-3%, -6px);
   }
 
   100% {
-    transform: translateX(0);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes formToForgot {
+  0% {
+    transform: translateX(0) scale(0.98);
+    opacity: 0.96;
+  }
+
+  60% {
+    transform: translateX(0) scale(1.01);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
   }
 }
 
@@ -348,6 +422,30 @@ input[type="password"]:hover {
   100% {
     transform: translateX(-8%) scale(1.08);
     border-radius: 62% 38% 38% 62% / 52% 52% 48% 48%;
+  }
+}
+
+@keyframes circleToForgot {
+  0% {
+    transform: translateX(0) scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(110%) scale(1.02);
+    opacity: 0;
+  }
+}
+
+@keyframes forgotFormFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
