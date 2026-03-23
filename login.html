@@ -18,39 +18,42 @@
       <div class="form-box">
         <p class="brand">Student Productivity Tracker</p>
         <div class="auth-forms">
+          <!-- LOGIN FORM -->
           <div class="login-form-content">
-            <h2>Glad to see you!</h2>
+            <h2>Welcome back</h2>
             <p class="subtitle">
               Sign in and continue building your best study routine.
             </p>
-            <form>
-              <input type="text" placeholder="Full Name" required />
-              <input type="password" placeholder="Password" required />
+            <form id="loginForm">
+              <input type="email" id="loginEmail" placeholder="Email" required />
+              <input type="password" id="loginPassword" placeholder="Password" required />
 
               <div class="options">
                 <label><input type="checkbox" /> Remember me</label>
                 <a href="#">Forgot password?</a>
               </div>
               <button class="login-btn" type="submit">Login</button>
+              <div id="loginError" class="error-message"></div>
               <p class="register-text">
                 Don't have an account? <a href="#" id="signupBtn">Sign up</a>
               </p>
             </form>
           </div>
 
+          <!-- SIGNUP FORM -->
           <div class="signup-form">
             <h2>Create account</h2>
             <p class="subtitle">
               Start your productivity journey with a new account.
             </p>
-            <form>
-              <input type="text" placeholder="Full Name" required />
-              <input type="text" placeholder="Nickname" required />
-              <input type="text" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
-              <input type="password" placeholder="Confirm password" required />
+            <form id="signupForm">
+              <input type="text" id="fullName" placeholder="Full name" required />
+              <input type="email" id="signupEmail" placeholder="Email" required />
+              <input type="password" id="signupPassword" placeholder="Password" required />
+              <input type="password" id="confirmPassword" placeholder="Confirm password" required />
 
               <button class="login-btn" type="submit">Sign Up</button>
+              <div id="signupError" class="error-message"></div>
               <p class="register-text">
                 Already have an account? <a href="#" id="backLogin">Login</a>
               </p>
@@ -68,7 +71,7 @@
           </span>
         </label>
         <p class="kicker">Focus. Flow. Finish.</p>
-        <h1>Glad to see you!</h1>
+        <h1>Welcome Back!</h1>
         <p>
           Log in to track your productivity, monitor habits, and prevent
           burnout.
@@ -76,7 +79,26 @@
       </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      const firebaseConfig = {
+  apiKey: "AIzaSyCI1lghCfgBf5S-PEfZ_6DEHaSYu76aUT4",
+  authDomain: "priahitam71-000000.firebaseapp.com",
+  projectId: "priahitam71-000000",
+  storageBucket: "priahitam71-000000.firebasestorage.app",
+  messagingSenderId: "543874144759",
+  appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
+  measurementId: "G-JS7VFF76YX"
+};
+
+      const app = initializeApp(firebaseConfig);
+      window.auth = getAuth(app);
+    </script>
+
     <script src="scripts/global.js"></script>
-    <script src="scripts/login.js"></script>
+    <script type="module" src="scripts/login.js"></script>
   </body>
 </html>

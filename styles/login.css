@@ -111,7 +111,6 @@ body.dark-mode {
   background: rgba(44, 83, 100, 0.14);
   border: 1px solid rgba(44, 83, 100, 0.22);
   border-radius: 999px;
-  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .auth-forms {
@@ -148,6 +147,7 @@ form {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 14px 16px;
@@ -165,12 +165,14 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(21, 96, 100, 0.15);
 }
 
 input[type="text"]:hover,
+input[type="email"]:hover,
 input[type="password"]:hover {
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(21, 96, 100, 0.15);
@@ -287,14 +289,6 @@ input[type="password"]:hover {
   pointer-events: auto;
 }
 
-.login-container.signup-mode .auth-forms {
-  transform: translateY(-38px);
-}
-
-.login-container.signup-mode .brand {
-  transform: translateY(-35px);
-}
-
 @keyframes formToSignup {
   0% {
     transform: translateX(0);
@@ -347,12 +341,12 @@ input[type="password"]:hover {
   }
 
   60% {
-    transform: translateX(6%) scale(1.095);
+    transform: translateX(-4%) scale(1.095);
     border-radius: 66% 34% 34% 66% / 52% 52% 48% 48%;
   }
 
   100% {
-    transform: translateX(0) scale(1.08);
+    transform: translateX(-8%) scale(1.08);
     border-radius: 62% 38% 38% 62% / 52% 52% 48% 48%;
   }
 }
@@ -524,4 +518,12 @@ body.dark-mode .brand,
 body.dark-mode .options a,
 body.dark-mode .register-text a {
   color: #f8fafc;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 20px;
 }
