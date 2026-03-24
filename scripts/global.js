@@ -1,5 +1,6 @@
 (() => {
   const STORAGE_KEY = "theme";
+  const THEME_TRANSITION_MS = 450;
   const body = document.body;
   const toggleCheckbox = document.getElementById("toggleMode");
 
@@ -40,7 +41,7 @@
       // Remove transition class after animation completes
       setTimeout(() => {
         body.classList.remove("theme-transition");
-      }, 350);
+      }, THEME_TRANSITION_MS);
     });
   }
 })();
@@ -62,8 +63,10 @@ showSocial("user-btn", "user-social");
 const loadUserData = async () => {
   if (!window.auth || !window.db) return;
 
-  const { onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
-  const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+  const { onAuthStateChanged } =
+    await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+  const { doc, getDoc } =
+    await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
 
   onAuthStateChanged(window.auth, async (user) => {
     if (user) {
@@ -73,8 +76,8 @@ const loadUserData = async () => {
           const userData = userDoc.data();
           const username = userData.username;
           // Update all user-name elements
-          const userNameElements = document.querySelectorAll('.user-name');
-          userNameElements.forEach(el => {
+          const userNameElements = document.querySelectorAll(".user-name");
+          userNameElements.forEach((el) => {
             el.textContent = username;
           });
         }

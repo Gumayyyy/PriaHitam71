@@ -7,6 +7,8 @@
   --accent: #156064;
   --accent-strong: #0f4a4d;
   --highlight: #f7b267;
+  --theme-duration: 0.45s;
+  --theme-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -21,8 +23,8 @@ body {
   color: var(--ink-main);
   background: var(--bg-main);
   transition:
-    background-color 0.35s ease-out,
-    color 0.35s ease-out;
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease);
   will-change: background-color, color;
 }
 
@@ -31,12 +33,26 @@ body.no-transition * {
   transition: none !important;
 }
 
-body.theme-transition * {
+body.theme-transition,
+body.theme-transition .form-box,
+body.theme-transition .brand,
+body.theme-transition .subtitle,
+body.theme-transition .register-text,
+body.theme-transition .options label,
+body.theme-transition input[type="text"],
+body.theme-transition input[type="email"],
+body.theme-transition input[type="password"],
+body.theme-transition .theme-toggle .slider,
+body.theme-transition .info-circle h1,
+body.theme-transition .info-circle p,
+body.theme-transition .info-circle::before,
+body.theme-transition .info-circle::after {
   transition:
-    background-color 0.35s ease-out,
-    color 0.35s ease-out,
-    border-color 0.35s ease-out,
-    box-shadow 0.35s ease-out !important;
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease),
+    box-shadow var(--theme-duration) var(--theme-ease),
+    opacity var(--theme-duration) var(--theme-ease) !important;
 }
 
 body.dark-mode {
@@ -89,6 +105,11 @@ body.dark-mode {
   background: var(--bg-main);
   transform: translateX(0);
   animation: formToLogin 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 1s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease);
 }
 
 .form-box h2,
@@ -111,6 +132,10 @@ body.dark-mode {
   background: rgba(44, 83, 100, 0.14);
   border: 1px solid rgba(44, 83, 100, 0.22);
   border-radius: 999px;
+  transition:
+    color var(--theme-duration) var(--theme-ease),
+    background-color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease);
 }
 
 .auth-forms {
@@ -148,6 +173,7 @@ body.dark-mode {
   max-width: 470px;
   color: var(--ink-soft);
   line-height: 1.6;
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
 form {
@@ -167,6 +193,8 @@ input[type="password"] {
   color: var(--ink-main);
   outline: none;
   transition:
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease),
     border-color 0.2s ease,
     box-shadow 0.2s ease;
   margin-bottom: 14px;
@@ -201,6 +229,7 @@ input[type="password"]:hover {
   align-items: center;
   gap: 8px;
   color: var(--ink-soft);
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
 .options label input {
@@ -255,6 +284,7 @@ input[type="password"]:hover {
   text-align: center;
   color: var(--ink-soft);
   font-size: 0.92rem;
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
 .info-circle {
@@ -523,6 +553,7 @@ input[type="password"]:hover {
   position: relative;
   z-index: 1;
   color: var(--bg-panel);
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
 .info-circle p {
@@ -533,6 +564,7 @@ input[type="password"]:hover {
   color: rgba(255, 255, 255, 0.9);
   position: relative;
   z-index: 1;
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
 .info-circle p:last-child {

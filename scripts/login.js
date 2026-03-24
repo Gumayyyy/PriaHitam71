@@ -1,7 +1,8 @@
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { 
   doc, 
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const backFromForgot = document.getElementById("backFromForgot");
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
-
+  const forgotForm = document.getElementById("forgotForm");
   // Toggle between login and signup
   signupBtn?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -104,4 +105,24 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Signup error:", error);
     }
   });
-});
+
+  // FORGOT PASSWORD
+  forgotForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("forgotEmail").value;
+    const errorDiv = document.getElementById("forgotError");
+    const successDiv = document.getElementById("forgotSuccess");
+
+    try {
+      errorDiv.textContent = "";
+      successDiv.textContent = "";
+
+      await sendPasswordResetEmail(window.auth, email);
+
+      successDiv.textContent = "Password reset email sent successfully!";
+    } catch (error) {
+      errorDiv.textContent = error.message;
+      console.error("Forgot password error:", error);
+    }
+    });
+  });
