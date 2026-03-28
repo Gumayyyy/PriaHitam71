@@ -1,25 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Productivity Tracker</title>
-    <link rel="icon" type="image/png" href="../assets/logo.png" />
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/notes.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+    <link rel="icon" type="image/png" href="../../assets/logo.png" />
+    <link rel="stylesheet" href="../../styles/desktop/feedback.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="layout">
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <h2><i class="fa-regular fa-folder-open"></i> Notesphere</h2>
+          <h2><i class="fa-solid fa-inbox"></i> Voice Board</h2>
         </div>
         <ul>
           <li>
             <a href="home.html" class="nav-link nav-link-home"
-              ><img src="../assets/logo.png" alt="Home" /> <span>Home</span></a
+              ><img src="../../assets/logo.png" alt="Home" /> <span>Home</span></a
             >
           </li>
           <li class="sidebar-divider" aria-hidden="true"></li>
@@ -102,62 +105,46 @@
           </div>
         </header>
 
-        <div class="notes-page">
-          <div class="notes-grid">
-            <section class="card todo-card">
-              <div class="stats-container">
-                <div class="details">
-                  <h1>To-Do List</h1>
-                  <p>Keep track of your daily tasks and goals.</p>
-                  <div id="progressBar">
-                    <div id="progress"></div>
-                  </div>
+        <div class="contact-container">
+          <h2>Let's Connect</h2>
+          <p class="sub-heading">
+            Have any questions or feedback? We'd love to hear from you!
+          </p>
+
+          <form action="">
+            <div class="top-section">
+              <div class="input-group">
+                <label for="fullname">Your Name</label>
+                <div class="input-container">
+                  <i class="fa-solid fa-user"></i>
+                  <input type="text" id="fullname" placeholder="Enter your name" required />
                 </div>
-                <div class="stats-numbers">
-                  <p id="numbers">0/0</p>
+              </div>
+
+              <div class="input-group">
+                <label for="date">Date</label>
+                <div class="input-container">
+                  <i class="fa-solid fa-calendar"></i>
+                  <input type="date" id="date" required />
                 </div>
               </div>
+            </div>
 
-              <form action="">
-                <input type="text" id="taskInput" placeholder="Add a new task..." />
-                <button id="newTask" type="submit">+</button>
-              </form>
+            <div class="input-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Enter your message" required></textarea>
+            </div>
 
-              <ul id="task-list" class="task-list"></ul>
-            </section>
-
-            <section class="card notes-section boost-card">
-              <h2><i class="fa-solid fa-rocket"></i> Boost Notes</h2>
-              <p class="desc">Write something to motivate yourself.</p>
-
-              <textarea id="boostInput" placeholder="Write something to boost yourself..."></textarea>
-
-              <div class="btn-group">
-                <button id="saveBoostBtn" class="notes-btn" type="button">Save</button>
-                <button id="toggleBoostBtn" class="notes-btn secondary" type="button">View Notes</button>
-              </div>
-
-              <div id="boostList" class="notes-list"></div>
-            </section>
-
-            <section class="card notes-section mind-card">
-              <h2><i class="fa-solid fa-brain"></i> Mind Notes</h2>
-              <p class="desc">Write your thoughts and reflections.</p>
-
-              <textarea id="mindInput" placeholder="Write your thoughts here..."></textarea>
-
-              <div class="btn-group">
-                <button id="saveMindBtn" class="notes-btn" type="button">Save</button>
-                <button id="toggleMindBtn" class="notes-btn secondary" type="button">View Notes</button>
-              </div>
-
-              <div id="mindList" class="notes-list"></div>
-            </section>
-          </div>
+            <div class="btn-input">
+              <i class="fa-regular fa-paper-plane"></i>
+              <input type="submit" value="Send" />
+            </div>
+          </form>
         </div>
+      </div>
+    </div>
 
-    <script src="../scripts/global.js"></script>
-    <script src="../scripts/notes.js"></script>
+    <script src="../../scripts/global.js"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -177,5 +164,6 @@
       window.auth = getAuth(app);
       window.db = getFirestore(app);
     </script>
-</body>
+    <script src="../scripts/feedback.js"></script>
+  </body>
 </html>

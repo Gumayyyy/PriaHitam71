@@ -11,9 +11,30 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/desktop/login.css" />
+    <link rel="stylesheet" href="../../styles/mobile/login.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
   </head>
   <body>
+
+    <div class="logout-theme-toggle">
+      <label class="theme-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="toggleMode" />
+        <span class="slider">
+          <span class="icon moon-icon">🌙</span>
+          <span class="icon sun-icon">☀️</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="info-circle">
+      <p class="kicker">Focus. Flow. Finish.</p>
+        <h1>glad to see you!</h1>
+        <p>
+          Log in to track your productivity, monitor habits, and prevent
+          burnout.
+        </p>
+    </div>
+
     <div class="login-container">
       <div class="form-box">
         <p class="brand">Student Productivity Tracker</p>
@@ -111,45 +132,7 @@
         </div>
       </div>
 
-      <div class="info-circle">
-        <label class="theme-toggle login-theme-toggle" title="Toggle dark mode">
-          <input type="checkbox" id="toggleMode" />
-          <span class="slider">
-            <span class="icon moon-icon">🌙</span>
-            <span class="icon sun-icon">☀️</span>
-          </span>
-        </label>
-        <p class="kicker">Focus. Flow. Finish.</p>
-        <h1>glad to see you!</h1>
-        <p>
-          Log in to track your productivity, monitor habits, and prevent
-          burnout.
-        </p>
-      </div>
-    </div>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-      import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyCI1lghCfgBf5S-PEfZ_6DEHaSYu76aUT4",
-        authDomain: "priahitam71-000000.firebaseapp.com",
-        projectId: "priahitam71-000000",
-        storageBucket: "priahitam71-000000.firebasestorage.app",
-        messagingSenderId: "543874144759",
-        appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
-        measurementId: "G-JS7VFF76YX",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      window.auth = getAuth(app);
-      window.db = getFirestore(app);
-    </script>
-
-    <script src="scripts/global.js"></script>
-    <script type="module" src="scripts/login.js"></script>
+      <script src="../../scripts/global.js"></script>
+    <script type="module" src="../../scripts/login.js"></script>
   </body>
 </html>

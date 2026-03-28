@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorDiv.textContent = "";
       const userCredential = await signInWithEmailAndPassword(window.auth, email, password);
       // Login successful - redirect to home
-      window.location.href = "pages/home.html";
+      window.location.href = "pages/desktop/home.html";
     } catch (error) {
       errorDiv.textContent = error.message;
       console.error("Login error:", error);
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Signup successful - redirect to home
-      window.location.href = "pages/home.html";
+      window.location.href = "pages/desktop/home.html";
     } catch (error) {
       errorDiv.textContent = error.message;
       console.error("Signup error:", error);

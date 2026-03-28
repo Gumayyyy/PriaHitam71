@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Productivity Tracker</title>
-    <link rel="icon" type="image/png" href="../assets/logo.png" />
-    <link rel="stylesheet" href="../styles/feedback.css" />
-    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="icon" type="image/png" href="../../assets/logo.png" />
+    <link rel="stylesheet" href="../../styles/desktop/burnout.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -17,13 +17,12 @@
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <h2><i class="fa-solid fa-inbox"></i> Voice Board</h2>
+          <h2><i class="fas fa-fire"></i> Burnout Analysis</h2>
         </div>
         <ul>
           <li>
-            <a href="home.html" class="nav-link nav-link-home"
-              ><img src="../assets/logo.png" alt="Home" /> <span>Home</span></a
-            >
+            <a href="home.html" class="nav-link nav-link-home">
+              <img src="../../assets/logo.png" alt="Home" /> <span>Home</span></a>
           </li>
           <li class="sidebar-divider" aria-hidden="true"></li>
           <li>
@@ -42,7 +41,7 @@
             >
           </li>
           <li>
-            <a href="burnout.html" class="nav-link"
+            <a href="burnout.html" class="nav-link active"
               ><i class="fas fa-fire"></i> Burnout Analysis</a
             >
           </li>
@@ -105,46 +104,60 @@
           </div>
         </header>
 
-        <div class="contact-container">
-          <h2>Let's Connect</h2>
-          <p class="sub-heading">
-            Have any questions or feedback? We'd love to hear from you!
-          </p>
-
-          <form action="">
-            <div class="top-section">
-              <div class="input-group">
-                <label for="fullname">Your Name</label>
-                <div class="input-container">
-                  <i class="fa-solid fa-user"></i>
-                  <input type="text" id="fullname" placeholder="Enter your name" required />
-                </div>
-              </div>
-
-              <div class="input-group">
-                <label for="date">Date</label>
-                <div class="input-container">
-                  <i class="fa-solid fa-calendar"></i>
-                  <input type="date" id="date" required />
-                </div>
-              </div>
+        <div class="analysis-container">
+          <!-- Grafik Lingkaran -->
+          <div class="chart-box circular-container">
+            <h3>Burnout Score</h3>
+            <div class="circle">
+              <svg viewBox="0 0 36 36" class="circular-chart blue">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  class="circle-path"
+                  stroke-dasharray="90, 100"
+                  d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <text x="18" y="20.35" class="percentage">90%</text>
+              </svg>
             </div>
+            <p id="statusText" style="text-align: center; margin-top: 10px">
+              Category: -
+            </p>
+          </div>
 
-            <div class="input-group">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Enter your message" required></textarea>
-            </div>
+          <!-- Grafik Jam Tidur -->
+          <div class="chart-box chart-panel" id="burnoutChartPanel">
+            <h3>Weekly Burnout Chart</h3>
+            <canvas id="sleepChart"></canvas>
+          </div>
 
-            <div class="btn-input">
-              <i class="fa-regular fa-paper-plane"></i>
-              <input type="submit" value="Send" />
+          <!-- Insight -->
+          <div class="analysis-box">
+            <h3>Insight Box</h3>
+            <div class="analysis-card insight-panel is-empty" id="insightBox">
+              ⚠ Belum ada data untuk ditampilkan
             </div>
-          </form>
+          </div>
+          <div class="analysis-box">
+            <h3>Personal Notes</h3>
+            <div class="analysis-card personal-panel is-empty" id="tipsBox">
+              ⚠ Belum ada data untuk ditampilkan
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="../scripts/global.js"></script>
+    <!-- SCRIPT DI BAWAH SEMUA -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../scripts/burnout.js"></script>
+    <script src="../../scripts/global.js"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -164,6 +177,5 @@
       window.auth = getAuth(app);
       window.db = getFirestore(app);
     </script>
-    <script src="../scripts/feedback.js"></script>
   </body>
 </html>

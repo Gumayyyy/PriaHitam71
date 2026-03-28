@@ -242,26 +242,3 @@ body.dark-mode .btn.confirm {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
-
-@media (max-width: 640px) {
-  .logout-theme-toggle {
-    top: 12px;
-    right: 12px;
-  }
-
-  .modal-box {
-    padding: 24px 18px;
-  }
-
-  .modal-box h2 {
-    font-size: 22px;
-  }
-
-  .modal-actions {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-  }
-}
