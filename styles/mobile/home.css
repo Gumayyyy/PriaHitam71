@@ -55,7 +55,7 @@ body.theme-transition * {
   left: 6px;
   transform: none; /* 🔥 hapus center desktop */
   width: calc(100% - 30px);
-  height: 70px;
+  height: 60px;
   margin: 0 10px;
 
   z-index: 1000;
@@ -91,14 +91,14 @@ body.theme-transition * {
 
 .brand img {
   display: block;
-  height: 26px;
+  height: 24px;
   width: auto;
 }
 
 .home-nav {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .home-nav a {
@@ -106,7 +106,7 @@ body.theme-transition * {
   color: rgba(255, 255, 255, 0.82);
   padding: 6px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   transition: all 0.25s ease;
 }
@@ -118,7 +118,6 @@ body.theme-transition * {
 }
 
 .hero-wrap {
-  margin-top: 20px;
   padding: 10px 6px;
   display: flex;
   flex-direction: column;
@@ -237,7 +236,7 @@ body.theme-transition * {
 
 .lead {
   margin-top: 10px;
-  max-width: 48ch;
+  max-width: 44ch;
   line-height: 1.6;
   color: var(--text-soft);
   font-size: 14px;
@@ -288,8 +287,8 @@ body.theme-transition * {
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  width: 60px;
-  height: 32px;
+  width: 50px;
+  height: 28px;
   background: linear-gradient(
     90deg,
     rgba(15, 32, 39, 0.3),
@@ -297,7 +296,7 @@ body.theme-transition * {
     rgba(44, 83, 100, 0.3)
   );
   border: 2px solid #203a43;
-  border-radius: 20px;
+  border-radius: 16px;
   transition:
     background 0.35s ease-out,
     border-color 0.35s ease-out;
@@ -308,8 +307,8 @@ body.theme-transition * {
 .slider::before {
   content: "";
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: linear-gradient(135deg, #2c5364, #203a43);
   top: 50%;
@@ -341,7 +340,7 @@ body.theme-transition * {
 }
 
 .theme-toggle input:checked + .slider::before {
-  left: 33px;
+  left: 24px;
 }
 
 body.dark-mode {

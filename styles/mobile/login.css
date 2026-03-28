@@ -46,6 +46,7 @@ body.dark-mode {
   padding: 20px;
   position: relative;
   margin-top: 120px;
+  margin-bottom: 80px;
 }
 
 /* THEME TOGGLE */
@@ -200,7 +201,7 @@ input:focus {
 
 /* REGISTER TEXT */
 .register-text {
-  margin-top: 14px;
+  margin-top: 8px;
   text-align: center;
   font-size: 13px;
   color: var(--ink-soft);
@@ -264,7 +265,7 @@ input:focus {
   transform: translateX(-50%);
   
   width: 140%;
-  height: 260px;
+  height: 25%;
 
   background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
   
