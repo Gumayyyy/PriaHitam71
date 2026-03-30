@@ -15,11 +15,10 @@ html, body {
 .navbar {
   position: fixed;
   top: 16px;
-
   left: 50%;
-  transform: translateX(-72%); /* center paksa */
+  transform: translateX(-50%); /* center paksa */
 
-  width: calc(100% - 32px);
+  width: 92%;
   max-width: 1200px;
 
   height: 60px;
