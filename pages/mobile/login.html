@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Productivity Tracker</title>
-    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link rel="icon" type="image/png" href="../../assets/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -131,6 +131,27 @@
           </div>
         </div>
       </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCI1lghCfgBf5S-PEfZ_6DEHaSYu76aUT4",
+        authDomain: "priahitam71-000000.firebaseapp.com",
+        projectId: "priahitam71-000000",
+        storageBucket: "priahitam71-000000.firebasestorage.app",
+        messagingSenderId: "543874144759",
+        appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
+        measurementId: "G-JS7VFF76YX",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      window.auth = getAuth(app);
+      window.db = getFirestore(app);
+    </script>
 
       <script src="../../scripts/global.js"></script>
     <script type="module" src="../../scripts/login.js"></script>
