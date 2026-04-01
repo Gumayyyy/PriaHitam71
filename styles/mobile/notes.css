@@ -11,232 +11,48 @@ html, body {
     padding-right: 6px;
 }
 
-.navbar {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%); /* center paksa */
 
-  width: 92%;
-  max-width: 1200px;
 
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  padding: 0 16px;
-  border-radius: 15px;
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 999;
-  margin: 0 !important;
-}
-
-.navbar h2 {
-    font-weight: 600;
-    color: white;
-    font-size: 18px;
-
-}
 
 /* Left button (menu toggle) */
-.mobile-navbar .menu-toggle {
-  background: rgba(255,255,255,0.2);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-size: 20px;
-  transition: background 0.35s ease-out, transform 0.3s ease-out;
-}
 
-.mobile-navbar .menu-toggle:hover {
-  background: rgba(255,255,255,0.4);
-  transform: scale(1.08);
-}
+
+
 
 /* Right icons (theme toggle, etc) */
-.mobile-navbar .nav-right {
-  display: flex !important;
-  align-items: center;
-}
+
 
 /* Theme Toggle */
-.navbar .theme-toggle {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  margin-right: 10px;
-}
 
-.navbar .theme-toggle input {
-  display: none;
-}
 
-.navbar .slider {
-  width: 50px;
-  height: 28px;
-  border-radius: 16px;
-  background: linear-gradient(90deg, rgba(15,32,39,0.3), rgba(32,58,67,0.3), rgba(44,83,100,0.3));
-  border: 2px solid #203a43;
-  position: relative;
-  padding: 2px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-  transition: all 0.35s ease-out;
-}
 
-.navbar .slider::before {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2c5364, #203a43);
-  top: 50%;
-  left: 3px;
-  transform: translateY(-50%);
-  transition: left 0.35s ease-out;
-  box-shadow: 0 2px 6px rgba(44,83,100,0.4), inset -1px -1px 3px rgba(0,0,0,0.3);
-}
 
-.navbar .theme-toggle input:checked + .slider::before {
-  left: 25px;
-}
+
+
+
+
+
 
 /* Bottom Navigation */
-.menu {
-  position: fixed;
-  bottom: 16px;   /* jarak dari bawah */
-  left: 16px;     /* jarak kiri */
-  right: 16px;    /* jarak kanan */
-  height: 60px;
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(44, 83, 100, 0.7);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 999;
-  padding: 0 12px;
-  list-style: none;
-}
+
 
 /* List items */
-.menu .list {
-  flex: 1;
-  text-align: center;
-}
+
 
 /* Icon links */
-.menu .list a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-  padding: 12px 0;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+
 
 /* Hover effect */
-.menu .list a:hover {
-  transform: translateY(-4px);
-  color: #ffd700;
-}
+
 
 /* Logo image di tengah */
-.menu .list:nth-child(3) a span.icon img {
-  width: 40px;       /* ukuran logo */
-  height: 40px;
-  object-fit: contain;
-  border-radius: 50%; /* opsional, biar bulat */
-  transition: transform 0.3s ease;
-}
 
-.menu .list:nth-child(3) a:hover span.icon img {
-  transform: scale(1.1);
-}
+
+
 
 /* Optional: highlight active link */
-.menu .list.active a {
-  color: #ffd700;
-  transform: translateY(-2px);
-}
 
-/* Profile Container */
-.profile-menu {
-  position: relative;
-  display: inline-block;
-}
-
-/* User Icon Button */
-.profile-menu .user-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  color: white;
-  transition: transform 0.2s ease;
-}
-
-.profile-menu .user-btn .user-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: transform 0.2s ease;
-}
-
-.profile-menu .user-btn:hover .user-icon {
-  transform: scale(1.1);
-}
-
-/* Dropdown menu */
-.profile-menu .dropdown {
-  position: absolute;
-  top: 48px; /* tepat di bawah icon */
-  right: 0;
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(44,83,100,0.7);
-  display: flex;
-  flex-direction: column;
-  min-width: 180px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-/* Dropdown Links */
-.profile-menu .dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  padding: 12px 16px;
-  color: white !important;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.25s;
-}
-
-.profile-menu .dropdown a:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* Tampilkan dropdown saat hover/focus */
-.profile-menu:hover .dropdown,
-.profile-menu:focus-within .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
 
 :root {
   --content-max-width: 100%;
@@ -658,3 +474,4 @@ body.dark-mode #progress {
 body.dark-mode .notes-btn.secondary {
   background: #334155;
 }
+

@@ -1,0 +1,1694 @@
+﻿/* ====================================== */
+/* Base / Reset */
+/* ====================================== */
+
+/* ====================================== */
+/* Layout / Structure */
+/* ====================================== */
+/* ANALYSIS CONTAINER */
+.analysis-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+}
+
+/* Card styles with box-shadow - like dashboard */
+.card,
+.chart-box,
+.analysis-box,
+.tips-card {
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+.chart-panel {
+  position: relative;
+}
+
+.circular-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-chart {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  max-height: 250px;
+  width: 200px;
+  height: 200px;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+}
+
+.circle svg {
+  display: block;
+  max-width: 100%;
+  max-height: 250px;
+  width: 200px;
+  height: 200px;
+}
+
+.analysis-card {
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.personal-panel {
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+#insightBox,
+#tipsBox {
+  padding: 12px 14px;
+}
+
+#insightBox #insight-heading,
+#tipsBox #tips-heading {
+  margin-bottom: 8px;
+  display: block;
+}
+
+#insightBox .insight-text,
+#tipsBox .tips-text {
+  margin-top: 4px;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.unit {
+  margin-left: 4px;
+}
+
+.card {
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+}
+
+.card h1 {
+  margin: 0 0 15px 0;
+}
+
+.progress {
+  height: 8px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress div {
+  height: 100%;
+}
+
+/* CONTENT: Flex column */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* CHARTS CONTAINER */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+/* CHART BOX */
+.chart-box {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* BOTTOM ROW: Analisis & Rekomendasi side by side - SETENGAH LEBAR */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.analysis-box,
+.burnout-box {
+  padding: 20px;
+}
+
+.insight-panel .empty-state-text {
+  display: none;
+}
+
+.insight-panel.is-empty .empty-state-text {
+  display: block;
+  margin: 14px 0 0;
+  padding: 14px 16px;
+}
+
+.insight-panel.is-empty #analysisBoxes,
+.insight-panel.is-empty #rekomendasiList,
+.insight-panel.is-empty #burnoutAnalysis,
+.insight-panel.is-empty .notes-title {
+  display: none;
+}
+
+#burnoutAnalysis {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.analysis-box ul li {
+  padding: 10px 0;
+}
+
+#rekomendasiList {
+  margin-left: 15px;
+}
+
+/* Analysis Boxes */
+.boxes {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.boxes .box {
+  flex: 1;
+  min-width: 180px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* WRAPPER 2 CARD */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr;
+  gap: 25px;
+  padding: 10px;
+}
+
+/* CARD UMUM */
+.table-card,
+.chart-card {
+  padding: 16px;
+}
+
+/* TABLE CARD */
+.table-header {
+  margin-bottom: 15px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  margin-top: 15px;
+}
+
+th {
+  padding: 8px 8px;
+}
+
+td {
+  padding: 6px 6px;
+}
+
+/* INPUT */
+.jam-input {
+  width: 62px;
+  padding: 6px 4px;
+}
+
+/* BUTTON */
+.btn-calculate {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 50%;
+  padding: 12px;
+}
+
+/* CHART CARD */
+.chart-header {
+  margin-bottom: 15px;
+}
+
+.chart-header h2 {
+  margin-bottom: 5px;
+}
+
+/* CHART AREA */
+.chart-container {
+  height: 300px;
+  margin-top: 10px;
+}
+
+/* MOOD SCALE */
+.mood-scale {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.mood-scale h3 {
+  margin-bottom: 15px;
+}
+
+/* ===== Source: feedback.css ===== */
+.contact-container {
+  max-width: 840px;
+  margin: 28px auto 0;
+  padding: 30px 34px;
+}
+
+.contact-container,
+.contact-container * {
+  box-sizing: border-box;
+}
+
+.contact-container i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+}
+
+.contact-container h2 {
+  margin: 0;
+}
+
+.contact-container .sub-heading {
+  margin-top: 8px;
+  position: relative;
+  max-width: 56ch;
+}
+
+.contact-container .sub-heading:after {
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 50px;
+  height: 2px;
+}
+
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.contact-container form input,
+.contact-container form textarea {
+  width: 100%;
+  padding: 12px 16px;
+}
+
+.contact-container .input-container input {
+  padding-left: 40px;
+}
+
+.contact-container form textarea {
+  min-height: 170px;
+  padding-left: 16px;
+}
+
+.contact-container .input-container,
+.contact-container .btn-input {
+  position: relative;
+}
+
+.contact-container .btn-input {
+  width: 190px;
+  margin-top: 10px;
+}
+
+.contact-container .btn-input i {
+  left: unset;
+  right: 12px;
+}
+
+.contact-container input[type="submit"] {
+  padding-right: 42px;
+}
+
+.contact-container .top-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.contact-container .input-group {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.guide-page {
+  width: min(1180px, 92vw);
+  margin: 26px auto;
+  padding-top: 94px;
+}
+
+.guide-main {
+  margin-top: 25px;
+  padding: 10px 6px 28px;
+}
+
+.kicker {
+  display: inline-block;
+  padding: 8px 12px;
+}
+
+.lead {
+  margin-top: 12px;
+  max-width: 66ch;
+}
+
+.start-btn {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+}
+
+.guide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.guide-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 28px 30px;
+}
+
+.guide-intro h1 {
+  margin-top: 14px;
+  max-width: 18ch;
+}
+
+.guide-content h2 {
+  margin-top: 8px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.section-title {
+  margin-top: 20px;
+}
+
+.step {
+  position: relative;
+  padding: 18px 18px 18px 20px;
+}
+
+.step::before {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  bottom: 14px;
+  width: 4px;
+}
+
+.step h3 {
+  margin-bottom: 10px;
+}
+
+.home-page {
+  width: min(1180px, 92vw);
+  margin: 26px auto;
+  padding-top: 94px;
+}
+
+.hero-wrap {
+  margin-top: 25px;
+  padding: 10px 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.hero-copy {
+  max-width: 900px;
+  margin-left: 20px;
+}
+
+.hero-mascot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mascot-composition {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 1 / 1;
+  margin-right: 10px;
+}
+
+.mascot-chat-bubble {
+  position: absolute;
+  top: -15%;
+  z-index: 5;
+  left: -25%;
+  max-width: 300px;
+  padding: 10px 14px;
+}
+
+.mascot-chat-bubble::after {
+  position: absolute;
+  right: 22px;
+  bottom: -9px;
+  width: 16px;
+  height: 16px;
+}
+
+.mascot-composition img {
+  position: absolute;
+  display: block;
+  width: 500px;
+  height: auto;
+}
+
+.mascot-body {
+  z-index: 2;
+}
+
+.mascot-crown {
+  z-index: 3;
+  top: 1%;
+}
+
+.mascot-hand-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.mascot-hand {
+  z-index: 1;
+}
+
+.kicker {
+  display: inline-block;
+  padding: 8px 14px;
+}
+
+.hero-copy h1 {
+  margin-top: 16px;
+  max-width: 14ch;
+}
+
+.lead {
+  margin-top: 16px;
+  max-width: 58ch;
+}
+
+.get-started-btn {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.login-theme-toggle {
+  position: absolute;
+  top: -50px;
+  right: -315px;
+  z-index: 5;
+}
+
+.login-container.signup-mode .login-theme-toggle {
+  right: auto;
+  left: -315px;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.form-box,
+.info-circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 64px;
+}
+
+.form-box {
+  position: relative;
+  align-items: flex-end;
+}
+
+.form-box h2,
+.form-box .subtitle,
+.form-box form {
+  width: min(100%, 460px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 130px;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+}
+
+.auth-forms {
+  position: relative;
+  width: min(100%, 460px);
+  min-height: 440px;
+}
+
+.signup-form {
+  position: absolute;
+  inset: 0;
+}
+
+.forgot-form {
+  position: absolute;
+  inset: 0;
+}
+
+.form-box h2 {
+  margin: 0;
+}
+
+.subtitle {
+  margin: 14px 0 28px;
+  max-width: 470px;
+}
+
+form {
+  width: min(100%, 460px);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 24px;
+}
+
+.options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.options label input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.login-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+}
+
+.register-text {
+  margin-top: 18px;
+}
+
+.info-circle {
+  position: relative;
+  overflow: hidden;
+  align-items: flex-start;
+  padding: 74px 108px 106px 98px;
+  right: -240px;
+}
+
+.login-container.signup-mode .info-circle {
+  align-items: flex-end;
+}
+
+.login-container.forgot-mode {
+  grid-template-columns: 1fr;
+  place-items: center;
+  height: 100vh;
+  margin-top: 0;
+  overflow: hidden !important;
+}
+
+.login-container.forgot-mode .form-box {
+  width: min(100%, 640px);
+  max-height: 100%;
+  align-items: center;
+}
+
+.login-container.forgot-mode .brand {
+  margin-right: 135px;
+}
+
+.login-container.forgot-mode .auth-forms {
+  min-height: 0;
+}
+
+.login-container.forgot-mode .login-form-content,
+.login-container.forgot-mode .signup-form {
+  position: absolute;
+  inset: 0;
+}
+
+.login-container.forgot-mode .forgot-form {
+  position: relative;
+}
+
+.info-circle::before,
+.info-circle::after {
+  position: absolute;
+}
+
+.info-circle::before {
+  width: 600px;
+  height: 600px;
+  right: -200px;
+  top: -140px;
+}
+
+.info-circle::after {
+  width: 440px;
+  height: 440px;
+  left: 42%;
+  bottom: -220px;
+}
+
+.login-container.signup-mode .info-circle::before {
+  left: -240px;
+  right: auto;
+}
+
+.login-container.signup-mode .info-circle::after {
+  left: -40px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-circle h1 {
+  margin: 0;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-circle p {
+  margin: 0;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-circle p:last-child {
+  margin-top: 22px;
+}
+
+.theme-toggle {
+  display: inline-block;
+  position: relative;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.slider {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 60px;
+  height: 32px;
+  padding: 2px;
+}
+
+.slider::before {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  left: 3px;
+  z-index: 2;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+}
+
+.moon-icon {
+  left: 6px;
+}
+
+.sun-icon {
+  right: 6px;
+}
+
+.theme-toggle input:checked + .slider::before {
+  left: 33px;
+}
+
+.error-message {
+  margin-top: 10px;
+  min-height: 20px;
+}
+
+/* ===== Source: logout.css ===== */
+body {
+  margin: 0;
+}
+
+.logout-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+/* Overlay */
+.logout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal box */
+.modal-box {
+  padding: 32px;
+  width: min(800px, calc(100vw - 32px));
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-box::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+/* Icon */
+.modal-icon {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Title */
+.modal-box h2 {
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Description */
+.modal-box p {
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Info row */
+.modal-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dot separator */
+.modal-info .dot {
+  width: 4px;
+  height: 4px;
+}
+
+/* Actions */
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+}
+
+.main .desk-navbar {
+  width: calc(100% - (20px + var(--sidebar-width) + (var(--spacing-main) * 2)));
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.notes-page {
+  margin-top: 0;
+  padding: 0;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.notes-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "todo boost"
+    "mind mind";
+  gap: 20px;
+  align-items: stretch;
+}
+
+.notes-grid > .card {
+  padding: 22px;
+  min-height: 460px;
+}
+
+.todo-card {
+  grid-area: todo;
+}
+
+.boost-card {
+  grid-area: boost;
+}
+
+.mind-card {
+  grid-area: mind;
+}
+
+.mind-card textarea {
+  min-height: 260px;
+}
+
+.boost-card textarea {
+  min-height: 260px;
+}
+
+.stats-container {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.details {
+  width: 100%;
+}
+
+#progressBar {
+  width: 100%;
+  height: 10px;
+  margin-top: 18px;
+}
+
+#progress {
+  width: 0;
+  height: 10px;
+}
+
+#numbers {
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-card form {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 12px 14px;
+}
+
+#newTask {
+  width: 46px;
+  height: 46px;
+}
+
+#task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  width: 100%;
+  padding: 0;
+}
+
+#task-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.task input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.task p {
+  position: relative;
+  top: -4px;
+}
+
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.task-actions i {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes-section h2 {
+  margin-bottom: 6px;
+}
+
+.desc {
+  margin-bottom: 12px;
+}
+
+.notes-section textarea {
+  width: 100%;
+  min-height: 250px;
+  padding: 12px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.notes-btn {
+  padding: 10px 12px;
+}
+
+.notes-list {
+  display: none;
+  margin-top: 12px;
+  gap: 10px;
+}
+
+.notes-list.visible {
+  display: grid;
+}
+
+.note-card {
+  padding: 10px;
+}
+
+.note-card p {
+  margin-bottom: 10px;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.note-action-btn {
+  padding: 6px 10px;
+}
+
+.main .desk-navbar {
+  max-width: none;
+  width: calc(100% - (20px + var(--sidebar-width) + (var(--spacing-main) * 2)));
+}
+
+.notes-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "todo boost"
+    "mind mind";
+}
+
+.notes-grid > .card {
+  min-height: 460px;
+}
+
+.mind-card textarea {
+  min-height: 260px;
+}
+
+.boost-card textarea {
+  min-height: 260px;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CONTENT: Flex column */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  margin-right: 15px;
+}
+
+/* CHART + ANALYSIS: Side by Side */
+.chart-analysis-row {
+  display: flex;
+  gap: 20px;
+}
+
+.chart-box {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.analysis-box {
+  flex: 0 0 350px;
+  padding: 20px;
+}
+
+.insight-panel.is-empty .empty-state-text {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 0;
+  padding: 14px 16px;
+}
+
+.insight-panel.is-empty #analysisBoxes,
+.insight-panel.is-empty #rekomendasiList,
+.insight-panel.is-empty .notes-title {
+  display: none;
+}
+
+/* Rekomendasi styling */
+.analysis-box ul {
+  padding: 0;
+}
+
+/* Analysis Boxes */
+.boxes {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.about-page {
+  width: min(1180px, 92vw);
+  margin: 26px auto;
+}
+
+/* MAIN */
+.main {
+  position: relative;
+  margin-left: 270px;
+  padding: 20px 40px;
+}
+
+.about-page .main {
+  margin-left: 0;
+  width: 100%;
+  padding: 94px 0 0;
+}
+
+.page {
+  display: none;
+}
+
+.philosophy-page {
+  width: min(1320px, 96vw);
+  max-width: none;
+  margin-left: 50%;
+  padding: 14px 10px;
+}
+
+.philosophy-page.page-active {
+  display: block;
+}
+
+.philosophy-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 28px 30px;
+}
+
+.philosophy-page .kicker {
+  display: inline-block;
+  padding: 8px 12px;
+}
+
+.philosophy-hero h1 {
+  margin-top: 14px;
+  max-width: 18ch;
+}
+
+.philosophy-page .lead {
+  margin-top: 12px;
+  max-width: 66ch;
+}
+
+.philosophy-content-grid {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.philosophy-card {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+}
+
+.philosophy-card::before {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  bottom: 14px;
+  width: 4px;
+}
+
+.philosophy-card h3 {
+  margin: 0 0 8px;
+}
+
+.philosophy-card p {
+  margin: 0;
+}
+
+.philosophy-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.philosophy-card-wide {
+  grid-column: span 2;
+}
+
+.highlight {
+  padding: 2px 6px;
+}
+
+.main-container {
+  display: none;
+  width: 100%;
+  max-width: 1200px;
+  gap: 40px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px 0;
+}
+
+.main-container.page-active {
+  display: flex;
+}
+
+/* Shift both slider and member info as one group (desktop) */
+.about-page .main-container.page-active {
+  justify-content: center;
+}
+
+.carousel-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.about-page .carousel-section {
+  justify-content: center;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-container .nav-arrow {
+  display: none;
+}
+
+.carousel-track {
+  width: 450px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+}
+
+.slide.center {
+  z-index: 10;
+}
+
+.slide.up-2 {
+  z-index: 1;
+}
+
+.slide.up-1 {
+  z-index: 5;
+}
+
+.slide.down-1 {
+  z-index: 5;
+}
+
+.slide.down-2 {
+  z-index: 1;
+}
+
+.controls-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding-left: 20px;
+}
+
+.about-page .controls-section {
+  padding-left: 0;
+}
+
+.member-info {
+  margin-top: 20px;
+  margin-left: 40px;
+  position: relative;
+  padding: 20px 35px;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.member-name {
+  margin-bottom: 8px;
+  position: relative;
+  display: block;
+}
+
+.member-name::after {
+  display: block;
+  margin: 8px 0 0 0;
+  width: 60px;
+  height: 3px;
+}
+
+.member-role {
+  padding: 8px 24px;
+  margin-top: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.member-desc {
+  margin-top: 15px;
+  max-width: 100%;
+  padding: 12px 18px;
+}
+
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+}
+
+.nav-arrow {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.nav-arrow img {
+  width: 60px;
+  height: 60px;
+}
+
+.content-page {
+  width: min(1320px, 96vw);
+  max-width: none;
+  margin-left: 50%;
+  padding: 14px 10px;
+}
+
+.content-page.page-active {
+  display: block;
+}
+
+.content-card {
+  padding: 20px 24px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.content-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.content-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.content-card h1 {
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.content-text p {
+  margin-bottom: 15px;
+}
+
+.content-text h3 {
+  margin: 20px 0 10px 0;
+}
+
+.topic-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.topic-badge {
+  padding: 7px 12px;
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.insight-item {
+  padding: 16px;
+}
+
+.insight-item h3 {
+  margin: 0 0 6px 0;
+}
+
+.insight-item p {
+  margin: 0;
+}
+
+.interactive-list {
+  margin: 16px 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.interactive-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.item-number {
+  flex: 0 0 auto;
+  min-width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-progress {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.goal-bar {
+  position: relative;
+  padding-top: 22px;
+}
+
+.goal-bar p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.goal-bar::before {
+  display: block;
+  height: 8px;
+}
+
+.goal-bar span {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  height: 8px;
+}
+
+.benefit-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.benefit-card {
+  padding: 14px;
+}
+
+.benefit-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.impact-note {
+  margin-top: 14px;
+  padding: 10px 14px;
+}
+
+.impact-note p {
+  margin: 10px 0 0 0;
+}
+
+.problem-list,
+.benefit-list {
+  margin-left: 25px;
+}
+
+.problem-list li,
+.benefit-list li {
+  margin-bottom: 10px;
+}
+
+/* ============ NEXT PAGE BUTTON ============ */
+.next-page-btn,
+.prev-page-btn {
+  position: fixed;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.next-page-btn {
+  right: 30px;
+}
+
+.prev-page-btn {
+  left: 300px;
+}
+
+.next-page-btn img,
+.prev-page-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+.prev-page-btn {
+  left: 30px;
+}

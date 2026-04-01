@@ -32,74 +32,6 @@ body {
   padding: 100px 16px 20px;
 }
 
-.guide-navbar {
- position: fixed;
-  top: 20px;
-  left: 6px;
-  transform: none; /* 🔥 hapus center desktop */
-  width: calc(100% - 30px);
-  height: 60px;
-  margin: 0 10px;
-
-  z-index: 1000;
-  display: flex; /* 🔥 dari grid ke flex */
-  justify-content: space-between;
-  align-items: center;
-
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 14px;
-
-  background: linear-gradient(
-    90deg,
-    var(--primary-1),
-    var(--primary-2),
-    var(--primary-3)
-  );
-  box-shadow: 0px 0px 20px rgba(44, 83, 100, 0.4);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 800;
-  padding: 8px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.brand img {
-  display: block;
-  height: 24px;
-  width: auto;
-}
-
-.guide-nav {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-}
-
-.guide-nav a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.82);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 600;
-  transition: all 0.25s ease;
-}
-
-.guide-nav a:hover,
-.guide-nav a.active {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.16);
-}
-
 .guide-main {
   margin-top: 20px;
   padding: 10px 0 20px;
@@ -162,11 +94,11 @@ body {
 }
 
 .guide-intro {
-    position: relative;
+  position: relative;
   overflow: hidden;
   padding: 20px;
   border-radius: 16px;
-   border: 1px solid rgba(19, 48, 61, 0.16);
+  border: 1px solid rgba(19, 48, 61, 0.16);
   background:
     radial-gradient(circle at 87% 12%, rgba(32, 58, 67, 0.22), transparent 36%),
     linear-gradient(140deg, var(--guide-card-bg), var(--guide-card-bg));
@@ -182,7 +114,7 @@ body {
 }
 
 .guide-content h2 {
-     margin-top: 8px;
+  margin-top: 8px;
   color: #112c38;
   font-size: 20px;
   letter-spacing: 0.3px;
@@ -201,7 +133,7 @@ body {
 }
 
 .step {
-    position: relative;
+  position: relative;
   padding: 16px;
   border-radius: 14px;
   border: 1px solid rgba(19, 48, 61, 0.16);
@@ -239,77 +171,6 @@ body {
 }
 
 /* ================= TOGGLE ================= */
-
-.theme-toggle {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-.theme-toggle input {
-  display: none;
-}
-
-.slider {
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  justify-content: flex-start;
-  width: 50px;
-  height: 28px;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 32, 39, 0.3),
-    rgba(32, 58, 67, 0.3),
-    rgba(44, 83, 100, 0.3)
-  );
-  border: 2px solid #203a43;
-  border-radius: 20px;
-  transition:
-    background 0.35s ease-out,
-    border-color 0.35s ease-out;
-  padding: 2px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.slider::before {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2c5364, #203a43);
-  top: 50%;
-  left: 3px;
-  transform: translateY(-50%);
-  transition:
-    left 0.35s ease-out,
-    box-shadow 0.35s ease-out;
-  box-shadow:
-    0 3px 10px rgba(44, 83, 100, 0.4),
-    inset -1px -1px 3px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-}
-
-.icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  line-height: 1;
-}
-
-.moon-icon {
-  left: 6px;
-}
-
-.sun-icon {
-  right: 6px;
-}
-
-.theme-toggle input:checked + .slider::before {
-  left: 24px;
-}
 
 /* ================= DARK MODE ================= */
 

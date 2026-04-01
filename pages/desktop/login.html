@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,40 +11,41 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../styles/desktop/login.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
   </head>
   <body>
-    <div class="login-container">
-      <div class="form-box">
-        <p class="brand">Student Productivity Tracker</p>
-        <div class="auth-forms">
+    <div class="style-node layout-node login-container">
+      <div class="style-node layout-node form-box">
+        <p class="style-node layout-node brand">Student Productivity Tracker</p>
+        <div class="style-node layout-node auth-forms">
           <!-- LOGIN FORM -->
-          <div class="login-form-content">
+          <div class="style-node layout-node login-form-content">
             <h2>Login</h2>
-            <p class="subtitle">
+            <p class="style-node layout-node subtitle">
               Sign in and continue building your best study routine.
             </p>
             <form id="loginForm">
               <input type="email" id="loginEmail" placeholder="Email" required />
               <input type="password" id="loginPassword" placeholder="Password" required />
 
-            <div class="options">
+            <div class="style-node layout-node options">
                 <label><input type="checkbox" />Remember me</label>
                 <a href="#" id="forgotPasswordBtn">Forgot password?</a>
               </div>
 
-            <button class="login-btn" type="submit">Login</button>
-              <div id="loginError" class="error-message"></div>
-              <p class="register-text">
+            <button class="style-node layout-node login-btn" type="submit">Login</button>
+              <div id="loginError" class="style-node layout-node error-message"></div>
+              <p class="style-node layout-node register-text">
                 Don't have an account? <a href="#" id="signupBtn">Sign up</a>
               </p>
             </form>
           </div>
 
           <!-- SIGNUP FORM -->
-          <div class="signup-form">
+          <div class="style-node layout-node signup-form">
             <h2>Create account</h2>
-            <p class="subtitle">
+            <p class="style-node layout-node subtitle">
               Start your productivity journey with a new account.
             </p>
             <form id="signupForm">
@@ -79,17 +80,17 @@
                 required
               />
 
-              <button class="login-btn" type="submit">Sign Up</button>
-              <div id="signupError" class="error-message"></div>
-              <p class="register-text">
+              <button class="style-node layout-node login-btn" type="submit">Sign Up</button>
+              <div id="signupError" class="style-node layout-node error-message"></div>
+              <p class="style-node layout-node register-text">
                 Already have an account? <a href="#" id="backLogin">Login</a>
               </p>
             </form>
           </div>
 
-          <div class="forgot-form">
+          <div class="style-node layout-node forgot-form">
             <h2>Reset password</h2>
-            <p class="subtitle">
+            <p class="style-node layout-node subtitle">
               Enter your email to receive password reset instructions.
             </p>
             <form id="forgotForm">
@@ -99,10 +100,10 @@
                 placeholder="Email"
                 required
               />
-              <button class="login-btn" type="submit">Send Reset Link</button>
-              <div id="forgotError" class="error-message"></div>
-              <div id="forgotSuccess" class="success-message"></div>
-              <p class="register-text">
+              <button class="style-node layout-node login-btn" type="submit">Send Reset Link</button>
+              <div id="forgotError" class="style-node layout-node error-message"></div>
+              <div id="forgotSuccess" class="style-node layout-node success-message"></div>
+              <p class="style-node layout-node register-text">
                 Remembered your password?
                 <a href="#" id="backFromForgot">Login</a>
               </p>
@@ -111,15 +112,15 @@
         </div>
       </div>
 
-      <div class="info-circle">
-        <label class="theme-toggle login-theme-toggle" title="Toggle dark mode">
+      <div class="style-node layout-node info-circle">
+        <label class="style-node layout-node theme-toggle login-theme-toggle" title="Toggle dark mode">
           <input type="checkbox" id="toggleMode" />
-          <span class="slider">
-            <span class="icon moon-icon">🌙</span>
-            <span class="icon sun-icon">☀️</span>
+          <span class="style-node layout-node slider">
+            <span class="style-node layout-node icon moon-icon">🌙</span>
+            <span class="style-node layout-node icon sun-icon">☀️</span>
           </span>
         </label>
-        <p class="kicker">Focus. Flow. Finish.</p>
+        <p class="style-node layout-node kicker">Focus. Flow. Finish.</p>
         <h1>glad to see you!</h1>
         <p>
           Log in to track your productivity, monitor habits, and prevent
@@ -153,3 +154,7 @@
     <script type="module" src="../../scripts/login.js"></script>
   </body>
 </html>
+
+
+
+

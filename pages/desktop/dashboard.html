@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +6,10 @@
     <title>Student Productivity Tracker</title>
     <script src="../../scripts/auth-guard.js"></script>
     <link rel="icon" type="image/png" href="../../assets/logo.png" />
-    <link rel="stylesheet" href="../../styles/desktop/dashboard.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
     <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/component.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -15,72 +17,94 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="layout">
+    <div class="style-node layout-node layout">
       <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <h2><i class="fas fa-chart-line"></i> Dashboard</h2>
+      <aside class="style-node layout-node desk-sidebar">
+        <div class="style-node layout-node desk-sidebar-header">
+          <h2>
+            <i class="style-node layout-node fas fa-chart-line"></i> Dashboard
+          </h2>
         </div>
         <ul>
           <li>
-            <a href="home.html" class="nav-link nav-link-home"
-              ><img src="../../assets/logo.png" alt="Home" /> <span>Home</span></a
+            <a
+              href="home.html"
+              class="style-node layout-node nav-link desk-nav-link-home"
+              ><img src="../../assets/logo.png" alt="Home" />
+              <span>Home</span></a
             >
           </li>
-          <li class="sidebar-divider" aria-hidden="true"></li>
+          <li
+            class="style-node layout-node sidebar-divider"
+            aria-hidden="true"
+          ></li>
           <li>
-            <a href="dashboard.html" class="nav-link active"
-              ><i class="fas fa-chart-line"></i> Dashboard</a
+            <a
+              href="dashboard.html"
+              class="style-node layout-node nav-link active"
+              ><i class="style-node layout-node fas fa-chart-line"></i>
+              Dashboard</a
             >
           </li>
           <li>
-            <a href="data.html" class="nav-link"
-              ><i class="fas fa-edit"></i> Data Entry</a
+            <a href="data.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-edit"></i> Data Entry</a
             >
           </li>
           <li>
-            <a href="productivity.html" class="nav-link"
-              ><i class="fas fa-chart-bar"></i> Productivity Analysis</a
+            <a href="productivity.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-chart-bar"></i>
+              Productivity Analysis</a
             >
           </li>
           <li>
-            <a href="burnout.html" class="nav-link"
-              ><i class="fas fa-fire"></i> Burnout Analysis</a
+            <a href="burnout.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-fire"></i> Burnout
+              Analysis</a
             >
           </li>
         </ul>
-        <div class="user">
-          <div class="user-card">
-            <div class="user-content">
-              <div class="user-img" aria-hidden="true">
-                <i class="fa-solid fa-user"></i>
+        <div class="style-node layout-node user">
+          <div class="style-node layout-node user-card">
+            <div class="style-node layout-node user-content">
+              <div class="style-node layout-node user-img" aria-hidden="true">
+                <i class="style-node layout-node fa-solid fa-user"></i>
               </div>
 
-              <div class="user-data">
-                <h3 class="user-name">Loading...</h3>
+              <div class="style-node layout-node user-data">
+                <h3 class="style-node layout-node user-name">Loading...</h3>
               </div>
 
-              <div class="user-button" id="user-btn">
-                <i class="fa-solid fa-bars user-menu"></i>
-                <i class="fa-solid fa-xmark user-close"></i>
+              <div class="style-node layout-node user-button" id="user-btn">
+                <i
+                  class="style-node layout-node fa-solid fa-bars user-menu"
+                ></i>
+                <i
+                  class="style-node layout-node fa-solid fa-xmark user-close"
+                ></i>
               </div>
             </div>
-            <div class="user-social" id="user-social">
-              <a href="notes.html" class="user-link">
+            <div class="style-node layout-node user-social" id="user-social">
+              <a href="notes.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-solid fa-pencil"></i>
+                  <i class="style-node layout-node fa-solid fa-pencil"></i>
                 </span>
               </a>
 
-              <a href="feedback.html" class="user-link">
+              <a href="feedback.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-regular fa-comment"></i>
+                  <i class="style-node layout-node fa-regular fa-comment"></i>
                 </span>
               </a>
 
-              <a href="logout.html" class="user-link active">
+              <a
+                href="logout.html"
+                class="style-node layout-node user-link active"
+              >
                 <span>
-                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <i
+                    class="style-node layout-node fa-solid fa-right-to-bracket"
+                  ></i>
                 </span>
               </a>
             </div>
@@ -89,116 +113,149 @@
       </aside>
 
       <!-- MAIN -->
-      <div class="main">
+      <div class="style-node layout-node main">
         <!-- NAVBAR -->
-        <header class="navbar">
+        <header class="style-node layout-node desk-navbar">
           <h2>
-            <i class="fa-solid fa-graduation-cap"></i> Student Productivity
-            Tracker
+            <i class="style-node layout-node fa-solid fa-graduation-cap"></i>
+            Student Productivity Tracker
           </h2>
-          <div class="nav-right">
-            <label class="theme-toggle">
+          <div class="style-node layout-node desk-nav-right">
+            <label class="style-node layout-node theme-toggle">
               <input type="checkbox" id="toggleMode" />
-              <span class="slider">
-                <span class="icon moon-icon">🌙</span>
-                <span class="icon sun-icon">☀️</span>
+              <span class="style-node layout-node slider">
+                <span class="style-node layout-node icon moon-icon">🌙</span>
+                <span class="style-node layout-node icon sun-icon">☀️</span>
               </span>
             </label>
           </div>
         </header>
 
         <!-- STATS -->
-        <section class="stats">
-          <div class="card">
-            <h3><i class="fas fa-book-open"></i> Study Hours</h3>
+        <section class="style-node layout-node stats dashboard-stats">
+          <div class="style-node layout-node card">
+            <h3>
+              <i class="style-node layout-node fas fa-book-open"></i> Study
+              Hours
+            </h3>
             <h1>
               <span id="avgBelajar">0</span>
-              <span class="unit">hrs/day</span>
+              <span class="style-node layout-node unit">hrs/day</span>
             </h1>
-            <div class="progress"><div id="progBelajar"></div></div>
+            <div class="style-node layout-node progress">
+              <div id="progBelajar"></div>
+            </div>
           </div>
 
-          <div class="card">
-            <h3><i class="fas fa-bed"></i> Sleep Hours</h3>
+          <div class="style-node layout-node card">
+            <h3>
+              <i class="style-node layout-node fas fa-bed"></i> Sleep Hours
+            </h3>
             <h1>
               <span id="avgTidur">0</span>
-              <span class="unit">hrs/day</span>
+              <span class="style-node layout-node unit">hrs/day</span>
             </h1>
-            <div class="progress"><div id="progTidur"></div></div>
+            <div class="style-node layout-node progress">
+              <div id="progTidur"></div>
+            </div>
           </div>
 
-          <div class="card">
-            <h3><i class="fas fa-mobile-alt"></i> Phone Usage</h3>
+          <div class="style-node layout-node card">
+            <h3>
+              <i class="style-node layout-node fas fa-mobile-alt"></i> Phone
+              Usage
+            </h3>
             <h1>
               <span id="avgHP">0</span>
-              <span class="unit">hrs/day</span>
+              <span class="style-node layout-node unit">hrs/day</span>
             </h1>
-            <div class="progress"><div id="progHP"></div></div>
+            <div class="style-node layout-node progress">
+              <div id="progHP"></div>
+            </div>
           </div>
 
-          <div class="card">
-            <h3><i class="fas fa-smile"></i> Average Mood</h3>
+          <div class="style-node layout-node card">
+            <h3>
+              <i class="style-node layout-node fas fa-smile"></i> Average Mood
+            </h3>
             <h1 id="avgMood">0</h1>
-            <div class="progress"><div id="progMood"></div></div>
+            <div class="style-node layout-node progress">
+              <div id="progMood"></div>
+            </div>
           </div>
         </section>
 
         <!-- CONTENT: Grafik FULL WIDTH, then Analisis & Rekomendasi side by side -->
-        <section class="content">
+        <section class="style-node layout-node content">
           <!-- Charts Container: Kurva dan Lingkaran side by side -->
-          <div class="charts-container">
+          <div class="style-node layout-node charts-container">
             <!-- Grafik Kurva -->
             <div
-              class="chart-box chart-panel"
+              class="style-node layout-node chart-box chart-panel"
               id="dashboardProductivityChartPanel"
             >
               <h3>Weekly Productivity Chart</h3>
               <canvas id="productivityChart"></canvas>
             </div>
 
-            <div class="chart-box chart-panel" id="dashboardBurnoutChartPanel">
+            <div
+              class="style-node layout-node chart-box chart-panel"
+              id="dashboardBurnoutChartPanel"
+            >
               <h3>Weekly Burnout Chart</h3>
               <canvas id="burnoutChart"></canvas>
             </div>
 
             <!-- Grafik Lingkaran -->
-            <div class="chart-box circular-container">
+            <div class="style-node layout-node chart-box circular-container">
               <h3>Overall Score</h3>
-              <svg viewBox="0 0 36 36" class="circular-chart blue">
+              <svg
+                viewBox="0 0 36 36"
+                class="style-node layout-node circular-chart blue"
+              >
                 <path
-                  class="circle-bg"
+                  class="style-node layout-node circle-bg"
                   d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
                 <path
-                  class="circle"
+                  class="style-node layout-node circle"
                   stroke-dasharray="90, 100"
                   d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
-                <text x="18" y="20.35" class="percentage">90%</text>
+                <text
+                  x="18"
+                  y="20.35"
+                  class="style-node layout-node percentage"
+                >
+                  90%
+                </text>
               </svg>
             </div>
           </div>
 
           <!-- Analisis & Rekomendasi: Side by Side (2 kolom) -->
-          <div class="bottom-row">
+          <div class="style-node layout-node bottom-row">
             <div
-              class="analysis-box insight-panel is-empty"
+              class="style-node layout-node analysis-box insight-panel is-empty"
               id="dashboardProductivityCard"
             >
               <h3>Productivity Analysis</h3>
-              <p class="empty-state-text" id="dashboardProductivityEmptyText">
-                ⚠ Belum ada data untuk ditampilkan
+              <p
+                class="style-node layout-node empty-state-text"
+                id="dashboardProductivityEmptyText"
+              >
+                âš  Belum ada data untuk ditampilkan
               </p>
-              <div id="analysisBoxes" class="boxes">
+              <div id="analysisBoxes" class="style-node layout-node boxes">
                 <!-- Boxes akan diisi JS -->
               </div>
               <br />
-              <h3 class="notes-title">
-                <i class="fas fa-sticky-note"></i> Notes
+              <h3 class="style-node layout-node notes-title">
+                <i class="style-node layout-node fas fa-sticky-note"></i> Notes
               </h3>
               <ul id="rekomendasiList">
                 <!-- Rekomendasi akan diisi JS -->
@@ -206,14 +263,17 @@
             </div>
 
             <div
-              class="burnout-box insight-panel is-empty"
+              class="style-node layout-node burnout-box insight-panel is-empty"
               id="dashboardBurnoutCard"
             >
               <h3>Burnout Analysis</h3>
-              <p class="empty-state-text" id="dashboardBurnoutEmptyText">
-                ⚠ Belum ada data untuk ditampilkan
+              <p
+                class="style-node layout-node empty-state-text"
+                id="dashboardBurnoutEmptyText"
+              >
+                âš  Belum ada data untuk ditampilkan
               </p>
-              <div id="burnoutAnalysis" class="boxes">
+              <div id="burnoutAnalysis" class="style-node layout-node boxes">
                 <!-- Analisis Burnout akan diisi JS -->
               </div>
             </div>
@@ -236,7 +296,7 @@
         storageBucket: "priahitam71-000000.firebasestorage.app",
         messagingSenderId: "543874144759",
         appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
-        measurementId: "G-JS7VFF76YX"
+        measurementId: "G-JS7VFF76YX",
       };
 
       const app = initializeApp(firebaseConfig);

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,49 +6,51 @@
     <title>Student Productivity Tracker</title>
     <script src="../../scripts/auth-guard.js"></script>
     <link rel="icon" type="image/png" href="../../assets/logo.png" />
-    <link rel="stylesheet" href="../../styles/desktop/guide.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
+    <link rel="stylesheet" href="../../styles/component.css" />
   </head>
   <body>
-    <div class="guide-page">
-      <header class="guide-navbar">
-        <a href="home.html" class="brand"
+    <div class="style-node layout-node guide-page">
+      <header class="style-node layout-node desk-site-navbar">
+        <a href="home.html" class="style-node layout-node desk-site-brand"
           ><img
             src="../../assets/logo.png"
             alt="Student Productivity Tracker Logo"
         /></a>
 
-        <nav class="guide-nav" aria-label="Guide navigation">
+        <nav class="style-node layout-node desk-site-nav" aria-label="Guide navigation">
           <a href="home.html">Home</a>
           <a href="profile.html">About Us</a>
-          <a href="guide.html" class="active">How it Works</a>
+          <a href="guide.html" class="style-node layout-node active">How it Works</a>
         </nav>
 
-        <label class="theme-toggle" title="Toggle dark mode">
+        <label class="style-node layout-node theme-toggle" title="Toggle dark mode">
           <input type="checkbox" id="toggleMode" />
-          <span class="slider">
-            <span class="icon moon-icon">🌙</span>
-            <span class="icon sun-icon">☀️</span>
+          <span class="style-node layout-node slider">
+            <span class="style-node layout-node icon moon-icon">🌙</span>
+            <span class="style-node layout-node icon sun-icon">☀️</span>
           </span>
         </label>
       </header>
 
-      <main class="guide-main">
-        <section class="guide-content" aria-label="Panduan penggunaan">
-          <div class="guide-intro">
-            <p class="kicker">How It Works</p>
+      <main class="style-node layout-node guide-main">
+        <section class="style-node layout-node guide-content" aria-label="Panduan penggunaan">
+          <div class="style-node layout-node guide-intro">
+            <p class="style-node layout-node kicker">How It Works</p>
             <h1>
               Cara pakai Student Productivity Tracker dengan lebih terarah.
             </h1>
-            <p class="lead">
+            <p class="style-node layout-node lead">
               Ikuti alur di bawah untuk input data mingguan, membaca hasil
               analisis, lalu mengambil langkah perbaikan yang tepat.
             </p>
-            <a href="dashboard.html" class="start-btn">Get Started</a>
+            <a href="dashboard.html" class="style-node layout-node start-btn">Get Started</a>
           </div>
 
           <h2>Cara Penggunaan (Step by Step)</h2>
-          <div class="steps-grid">
-            <article class="step">
+          <div class="style-node layout-node steps-grid">
+            <article class="style-node layout-node step">
               <h3>1. Mulai dari Dashboard</h3>
               <p>
                 Buka Dashboard untuk melihat ringkasan kondisi belajarmu minggu
@@ -57,7 +59,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>2. Masuk ke Data Entry</h3>
               <p>
                 Pilih menu Data Entry lalu isi tabel untuk 7 hari: jam tidur,
@@ -66,7 +68,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>3. Klik tombol Analyze Data</h3>
               <p>
                 Setelah data lengkap, klik tombol Analyze Data. Sistem akan
@@ -75,7 +77,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>4. Baca halaman Productivity Analysis</h3>
               <p>
                 Halaman ini menampilkan tren performa belajarmu, hubungan antara
@@ -84,7 +86,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>5. Lanjut ke Burnout Analysis</h3>
               <p>
                 Cek tingkat risiko burnout dari pola data yang kamu isi.
@@ -93,7 +95,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>6. Evaluasi setiap minggu</h3>
               <p>
                 Ulangi proses input dan analisis tiap minggu agar kamu bisa
@@ -103,10 +105,10 @@
             </article>
           </div>
           <br />
-          <h2 class="section-title">Arti Tiap Interface Utama</h2>
+          <h2 class="style-node layout-node section-title">Arti Tiap Interface Utama</h2>
 
-          <div class="steps-grid interface-grid">
-            <article class="step">
+          <div class="style-node layout-node steps-grid interface-grid">
+            <article class="style-node layout-node step">
               <h3>Home</h3>
               <p>
                 Halaman pengantar aplikasi. Fungsinya untuk mengenalkan Student
@@ -114,7 +116,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>Dashboard</h3>
               <p>
                 Pusat ringkasan data. Menampilkan kartu metrik (jam belajar,
@@ -123,7 +125,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>Data Entry</h3>
               <p>
                 Form utama untuk memasukkan aktivitas 7 hari. Akurasi halaman
@@ -132,7 +134,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>Productivity Analysis</h3>
               <p>
                 Menjelaskan performa belajarmu dari data yang sudah diproses:
@@ -141,7 +143,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>Burnout Analysis</h3>
               <p>
                 Halaman untuk deteksi dini kelelahan belajar. Terdapat indikator
@@ -150,7 +152,7 @@
               </p>
             </article>
 
-            <article class="step">
+            <article class="style-node layout-node step">
               <h3>Theme Switch (ikon bulan/matahari)</h3>
               <p>
                 Tombol untuk mengganti tampilan terang/gelap. Gunakan mode yang
@@ -166,3 +168,8 @@
     <script src="../../scripts/global.js"></script>
   </body>
 </html>
+
+
+
+
+

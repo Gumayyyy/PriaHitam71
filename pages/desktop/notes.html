@@ -1,82 +1,108 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Productivity Tracker</title>
     <script src="../../scripts/auth-guard.js"></script>
     <link rel="icon" type="image/png" href="../../assets/logo.png" />
-    <link rel="stylesheet" href="../../styles/global.css">
-    <link rel="stylesheet" href="../../styles/desktop/notes.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-    <div class="layout">
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/component.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="style-node layout-node layout">
       <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <h2><i class="fa-regular fa-folder-open"></i> Notesphere</h2>
+      <aside class="style-node layout-node desk-sidebar">
+        <div class="style-node layout-node desk-sidebar-header">
+          <h2>
+            <i class="style-node layout-node fa-regular fa-folder-open"></i>
+            Notesphere
+          </h2>
         </div>
         <ul>
           <li>
-            <a href="home.html" class="nav-link nav-link-home"
-              ><img src="../../assets/logo.png" alt="Home" /> <span>Home</span></a
+            <a
+              href="home.html"
+              class="style-node layout-node nav-link desk-nav-link-home"
+              ><img src="../../assets/logo.png" alt="Home" />
+              <span>Home</span></a
             >
           </li>
-          <li class="sidebar-divider" aria-hidden="true"></li>
+          <li
+            class="style-node layout-node sidebar-divider"
+            aria-hidden="true"
+          ></li>
           <li>
-            <a href="dashboard.html" class="nav-link"
-              ><i class="fas fa-chart-line"></i> Dashboard</a
-            >
-          </li>
-          <li>
-            <a href="data.html" class="nav-link"
-              ><i class="fas fa-edit"></i> Data Entry</a
-            >
-          </li>
-          <li>
-            <a href="productivity.html" class="nav-link"
-              ><i class="fas fa-chart-bar"></i> Productivity Analysis</a
+            <a href="dashboard.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-chart-line"></i>
+              Dashboard</a
             >
           </li>
           <li>
-            <a href="burnout.html" class="nav-link"
-              ><i class="fas fa-fire"></i> Burnout Analysis</a
+            <a href="data.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-edit"></i> Data Entry</a
+            >
+          </li>
+          <li>
+            <a href="productivity.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-chart-bar"></i>
+              Productivity Analysis</a
+            >
+          </li>
+          <li>
+            <a href="burnout.html" class="style-node layout-node nav-link"
+              ><i class="style-node layout-node fas fa-fire"></i> Burnout
+              Analysis</a
             >
           </li>
         </ul>
-        <div class="user">
-          <div class="user-card">
-            <div class="user-content">
-              <div class="user-img" aria-hidden="true">
-                <i class="fa-solid fa-user"></i>
+        <div class="style-node layout-node user">
+          <div class="style-node layout-node user-card">
+            <div class="style-node layout-node user-content">
+              <div class="style-node layout-node user-img" aria-hidden="true">
+                <i class="style-node layout-node fa-solid fa-user"></i>
               </div>
 
-              <div class="user-data">
-                <h3 class="user-name">Loading...</h3>
+              <div class="style-node layout-node user-data">
+                <h3 class="style-node layout-node user-name">Loading...</h3>
               </div>
 
-              <div class="user-button" id="user-btn">
-                <i class="fa-solid fa-bars user-menu"></i>
-                <i class="fa-solid fa-xmark user-close"></i>
+              <div class="style-node layout-node user-button" id="user-btn">
+                <i
+                  class="style-node layout-node fa-solid fa-bars user-menu"
+                ></i>
+                <i
+                  class="style-node layout-node fa-solid fa-xmark user-close"
+                ></i>
               </div>
             </div>
-            <div class="user-social" id="user-social">
-              <a href="notes.html" class="user-link">
+            <div class="style-node layout-node user-social" id="user-social">
+              <a href="notes.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-solid fa-pencil"></i>
+                  <i class="style-node layout-node fa-solid fa-pencil"></i>
                 </span>
               </a>
 
-              <a href="feedback.html" class="user-link">
+              <a href="feedback.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-regular fa-comment"></i>
+                  <i class="style-node layout-node fa-regular fa-comment"></i>
                 </span>
               </a>
 
-              <a href="logout.html" class="user-link active">
+              <a
+                href="logout.html"
+                class="style-node layout-node user-link active"
+              >
                 <span>
-                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <i
+                    class="style-node layout-node fa-solid fa-right-to-bracket"
+                  ></i>
                 </span>
               </a>
             </div>
@@ -85,77 +111,133 @@
       </aside>
 
       <!-- MAIN -->
-      <div class="main">
+      <div class="style-node layout-node main">
         <!-- NAVBAR -->
-        <header class="navbar">
+        <header class="style-node layout-node desk-navbar">
           <h2>
-            <i class="fa-solid fa-graduation-cap"></i> Student Productivity
-            Tracker
+            <i class="style-node layout-node fa-solid fa-graduation-cap"></i>
+            Student Productivity Tracker
           </h2>
-          <div class="nav-right">
-            <label class="theme-toggle">
+          <div class="style-node layout-node desk-nav-right">
+            <label class="style-node layout-node theme-toggle">
               <input type="checkbox" id="toggleMode" />
-              <span class="slider">
-                <span class="icon moon-icon">🌙</span>
-                <span class="icon sun-icon">☀️</span>
+              <span class="style-node layout-node slider">
+                <span class="style-node layout-node icon moon-icon">🌙</span>
+                <span class="style-node layout-node icon sun-icon">☀️</span>
               </span>
             </label>
           </div>
         </header>
 
-        <div class="notes-page">
-          <div class="notes-grid">
-            <section class="card todo-card">
-              <div class="stats-container">
-                <div class="details">
+        <div class="style-node layout-node notes-page">
+          <div class="style-node layout-node notes-grid">
+            <section class="style-node layout-node card todo-card">
+              <div class="style-node layout-node stats-container">
+                <div class="style-node layout-node details">
                   <h1>To-Do List</h1>
                   <p>Keep track of your daily tasks and goals.</p>
                   <div id="progressBar">
                     <div id="progress"></div>
                   </div>
                 </div>
-                <div class="stats-numbers">
+                <div class="style-node layout-node stats-numbers">
                   <p id="numbers">0/0</p>
                 </div>
               </div>
 
               <form action="">
-                <input type="text" id="taskInput" placeholder="Add a new task..." />
+                <input
+                  type="text"
+                  id="taskInput"
+                  placeholder="Add a new task..."
+                />
                 <button id="newTask" type="submit">+</button>
               </form>
 
-              <ul id="task-list" class="task-list"></ul>
+              <ul id="task-list" class="style-node layout-node task-list"></ul>
             </section>
 
-            <section class="card notes-section boost-card">
-              <h2><i class="fa-solid fa-rocket"></i> Boost Notes</h2>
-              <p class="desc">Write something to motivate yourself.</p>
+            <section
+              class="style-node layout-node card notes-section boost-card"
+            >
+              <h2>
+                <i class="style-node layout-node fa-solid fa-rocket"></i> Boost
+                Notes
+              </h2>
+              <p class="style-node layout-node desc">
+                Write something to motivate yourself.
+              </p>
 
-              <textarea id="boostInput" placeholder="Write something to boost yourself..."></textarea>
+              <textarea
+                id="boostInput"
+                placeholder="Write something to boost yourself..."
+              ></textarea>
 
-              <div class="btn-group">
-                <button id="saveBoostBtn" class="notes-btn" type="button">Save</button>
-                <button id="toggleBoostBtn" class="notes-btn secondary" type="button">View Notes</button>
+              <div class="style-node layout-node btn-group">
+                <button
+                  id="saveBoostBtn"
+                  class="style-node layout-node notes-btn"
+                  type="button"
+                >
+                  Save
+                </button>
+                <button
+                  id="toggleBoostBtn"
+                  class="style-node layout-node notes-btn secondary"
+                  type="button"
+                >
+                  View Notes
+                </button>
               </div>
 
-              <div id="boostList" class="notes-list"></div>
+              <div
+                id="boostList"
+                class="style-node layout-node notes-list"
+              ></div>
             </section>
 
-            <section class="card notes-section mind-card">
-              <h2><i class="fa-solid fa-brain"></i> Mind Notes</h2>
-              <p class="desc">Write your thoughts and reflections.</p>
+            <section
+              class="style-node layout-node card notes-section mind-card"
+            >
+              <h2>
+                <i class="style-node layout-node fa-solid fa-brain"></i> Mind
+                Notes
+              </h2>
+              <p class="style-node layout-node desc">
+                Write your thoughts and reflections.
+              </p>
 
-              <textarea id="mindInput" placeholder="Write your thoughts here..."></textarea>
+              <textarea
+                id="mindInput"
+                placeholder="Write your thoughts here..."
+              ></textarea>
 
-              <div class="btn-group">
-                <button id="saveMindBtn" class="notes-btn" type="button">Save</button>
-                <button id="toggleMindBtn" class="notes-btn secondary" type="button">View Notes</button>
+              <div class="style-node layout-node btn-group">
+                <button
+                  id="saveMindBtn"
+                  class="style-node layout-node notes-btn"
+                  type="button"
+                >
+                  Save
+                </button>
+                <button
+                  id="toggleMindBtn"
+                  class="style-node layout-node notes-btn secondary"
+                  type="button"
+                >
+                  View Notes
+                </button>
               </div>
 
-              <div id="mindList" class="notes-list"></div>
+              <div
+                id="mindList"
+                class="style-node layout-node notes-list"
+              ></div>
             </section>
           </div>
         </div>
+      </div>
+    </div>
 
     <script src="../../scripts/global.js"></script>
     <script src="../../scripts/notes.js"></script>
@@ -171,12 +253,12 @@
         storageBucket: "priahitam71-000000.firebasestorage.app",
         messagingSenderId: "543874144759",
         appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
-        measurementId: "G-JS7VFF76YX"
+        measurementId: "G-JS7VFF76YX",
       };
 
       const app = initializeApp(firebaseConfig);
       window.auth = getAuth(app);
       window.db = getFirestore(app);
     </script>
-</body>
+  </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -7,60 +7,62 @@
   <script src="../../scripts/auth-guard.js"></script>
   <link rel="icon" type="image/png" href="../../assets/logo.png" />
   <link rel="stylesheet" href="../../styles/global.css">
-  <link rel="stylesheet" href="../../styles/desktop/data.css">
+  <link rel="stylesheet" href="../../styles/component.css">
+  <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+  <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<div class="layout">
+<div class="style-node layout-node layout">
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h2><i class="fas fa-edit"></i> Data Entry</h2>
+  <aside class="style-node layout-node desk-sidebar">
+    <div class="style-node layout-node desk-sidebar-header">
+      <h2><i class="style-node layout-node fas fa-edit"></i> Data Entry</h2>
     </div>
     <ul>
-      <li><a href="home.html" class="nav-link nav-link-home">
+      <li><a href="home.html" class="style-node layout-node nav-link desk-nav-link-home">
         <img src="../../assets/logo.png" alt="Home" /> <span>Home</span></a>
       </li>
-      <li class="sidebar-divider" aria-hidden="true"></li>
-      <li><a href="dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-      <li><a href="data.html" class="nav-link active"><i class="fas fa-edit"></i> Data Entry</a></li>
-      <li><a href="productivity.html" class="nav-link"><i class="fas fa-chart-bar"></i> Productivity Analysis</a></li>
-      <li><a href="burnout.html" class="nav-link"><i class="fas fa-fire"></i> Burnout Analysis</a></li>
+      <li class="style-node layout-node sidebar-divider" aria-hidden="true"></li>
+      <li><a href="dashboard.html" class="style-node layout-node nav-link"><i class="style-node layout-node fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="data.html" class="style-node layout-node nav-link active"><i class="style-node layout-node fas fa-edit"></i> Data Entry</a></li>
+      <li><a href="productivity.html" class="style-node layout-node nav-link"><i class="style-node layout-node fas fa-chart-bar"></i> Productivity Analysis</a></li>
+      <li><a href="burnout.html" class="style-node layout-node nav-link"><i class="style-node layout-node fas fa-fire"></i> Burnout Analysis</a></li>
     </ul>
-    <div class="user">
-          <div class="user-card">
-            <div class="user-content">
-              <div class="user-img" aria-hidden="true">
-                <i class="fa-solid fa-user"></i>
+    <div class="style-node layout-node user">
+          <div class="style-node layout-node user-card">
+            <div class="style-node layout-node user-content">
+              <div class="style-node layout-node user-img" aria-hidden="true">
+                <i class="style-node layout-node fa-solid fa-user"></i>
               </div>
 
-              <div class="user-data">
-                <h3 class="user-name">Loading...</h3>
+              <div class="style-node layout-node user-data">
+                <h3 class="style-node layout-node user-name">Loading...</h3>
               </div>
 
-              <div class="user-button" id="user-btn">
-                <i class="fa-solid fa-bars user-menu"></i>
-                <i class="fa-solid fa-xmark user-close"></i>
+              <div class="style-node layout-node user-button" id="user-btn">
+                <i class="style-node layout-node fa-solid fa-bars user-menu"></i>
+                <i class="style-node layout-node fa-solid fa-xmark user-close"></i>
               </div>
             </div>
-            <div class="user-social" id="user-social">
-              <a href="notes.html" class="user-link">
+            <div class="style-node layout-node user-social" id="user-social">
+              <a href="notes.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-solid fa-pencil"></i>
+                  <i class="style-node layout-node fa-solid fa-pencil"></i>
                 </span>
               </a>
 
-              <a href="feedback.html" class="user-link">
+              <a href="feedback.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="fa-regular fa-comment"></i>
+                  <i class="style-node layout-node fa-regular fa-comment"></i>
                 </span>
               </a>
 
-              <a href="logout.html" class="user-link active">
+              <a href="logout.html" class="style-node layout-node user-link active">
                 <span>
-                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <i class="style-node layout-node fa-solid fa-right-to-bracket"></i>
                 </span>
               </a>
             </div>
@@ -69,28 +71,28 @@
   </aside>
 
   <!-- MAIN -->
-  <div class="main">
+  <div class="style-node layout-node main">
     <!-- NAVBAR -->
-    <header class="navbar">
-      <h2><i class="fa-solid fa-graduation-cap"></i> Student Productivity Tracker</h2>
-      <div class="nav-right">
-        <label class="theme-toggle">
+    <header class="style-node layout-node desk-navbar">
+      <h2><i class="style-node layout-node fa-solid fa-graduation-cap"></i> Student Productivity Tracker</h2>
+      <div class="style-node layout-node desk-nav-right">
+        <label class="style-node layout-node theme-toggle">
           <input type="checkbox" id="toggleMode">
-          <span class="slider">
-            <span class="icon moon-icon">🌙</span>
-            <span class="icon sun-icon">☀️</span>
+          <span class="style-node layout-node slider">
+            <span class="style-node layout-node icon moon-icon">🌙</span>
+            <span class="style-node layout-node icon sun-icon">☀️</span>
           </span>
         </label>
       </div>
     </header>
 
-    <div>
+    <div class="style-node layout-node data-entry-content">
       <!-- Cards Wrapper - Side by Side -->
-      <div class="cards-wrapper">
+      <div class="style-node layout-node cards-wrapper">
         <!-- Table Card -->
-        <div class="table-card">
-          <div class="table-header">
-            <h2><i class="fas fa-table"></i> Activity Input Table</h2>
+        <div class="style-node layout-node table-card">
+          <div class="style-node layout-node table-header">
+            <h2><i class="style-node layout-node fas fa-table"></i> Activity Input Table</h2>
           </div>
 
           <table>
@@ -106,21 +108,21 @@
             <tbody id="tableBody"></tbody>
           </table>
 
-          <button class="btn-calculate" onclick="hitungData()">
-            <i class="fas fa-chart-line"></i> Analyze Data
+          <button class="style-node layout-node btn-calculate" onclick="hitungData()">
+            <i class="style-node layout-node fas fa-chart-line"></i> Analyze Data
           </button>
         </div>
 
         <!-- Chart Card -->
-        <div class="chart-card" id="inputDataChartPanel">
-          <div class="chart-header">
-            <h2><i class="fas fa-chart-bar"></i> Weekly Activity Chart</h2>
+        <div class="style-node layout-node chart-card" id="inputDataChartPanel">
+          <div class="style-node layout-node chart-header">
+            <h2><i class="style-node layout-node fas fa-chart-bar"></i> Weekly Activity Chart</h2>
             <p>Daily Activity Comparison</p>
           </div>
-          <div class="chart-container">
+          <div class="style-node layout-node chart-container">
             <canvas id="weeklyChart"></canvas>
           </div>
-          <div class="mood-scale">
+          <div class="style-node layout-node mood-scale">
             <h3>Mood Scale (Very Bad) - (Very Good)</h3>
             <div style="display: flex; gap: 20px;">
               <div style="flex: 1;">
@@ -168,3 +170,7 @@
 </script>
 </body>
 </html>
+
+
+
+

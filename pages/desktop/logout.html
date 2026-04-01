@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,28 +7,29 @@
     <script src="../../scripts/auth-guard.js"></script>
     <link rel="icon" type="image/png" href="../../assets/logo.png" />
     <link rel="stylesheet" href="../../styles/global.css" />
-    <link rel="stylesheet" href="../../styles/desktop/logout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
+    <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
   </head>
   <body>
-    <div class="logout-theme-toggle">
-      <label class="theme-toggle" aria-label="Toggle dark mode">
+    <div class="style-node layout-node logout-theme-toggle">
+      <label class="style-node layout-node theme-toggle" aria-label="Toggle dark mode">
         <input type="checkbox" id="toggleMode" />
-        <span class="slider">
-          <span class="icon moon-icon">🌙</span>
-          <span class="icon sun-icon">☀️</span>
+        <span class="style-node layout-node slider">
+          <span class="style-node layout-node icon moon-icon">🌙</span>
+          <span class="style-node layout-node icon sun-icon">☀️</span>
         </span>
       </label>
     </div>
 
-    <div class="logout-modal active" id="logoutModal">
-      <div class="modal-box">
+    <div class="style-node layout-node logout-modal active" id="logoutModal">
+      <div class="style-node layout-node modal-box">
         <!-- Icon -->
-        <div class="modal-icon">
-          <i class="fas fa-exclamation-triangle"></i>
+        <div class="style-node layout-node modal-icon">
+          <i class="style-node layout-node fas fa-exclamation-triangle"></i>
         </div>
 
         <!-- Title -->
@@ -36,26 +37,26 @@
 
         <!-- Description -->
         <p>
-          You’re about to end your current session. Make sure all your progress
+          You're about to end your current session. Make sure all your progress
           is saved.
         </p>
 
         <!-- Small info -->
-        <div class="modal-info">
-          <span><i class="fas fa-user"></i> Active user</span>
-          <span class="dot"></span>
+        <div class="style-node layout-node modal-info">
+          <span><i class="style-node layout-node fas fa-user"></i> Active user</span>
+          <span class="style-node layout-node dot"></span>
           <span>Status: Online</span>
         </div>
 
         <!-- Actions -->
-        <div class="modal-actions">
+        <div class="style-node layout-node modal-actions">
           <!-- Cancel = kembali ke halaman sebelumnya -->
-          <button class="btn cancel" id="cancelLogoutBtn" type="button">
+          <button class="style-node layout-node btn cancel" id="cancelLogoutBtn" type="button">
             Cancel
           </button>
 
           <!-- Logout = sign out and pindah ke login -->
-          <button class="btn confirm" id="confirmLogoutBtn" type="button">
+          <button class="style-node layout-node btn confirm" id="confirmLogoutBtn" type="button">
             Yes, Log out
           </button>
         </div>
@@ -83,3 +84,7 @@
     </script>
   </body>
 </html>
+
+
+
+
