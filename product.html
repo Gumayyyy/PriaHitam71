@@ -1,0 +1,132 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>PriaHitam 71</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+        <style>
+         body { font-family: Arial, sans-serif; background: #f0f4f8; color: #333; padding: 20px; }
+         h1 { color: #0b3d91; }
+         .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+         input[type=number] { width: 60px; margin: 5px; }
+         button { padding: 10px 20px; margin-top: 10px; cursor: pointer; background: #0b3d91; color: white; border: none; border-radius: 5px; }
+         button:hover { background: #06408a; }
+         .output { margin-top: 20px; white-space: pre-line; }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>PriaHitam71 </h1>
+        <marquee> Gumay, Reno, Vio, dan Baldy  </marquee>
+        <br>
+        <ul>
+            <li> <a href="index.html"> Home </a> </li>
+            <li> <a href="profile.html"> Profile </a> </li>
+            <li> Product </li>
+        </ul>
+        <h2> Student Productivity Tracker</h2>
+
+        <div class="container">
+  <h1>Student Productivity Tracker</h1>
+  <div id="input-section">
+    <h3>Masukkan data hari ke <span id="hari-ke">1</span>:</h3>
+    <label>Jam Belajar: <input type="number" id="belajar"></label><br>
+    <label>Jam Tidur: <input type="number" id="tidur"></label><br>
+    <label>Jam Main HP: <input type="number" id="hp"></label><br>
+    <label>Mood (1-10): <input type="number" id="mood" min="1" max="10"></label><br>
+    <button onclick="submitData()">Submit</button>
+  </div>
+
+  <div class="output" id="output"></div>
+</div>
+
+<script>
+const HARI = 7;
+let hari = 0;
+
+let belajar = [];
+let tidur = [];
+let hp = [];
+let mood = [];
+
+// hitung rata-rata
+function rataRata(data) {
+  if (data.length === 0) return 0;
+  return (data.reduce((a,b)=>a+b,0) / data.length).toFixed(2);
+}
+
+// submit data harian
+function submitData() {
+  const b = parseInt(document.getElementById("belajar").value);
+  const t = parseInt(document.getElementById("tidur").value);
+  const h = parseInt(document.getElementById("hp").value);
+  const m = parseInt(document.getElementById("mood").value);
+
+  // validasi
+  if (isNaN(b) || isNaN(t) || isNaN(h) || isNaN(m)) {
+    alert("Isi semua field!");
+    return;
+  }
+
+  // simpan data
+  belajar.push(b);
+  tidur.push(t);
+  hp.push(h);
+  mood.push(m);
+
+  hari++;
+
+  // reset input
+  document.getElementById("belajar").value = '';
+  document.getElementById("tidur").value = '';
+  document.getElementById("hp").value = '';
+  document.getElementById("mood").value = '';
+
+  // kalau belum 7 hari
+  if (hari < HARI) {
+    document.getElementById("hari-ke").innerText = hari + 1;
+  } else {
+    // selesai → tampilkan laporan
+    document.getElementById("input-section").style.display = 'none';
+    showReport();
+  }
+}
+
+// tampilkan laporan
+function showReport() {
+  let kurangTidur = tidur.filter(x => x < 6).length;
+  let hpDominan = hp.filter((x,i) => x > belajar[i]).length;
+
+  let text = "=== LAPORAN MINGGUAN ===\n";
+  text += `Rata-rata Jam Belajar: ${rataRata(belajar)}\n`;
+  text += `Rata-rata Jam Tidur: ${rataRata(tidur)}\n`;
+  text += `Rata-rata Jam Main HP: ${rataRata(hp)}\n`;
+  text += `Rata-rata Mood: ${rataRata(mood)}\n\n`;
+
+  text += "=== ANALISIS ===\n";
+
+  if (kurangTidur >= 3)
+    text += "⚠ Risiko kurang tidur terdeteksi!\n";
+
+  if (hpDominan >= 5)
+    text += "⚠ Waktu HP lebih dominan dari belajar!\n";
+
+  if (rataRata(mood) < 5)
+    text += "⚠ Mood rendah. Perlu evaluasi pola hidup.\n";
+
+  if (kurangTidur < 3 && hpDominan < 5 && rataRata(mood) >= 5)
+    text += "Kondisi produktivitas relatif stabil.\n";
+
+  document.getElementById("output").innerText = text;
+}
+</script>
+    <script src="scripts.js"></script>
+    </body>
+</html>
