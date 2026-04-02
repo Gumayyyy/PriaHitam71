@@ -1,0 +1,1627 @@
+/* ====================================== */
+/* Mobile Layout / Structure */
+/* ====================================== */
+
+/* Section order: burnout, dashboard, data, feedback, guide, home, login, logout, notes, productivity, profile */
+
+/* ===== Source: burnout.css | page: .m-page-burnout ===== */
+.m-page-burnout * {
+  box-sizing: border-box;
+}
+
+.m-page-burnout {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.m-page-burnout .analysis-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.m-page-burnout .card,
+.m-page-burnout .chart-box,
+.m-page-burnout .analysis-box,
+.m-page-burnout .tips-card {
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.m-page-burnout .card::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+.m-page-burnout .chart-panel {
+  position: relative;
+  width: 100%;
+}
+
+.m-page-burnout .insight-panel.is-empty {
+  padding: 16px;
+}
+
+.m-page-burnout .circular-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.m-page-burnout .circular-chart {
+  display: block;
+  margin: 15px auto;
+  max-width: 100%;
+  max-height: 180px;
+  width: 140px;
+  height: 140px;
+}
+
+.m-page-burnout .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 15px auto;
+}
+
+.m-page-burnout .circle svg {
+  display: block;
+  max-width: 100%;
+  max-height: 180px;
+  width: 140px;
+  height: 140px;
+}
+
+.m-page-burnout .analysis-card,
+.m-page-burnout .personal-panel {
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.m-page-burnout #insightBox,
+.m-page-burnout #tipsBox {
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.m-page-burnout #insightBox #insight-heading,
+.m-page-burnout #tipsBox #tips-heading {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.m-page-burnout #insightBox .insight-text,
+.m-page-burnout #tipsBox .tips-text {
+  margin-top: 4px;
+}
+
+.m-page-burnout .insight-panel.is-empty,
+.m-page-burnout .personal-panel.is-empty {
+  padding: 16px;
+}
+
+/* ===== Source: dashboard.css | page: .m-page-dashboard ===== */
+.m-page-dashboard * {
+  box-sizing: border-box;
+}
+
+.m-page-dashboard {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.m-page-dashboard .main-content {
+  padding-top: 100px;
+  padding-bottom: 110px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.m-page-dashboard .stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.m-page-dashboard .unit {
+  margin-left: 4px;
+}
+
+.m-page-dashboard .card {
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.m-page-dashboard .card::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+.m-page-dashboard .card h3 {
+  margin: 0 0 10px 0;
+}
+
+.m-page-dashboard .card h1 {
+  margin: 0 0 15px 0;
+}
+
+.m-page-dashboard .progress {
+  height: 8px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.m-page-dashboard .progress div {
+  height: 100%;
+}
+
+.m-page-dashboard .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.m-page-dashboard .charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.m-page-dashboard .chart-box {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.m-page-dashboard .chart-panel {
+  position: relative;
+}
+
+.m-page-dashboard .circular-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-dashboard .circular-chart {
+  display: block;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.m-page-dashboard .bottom-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.m-page-dashboard .analysis-box,
+.m-page-dashboard .burnout-box {
+  padding: 20px;
+}
+
+.m-page-dashboard .insight-panel .empty-state-text {
+  display: none;
+}
+
+.m-page-dashboard .insight-panel.is-empty .empty-state-text {
+  display: block;
+  margin: 14px 0 0;
+  padding: 14px 16px;
+}
+
+.m-page-dashboard .insight-panel.is-empty #analysisBoxes,
+.m-page-dashboard .insight-panel.is-empty #rekomendasiList,
+.m-page-dashboard .insight-panel.is-empty #burnoutAnalysis,
+.m-page-dashboard .insight-panel.is-empty .notes-title {
+  display: none;
+}
+
+.m-page-dashboard #burnoutAnalysis {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.m-page-dashboard .analysis-box ul li {
+  padding: 10px 0;
+}
+
+.m-page-dashboard #rekomendasiList {
+  list-style: circle;
+  margin-left: 15px;
+}
+
+.m-page-dashboard .boxes {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.m-page-dashboard .boxes .box {
+  flex: 1 1 200px;
+  min-width: 180px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-data .cards-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 100px 12px 100px;
+  max-width: 100%;
+}
+
+.m-page-data .table-card,
+.m-page-data .chart-card {
+  padding: 14px;
+  width: 100%;
+}
+
+.m-page-data .table-header {
+  margin-bottom: 12px;
+}
+
+.m-page-data .table-card {
+  overflow-x: auto;
+}
+
+.m-page-data table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.m-page-data th {
+  padding: 8px 4px;
+}
+
+.m-page-data td {
+  padding: 8px 4px;
+}
+
+.m-page-data .jam-input {
+  width: 100%;
+  max-width: 60px;
+  padding: 6px;
+}
+
+.m-page-data .btn-calculate {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+}
+
+.m-page-data .chart-container {
+  height: 220px;
+}
+
+.m-page-data .mood-scale {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+/* ===== Source: feedback.css | page: .m-page-feedback ===== */
+.m-page-feedback * {
+  box-sizing: border-box;
+}
+
+.m-page-feedback {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.m-page-feedback .contact-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 16px auto 0;
+  padding: 18px 16px;
+  margin-top: 220px;
+}
+
+.m-page-feedback .contact-container,
+.m-page-feedback .contact-container * {
+  box-sizing: border-box;
+}
+
+.m-page-feedback .contact-container i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+}
+
+.m-page-feedback .contact-container h2 {
+  margin: 0;
+}
+
+.m-page-feedback .contact-container .sub-heading {
+  margin-top: 6px;
+  position: relative;
+  max-width: 100%;
+}
+
+.m-page-feedback .contact-container .sub-heading:after {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+}
+
+.m-page-feedback .contact-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.m-page-feedback .contact-container form input,
+.m-page-feedback .contact-container form textarea {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.m-page-feedback .contact-container .input-container input {
+  padding-left: 36px;
+}
+
+.m-page-feedback .contact-container form textarea {
+  min-height: 120px;
+  padding-left: 12px;
+}
+
+.m-page-feedback .contact-container .input-container,
+.m-page-feedback .contact-container .btn-input {
+  position: relative;
+}
+
+.m-page-feedback .contact-container .btn-input {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.m-page-feedback .contact-container .btn-input i {
+  left: unset;
+  right: 10px;
+}
+
+.m-page-feedback .contact-container input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+}
+
+.m-page-feedback .contact-container .top-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.m-page-feedback .contact-container .input-group {
+  width: 100%;
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.m-page-guide * {
+  box-sizing: border-box;
+}
+
+.m-page-guide {
+  min-height: 100vh;
+}
+
+.m-page-guide .guide-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 16px 20px;
+}
+
+.m-page-guide .guide-main {
+  margin-top: 20px;
+  padding: 10px 0 20px;
+}
+
+.m-page-guide .kicker {
+  display: inline-block;
+  padding: 6px 10px;
+}
+
+.m-page-guide .lead {
+  margin-top: 10px;
+  max-width: 44ch;
+}
+
+.m-page-guide .start-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 24px;
+}
+
+.m-page-guide .guide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.m-page-guide .guide-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.m-page-guide .guide-intro h1 {
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+.m-page-guide .guide-content h2 {
+  margin-top: 8px;
+}
+
+.m-page-guide .steps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.m-page-guide .section-title {
+  margin-top: 16px;
+}
+
+.m-page-guide .step {
+  position: relative;
+  padding: 16px;
+}
+
+.m-page-guide .step::before {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  bottom: 14px;
+  width: 4px;
+}
+
+.m-page-home * {
+  box-sizing: border-box;
+}
+
+.m-page-home {
+  min-height: 100vh;
+}
+
+.m-page-home .home-page {
+  width: 100%;
+  margin: 16px auto;
+  padding-top: 80px;
+}
+
+.m-page-home .hero-wrap {
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.m-page-home .hero-copy {
+  max-width: 100%;
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+.m-page-home .hero-mascot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-page-home .mascot-composition {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 400px;
+  margin-right: 10px;
+  top: 100px;
+}
+
+.m-page-home .mascot-chat-bubble {
+  position: relative;
+  top: -10px;
+  z-index: 5;
+  left: -20px;
+  max-width: 100%;
+  padding: 8px 10px;
+}
+
+.m-page-home .mascot-chat-bubble::after {
+  position: absolute;
+  right: 22px;
+  bottom: -9px;
+  width: 16px;
+  height: 16px;
+}
+
+.m-page-home .mascot-composition img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.m-page-home .mascot-body {
+  z-index: 2;
+}
+
+.m-page-home .mascot-crown {
+  z-index: 3;
+  top: 13%;
+}
+
+.m-page-home .mascot-hand-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.m-page-home .mascot-hand {
+  z-index: 1;
+  top: 13%;
+}
+
+.m-page-home .kicker {
+  display: inline-block;
+  padding: 6px 10px;
+}
+
+.m-page-home .hero-copy h1 {
+  margin-top: 10px;
+  max-width: 18ch;
+}
+
+.m-page-home .lead {
+  margin-top: 10px;
+  max-width: 44ch;
+}
+
+.m-page-home .get-started-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 24px;
+}
+
+.m-page-login * {
+  box-sizing: border-box;
+}
+
+.m-page-login {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-login .login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 80px;
+}
+
+.m-page-login .logout-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.m-page-login .form-box {
+  width: 100%;
+  padding: 28px 22px;
+}
+
+.m-page-login .brand {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+}
+
+.m-page-login .form-box h2 {
+  margin: 0;
+}
+
+.m-page-login .subtitle {
+  margin: 10px 0 20px;
+}
+
+.m-page-login .auth-forms {
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+}
+
+.m-page-login .login-form-content,
+.m-page-login .signup-form,
+.m-page-login .forgot-form {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  visibility: hidden;
+}
+
+.m-page-login
+  .login-container:not(.signup-mode):not(.forgot-mode)
+  .login-form-content {
+  visibility: visible;
+}
+
+.m-page-login .login-container.signup-mode .signup-form {
+  visibility: visible;
+}
+
+.m-page-login .login-container.forgot-mode .forgot-form {
+  visibility: visible;
+}
+
+.m-page-login input[type="text"],
+.m-page-login input[type="email"],
+.m-page-login input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.m-page-login .options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.m-page-login .options label {
+  display: flex;
+  gap: 6px;
+}
+
+.m-page-login .login-btn {
+  width: 100%;
+  padding: 14px;
+}
+
+.m-page-login .register-text {
+  margin-top: 8px;
+}
+
+.m-page-login .error-message {
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+.m-page-login .info-circle {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 140%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px 20px;
+  z-index: 1;
+}
+
+.m-page-login .info-circle .kicker {
+  margin-bottom: 6px;
+}
+
+.m-page-login .info-circle h1 {
+  margin: 0;
+}
+
+.m-page-login .info-circle p {
+  max-width: 280px;
+  margin-top: 6px;
+}
+
+/* ===== Source: logout.css | page: .m-page-logout ===== */
+.m-page-logout {
+  margin: 0;
+}
+
+.m-page-logout .logout-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.m-page-logout .logout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-logout .modal-box {
+  padding: 32px;
+  width: min(800px, calc(100vw - 32px));
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.m-page-logout .modal-box::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+.m-page-logout .modal-icon {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-logout .modal-box h2 {
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-logout .modal-box p {
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-logout .modal-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-logout .modal-info .dot {
+  width: 4px;
+  height: 4px;
+}
+
+.m-page-logout .modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-logout .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+}
+
+/* ===== Source: notes.css | page: .m-page-notes ===== */
+.m-page-notes * {
+  box-sizing: border-box;
+}
+
+.m-page-notes {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-bottom: 90px;
+  padding-top: 85px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.m-page-notes .notes-page {
+  margin-top: 0;
+  padding: 12px;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.m-page-notes .notes-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "todo"
+    "boost"
+    "mind";
+  gap: 16px;
+  align-items: stretch;
+}
+
+.m-page-notes .card {
+  padding: 16px;
+  min-height: auto;
+}
+
+.m-page-notes .todo-card {
+  grid-area: todo;
+}
+
+.m-page-notes .boost-card {
+  grid-area: boost;
+}
+
+.m-page-notes .mind-card {
+  grid-area: mind;
+}
+
+.m-page-notes .mind-card textarea,
+.m-page-notes .boost-card textarea {
+  min-height: 160px;
+}
+
+.m-page-notes .stats-container {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.m-page-notes .details {
+  width: 100%;
+}
+
+.m-page-notes #progressBar {
+  width: 100%;
+  height: 8px;
+  margin-top: 14px;
+}
+
+.m-page-notes #progress {
+  width: 0;
+  height: 8px;
+}
+
+.m-page-notes #numbers {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-notes .todo-card form {
+  margin-top: 14px;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.m-page-notes #taskInput {
+  flex: 1;
+  padding: 10px;
+}
+
+.m-page-notes #newTask {
+  width: 42px;
+  height: 42px;
+}
+
+.m-page-notes #task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.m-page-notes #task-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.m-page-notes .taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px;
+}
+
+.m-page-notes .task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.m-page-notes .task input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.m-page-notes .task-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.m-page-notes .task-actions i {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-notes .notes-section h2 {
+  margin-bottom: 6px;
+}
+
+.m-page-notes .desc {
+  margin-bottom: 10px;
+}
+
+.m-page-notes .notes-section textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 10px;
+}
+
+.m-page-notes .btn-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.m-page-notes .notes-btn {
+  padding: 8px 10px;
+}
+
+.m-page-notes .notes-list {
+  display: none;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.m-page-notes .notes-list.visible {
+  display: grid;
+}
+
+.m-page-notes .note-card {
+  padding: 10px;
+}
+
+.m-page-notes .note-card p {
+  margin-bottom: 8px;
+}
+
+.m-page-notes .note-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.m-page-notes .note-action-btn {
+  padding: 5px 8px;
+}
+
+/* ===== Source: productivity.css | page: .m-page-productivity ===== */
+.m-page-productivity * {
+  box-sizing: border-box;
+}
+
+.m-page-productivity {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding-bottom: 110px;
+  padding-top: 100px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.m-page-productivity .main-content {
+  min-height: calc(100vh - 180px);
+  padding: 0 10px;
+}
+
+.m-page-productivity .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto 15px auto;
+  width: 100%;
+}
+
+.m-page-productivity .card {
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+}
+
+.m-page-productivity .card::before {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -50%;
+  left: -50%;
+}
+
+.m-page-productivity .card h3 {
+  margin: 0 0 8px 0;
+}
+
+.m-page-productivity .card h1 {
+  margin: 0 0 12px 0;
+}
+
+.m-page-productivity .progress {
+  height: 7px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.m-page-productivity .progress div {
+  height: 100%;
+}
+
+.m-page-productivity .unit {
+  margin-left: 4px;
+}
+
+.m-page-productivity .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.m-page-productivity .chart-analysis-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.m-page-productivity .chart-box,
+.m-page-productivity .analysis-box {
+  padding: 18px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.m-page-productivity .analysis-box h3 {
+  margin-bottom: 12px;
+}
+
+.m-page-productivity .chart-panel {
+  position: relative;
+  width: 100%;
+}
+
+.m-page-productivity .insight-panel .empty-state-text {
+  display: none;
+}
+
+.m-page-productivity .insight-panel.is-empty .empty-state-text {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 14px;
+}
+
+.m-page-productivity .insight-panel.is-empty #analysisBoxes,
+.m-page-productivity .insight-panel.is-empty #rekomendasiList,
+.m-page-productivity .insight-panel.is-empty .notes-title {
+  display: none;
+}
+
+.m-page-productivity .analysis-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.m-page-productivity .analysis-box ul li {
+  padding: 8px 0;
+}
+
+.m-page-productivity #rekomendasiList {
+  list-style: circle;
+  margin-left: 12px;
+  padding-left: 0;
+}
+
+.m-page-productivity .boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+  max-width: 400px;
+}
+
+.m-page-productivity .boxes .box {
+  width: 100%;
+  min-height: 60px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-profile *,
+.m-page-profile *::before,
+.m-page-profile *::after {
+  box-sizing: border-box;
+}
+
+.m-page-profile {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.m-page-profile .about-page {
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.m-page-profile .about-page .main {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 92px 16px 72px;
+  overflow-x: hidden;
+}
+
+.m-page-profile .page {
+  display: none;
+}
+
+.m-page-profile .philosophy-page,
+.m-page-profile .content-page {
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.m-page-profile .philosophy-page.page-active,
+.m-page-profile .content-page.page-active {
+  display: block;
+}
+
+.m-page-profile .philosophy-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 11px;
+}
+
+.m-page-profile .philosophy-page .kicker {
+  display: inline-block;
+  padding: 5px 8px;
+}
+
+.m-page-profile .philosophy-hero h1 {
+  margin-top: 9px;
+}
+
+.m-page-profile .philosophy-page .lead {
+  margin-top: 8px;
+}
+
+.m-page-profile .philosophy-content-grid {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr;
+}
+
+.m-page-profile .philosophy-card {
+  position: relative;
+  overflow: hidden;
+  padding: 9px;
+}
+
+.m-page-profile .philosophy-card::before {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  bottom: 10px;
+  width: 3px;
+}
+
+.m-page-profile .philosophy-card h3 {
+  margin: 0 0 6px;
+}
+
+.m-page-profile .philosophy-card p {
+  margin: 0;
+}
+
+.m-page-profile .philosophy-list {
+  margin: 0;
+  padding-left: 13px;
+}
+
+.m-page-profile .highlight {
+  padding: 2px 6px;
+}
+
+.m-page-profile .main-container {
+  margin-top: 0;
+  display: none;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.m-page-profile .main-container.page-active {
+  display: flex;
+}
+
+.m-page-profile .carousel-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 420px;
+}
+
+.m-page-profile .carousel-container {
+  width: 100%;
+  max-width: 380px;
+  height: 380px;
+  min-height: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.m-page-profile .carousel-container .nav-arrow {
+  display: none;
+}
+
+.m-page-profile .carousel-track {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.m-page-profile .slide {
+  position: absolute;
+  width: 204px;
+  height: 248px;
+  overflow: hidden;
+}
+
+.m-page-profile .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m-page-profile .slide.center {
+  z-index: 10;
+}
+
+.m-page-profile .slide.up-2 {
+  z-index: 1;
+}
+
+.m-page-profile .slide.up-1 {
+  z-index: 5;
+}
+
+.m-page-profile .slide.down-1 {
+  z-index: 5;
+}
+
+.m-page-profile .slide.down-2 {
+  z-index: 1;
+}
+
+.m-page-profile .controls-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.m-page-profile .member-info {
+  position: relative;
+  padding: 9px;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.m-page-profile .member-name {
+  margin-bottom: 6px;
+  display: block;
+}
+
+.m-page-profile .member-name::after {
+  display: block;
+  margin: 6px 0 0 0;
+  width: 42px;
+  height: 3px;
+}
+
+.m-page-profile .member-role {
+  padding: 5px 9px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.m-page-profile .member-desc {
+  margin-top: 9px;
+  max-width: 100%;
+  padding: 7px 8px;
+}
+
+.m-page-profile .dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.m-page-profile .dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.m-page-profile .dot {
+  width: 6px;
+  height: 6px;
+}
+
+.m-page-profile .nav-arrow {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.m-page-profile .nav-arrow img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.m-page-profile .content-card {
+  padding: 9px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.m-page-profile .content-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.m-page-profile .content-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.m-page-profile .content-card h1 {
+  margin-bottom: 8px;
+  margin-top: 2px;
+}
+
+.m-page-profile .content-text p {
+  margin-bottom: 9px;
+}
+
+.m-page-profile .content-text h3 {
+  margin: 10px 0 5px;
+}
+
+.m-page-profile .topic-badges {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.m-page-profile .topic-badge {
+  padding: 4px 7px;
+}
+
+.m-page-profile .insight-grid,
+.m-page-profile .benefit-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.m-page-profile .insight-item,
+.m-page-profile .interactive-item,
+.m-page-profile .benefit-card {
+  padding: 8px;
+}
+
+.m-page-profile .interactive-list {
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.m-page-profile .interactive-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.m-page-profile .item-number {
+  flex: 0 0 auto;
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-page-profile .goal-progress {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.m-page-profile .goal-bar {
+  position: relative;
+  padding-top: 14px;
+}
+
+.m-page-profile .goal-bar p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.m-page-profile .goal-bar::before {
+  display: block;
+  height: 5px;
+}
+
+.m-page-profile .goal-bar span {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  height: 5px;
+}
+
+.m-page-profile .impact-note {
+  margin-top: 8px;
+  padding: 7px 9px;
+}
+
+.m-page-profile .impact-note p {
+  margin: 8px 0 0;
+}
+
+.m-page-profile .next-page-btn,
+.m-page-profile .prev-page-btn {
+  position: fixed;
+  bottom: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.m-page-profile .next-page-btn {
+  right: 8px;
+}
+
+.m-page-profile .prev-page-btn {
+  left: 8px;
+}
+
+.m-page-profile .next-page-btn img,
+.m-page-profile .prev-page-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
