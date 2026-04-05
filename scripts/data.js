@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
 
       if (input.classList.contains("mood")) {
-        // Validasi Mood: min 1, max 10
-        if (num < 1) num = 1;
+        // Validasi Mood: min 0, max 10
+        if (num < 0) num = 0;
         if (num > 10) num = 10;
 
         num = Math.round(num * 2) / 2;
@@ -98,10 +98,11 @@ function saveData() {
     window.auth.onAuthStateChanged(async (user) => {
       if (user) {
         try {
-          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          const { doc, setDoc } =
+            await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
           await setDoc(doc(window.db, "userData", user.uid), {
             trackerData: data,
-            lastUpdated: new Date()
+            lastUpdated: new Date(),
           });
         } catch (error) {
           console.error("Error saving to Firestore:", error);
@@ -117,7 +118,8 @@ async function loadData() {
   // Try to load from Firestore first, fallback to localStorage
   if (window.auth && window.db) {
     try {
-      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const { doc, getDoc } =
+        await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
       const user = window.auth.currentUser;
       if (user) {
         const userDoc = await getDoc(doc(window.db, "userData", user.uid));
@@ -128,7 +130,11 @@ async function loadData() {
           // Also save to localStorage for consistency
           localStorage.setItem("trackerData", JSON.stringify(data));
           // Display chart if there's data
-          if (data.some(item => item.belajar || item.tidur || item.hp || item.mood)) {
+          if (
+            data.some(
+              (item) => item.belajar || item.tidur || item.hp || item.mood,
+            )
+          ) {
             loadAndDisplayChart(data);
           }
           return;
@@ -146,7 +152,7 @@ async function loadData() {
   const data = JSON.parse(saved);
   populateTable(data);
   // Display chart if there's data
-  if (data.some(item => item.belajar || item.tidur || item.hp || item.mood)) {
+  if (data.some((item) => item.belajar || item.tidur || item.hp || item.mood)) {
     loadAndDisplayChart(data);
   }
 }
@@ -167,7 +173,6 @@ function populateTable(data) {
 
 function loadAndDisplayChart(data) {
   // Display the chart with the provided data without saving
-  const palette = getInputChartPalette();
   let isEmpty = !hasAnyFilledInput(data);
   let dataBelajar = [],
     dataTidur = [],
@@ -183,11 +188,13 @@ function loadAndDisplayChart(data) {
 
   setChartEmptyState(isEmpty);
 
-  const ctx = document.getElementById("weeklyChart");
+  const canvas = document.getElementById("weeklyChart");
+  const chartContext = canvas ? canvas.getContext("2d") : null;
+  const palette = getInputChartPalette(chartContext);
 
   if (chart) chart.destroy();
 
-  chart = new Chart(ctx, {
+  chart = new Chart(canvas, {
     type: "bar",
     data: {
       labels: hari,
@@ -277,23 +284,39 @@ function getCssVar(name) {
   return getComputedStyle(document.body).getPropertyValue(name).trim();
 }
 
-function getInputChartPalette() {
+function hexToRgba(hex, alpha) {
+  const value = (hex || "").replace("#", "").trim();
+  if (value.length !== 6) return `rgba(44, 83, 100, ${alpha})`;
+
+  const r = parseInt(value.slice(0, 2), 16);
+  const g = parseInt(value.slice(2, 4), 16);
+  const b = parseInt(value.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function buildBarGradient(ctx, colorHex) {
+  const gradient = ctx.createLinearGradient(0, 0, 0, 320);
+  gradient.addColorStop(0, hexToRgba(colorHex, 0.92));
+  gradient.addColorStop(1, hexToRgba(colorHex, 0.5));
+  return gradient;
+}
+
+function getInputChartPalette(chartContext) {
+  const study = getCssVar("--db-study");
+  const sleep = getCssVar("--db-sleep");
+  const phone = getCssVar("--db-phone");
+  const mood = getCssVar("--db-mood");
+
+  const solidFills = [study, sleep, phone, mood];
+
   return {
-    fills: [
-      getCssVar("--in-chart-sleep"),
-      getCssVar("--in-chart-study"),
-      getCssVar("--in-chart-phone"),
-      getCssVar("--in-chart-mood"),
-    ],
-    borders: [
-      getCssVar("--in-chart-sleep-border"),
-      getCssVar("--in-chart-study-border"),
-      getCssVar("--in-chart-phone-border"),
-      getCssVar("--in-chart-mood-border"),
-    ],
-    ticks: getCssVar("--in-chart-text"),
-    grid: getCssVar("--in-chart-grid"),
-    legend: getCssVar("--in-chart-legend"),
+    fills: chartContext
+      ? solidFills.map((color) => buildBarGradient(chartContext, color))
+      : solidFills,
+    borders: [study, sleep, phone, mood],
+    ticks: getCssVar("--db-chart-text"),
+    grid: getCssVar("--db-chart-grid"),
+    legend: getCssVar("--db-chart-text"),
   };
 }
 
@@ -322,10 +345,11 @@ function hitungData() {
     window.auth.onAuthStateChanged(async (user) => {
       if (user) {
         try {
-          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          const { doc, setDoc } =
+            await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
           await setDoc(doc(window.db, "userData", user.uid), {
             trackerData: data,
-            lastUpdated: new Date()
+            lastUpdated: new Date(),
           });
         } catch (error) {
           console.error("Error saving to Firestore:", error);

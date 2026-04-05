@@ -1,76 +1,136 @@
+@import url("./tablet/tablet.css");
+
 /* ========================================
     VARIABLES
 ======================================== */
 :root {
-  --sidebar-width: 250px;
-  --navbar-height: 70px;
-  --navbar-radius: 15px;
-  --spacing-main: 20px;
-  --spacing-top: 20px;
-  --gap-content: 20px;
+  --theme-duration: 0.45s;
+  --theme-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Colors */
-  --bg-main: #f8f4ec;
-  --color-primary: #667eea;
-  --color-primary-light: #ffffff;
-  --color-bg-light: var(--bg-main);
+  /* BASE COLOR */
+  --color-bg-light: #f8f4ec;
   --color-card-light: #fffdf9;
-  --color-bg-white: #ffffff;
-  --color-text-dark: #000000;
-  --color-text-light: #b0b0b0;
-  --color-border: #e0e0e0;
-  --color-hover-bg: #f0f2ff;
-  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-bg-dark: #121417;
+  --color-card-dark: #1e2126;
+  --color-soft-light: #ffefba81;
+  --color-soft-dark: #4343437e;
 
-  /* Dark Mode Colors */
-  --color-dark-bg: #0f172a;
-  --color-dark-bg-alt: #1e293b;
-  --color-dark-bg-deep: #0b1220;
-  --color-dark-text: #ffffff;
-  --color-dark-text-secondary: #cbd5e1;
+  /* SHADOW COLOR */
+  --color-shadow-light: rgba(0, 0, 0, 0.7);
+  --color-shadow-dark: rgba(215, 221, 232, 0.5);
 
-  /* User card and social palette */
-  --user-accent: #2c5364;
-  --user-surface: #e7f0f8;
-  --user-surface-strong: #d7e5f2;
-  --user-text: #102a43;
-  --user-shadow: hsla(205, 36%, 28%, 0.25);
+  /* ACCENT COLORS */
+  --accent-bg-light: linear-gradient(90deg, #ffefba, #ffffff);
+  --accent-bg-dark: linear-gradient(90deg, #000000, #434343);
+  --accent-pseudo-light: linear-gradient(100deg, #000000, #434343);
+  --accent-pseudo-dark: linear-gradient(100deg, #757f9a, #d7dde8);
+  --accent-hero-light: linear-gradient(-135deg, #ffefba, #ffffff);
+  --accent-hero-dark: linear-gradient(-135deg, #000000, #434343);
+  --accent-focus: #10b981;
+  --accent-hover-light: rgba(0, 0, 0, 0.1);
+  --accent-hover-dark: rgba(215, 221, 232, 0.7);
+
+  /* TEXT COLOR */
+  --color-text-light: #000000;
+  --color-text-dark: #ffffff;
+  --color-text-highlight: #f7b267;
+  --kicker-highlight-light: #d94848;
+
+  /* PROGRESS COLOR */
+  --progress-light: linear-gradient(90deg, #2c5364, #1d8f8f);
+  --progress-dark: linear-gradient(90deg, #38bdf8, #2dd4bf);
+
+  /* NUMBER COLOR */
+  --number-light: linear-gradient(135deg, #ffefba, #ffffff);
+  --number-dark: linear-gradient(135deg, #000000, #434343);
+
+  /* STATS COLORS */
+  --db-study: #2aa876;
+  --db-sleep: #2f80c0;
+  --db-phone: #8d64c7;
+  --db-mood: #e45757;
+  --db-progress-study: linear-gradient(90deg, #2aa876, #4cc38e);
+  --db-progress-sleep: linear-gradient(90deg, #2f80c0, #3ea7d4);
+  --db-progress-phone: linear-gradient(90deg, #7b59b8, #9d7ad8);
+  --db-progress-mood: linear-gradient(90deg, #d94848, #f07474);
+  --db-chart-text: var(--color-text-light);
+  --db-chart-grid: rgba(51, 65, 85, 0.16);
+  --db-tooltip-bg: #1f2937;
+  --db-circle-stroke: #1fa8b6;
+  --db-circle-bg: #9ca3af;
+
+  --db-study-dark: #7edfa8;
+  --db-sleep-dark: #8bc7f1;
+  --db-phone-dark: #bf9aef;
+  --db-mood-dark: #ff9b9b;
+  --db-progress-study-dark: linear-gradient(90deg, #62c796, #98efbf);
+  --db-progress-sleep-dark: linear-gradient(90deg, #6fb3e2, #96d6f7);
+  --db-progress-phone-dark: linear-gradient(90deg, #ab84e0, #d2b4fb);
+  --db-progress-mood-dark: linear-gradient(90deg, #f27a7a, #ffb1b1);
+  --db-chart-text-dark: var(--color-text-dark);
+  --db-chart-grid-dark: rgba(226, 232, 240, 0.2);
+  --db-tooltip-bg-dark: #0f172a;
+  --db-circle-stroke-dark: #73d7e7;
+  --db-circle-bg-dark: #64748b;
+
+  /* BOX COLORS */
+  --box-stable: linear-gradient(90deg, #2aa876, #4cc38e);
+  --box-risk: linear-gradient(90deg, #e35b66, #f07474);
+
+  /* NOTES BUTTON COLORS */
+  --notes-btn-primary-light: var(--accent-bg-light);
+  --notes-btn-primary-dark: var(--accent-bg-dark);
+  --notes-btn-secondary-light: linear-gradient(90deg, #dbe7f3, #eef4fb);
+  --notes-btn-secondary-dark: linear-gradient(90deg, #334155, #475569);
+  --notes-btn-edit-light: var(--progress-light);
+  --notes-btn-edit-dark: var(--progress-dark);
+  --notes-btn-delete-light: var(--db-progress-mood);
+  --notes-btn-delete-dark: var(--db-progress-mood);
 }
 
-/* ========================================
-    RESET & BASE
-======================================== */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY BASE */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--color-bg-light);
+  color: var(--color-text-light);
+
   min-height: 100vh;
   overflow-x: hidden;
-  color: var(--color-text-dark);
-  transition:
-    background-color 0.35s ease-out,
-    color 0.35s ease-out;
-  will-change: background-color, color;
-  backface-visibility: hidden;
 }
 
-body.theme-transition * {
+/* THEME TRANSITION */
+body.theme-transition,
+body.theme-transition *,
+body.theme-transition *::before,
+body.theme-transition *::after {
   transition:
-    background-color 0.35s ease-out,
-    color 0.35s ease-out,
-    border-color 0.35s ease-out,
-    box-shadow 0.35s ease-out !important;
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease),
+    box-shadow var(--theme-duration) var(--theme-ease),
+    opacity var(--theme-duration) var(--theme-ease),
+    filter var(--theme-duration) var(--theme-ease) !important;
 }
 
-/* Disable transitions on page load */
+/* DISABLE TRANSITION SAAT LOAD */
 body.no-transition,
-body.no-transition * {
+body.no-transition *,
+body.no-transition *::before,
+body.no-transition *::after {
   transition: none !important;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  min-height: 100vh;
 }
 
 /* Universal text color untuk semua elemen */
@@ -94,9 +154,9 @@ textarea,
 select {
   color: inherit;
   transition:
-    color 0.35s ease-out,
-    background-color 0.35s ease-out,
-    border-color 0.35s ease-out;
+    color var(--theme-duration) var(--theme-ease),
+    background-color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease);
   will-change: color, background-color;
 }
 
@@ -104,8 +164,23 @@ select {
     DARK MODE
 ======================================== */
 body.dark-mode {
-  background: var(--color-dark-bg);
-  color: var(--color-dark-text);
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+
+  --db-study: var(--db-study-dark);
+  --db-sleep: var(--db-sleep-dark);
+  --db-phone: var(--db-phone-dark);
+  --db-mood: var(--db-mood-dark);
+  --db-progress-study: var(--db-progress-study-dark);
+  --db-progress-sleep: var(--db-progress-sleep-dark);
+  --db-progress-phone: var(--db-progress-phone-dark);
+  --db-progress-mood: var(--db-progress-mood-dark);
+  --db-chart-text: var(--color-text-dark);
+  --db-chart-text-dark: var(--color-text-dark);
+  --db-chart-grid: var(--db-chart-grid-dark);
+  --db-tooltip-bg: var(--db-tooltip-bg-dark);
+  --db-circle-stroke: var(--db-circle-stroke-dark);
+  --db-circle-bg: var(--db-circle-bg-dark);
 
   --user-accent: #2c5364;
   --user-surface: #1a2b3b;
@@ -129,19 +204,27 @@ body.dark-mode label,
 body.dark-mode td,
 body.dark-mode th,
 body.dark-mode li {
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode a {
-  color: var(--color-dark-text-secondary);
+  color: var(--db-chart-text-dark);
 }
 
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
-  color: var(--color-dark-text);
-  background: var(--color-dark-bg);
+  color: var(--color-text-dark);
+  background: var(--color-bg-dark);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"],
+body.dark-mode textarea {
+  color: var(--color-text-dark) !important;
+  -webkit-text-fill-color: var(--color-text-dark);
 }
 
 body.dark-mode input::placeholder,
@@ -151,49 +234,49 @@ body.dark-mode textarea::placeholder {
 
 /* Content Dark Mode */
 body.dark-mode .content-card {
-  background: var(--color-dark-bg-alt);
+  background: var(--color-card-dark);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Table Dark Mode */
 body.dark-mode table {
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode th {
-  background: var(--color-dark-bg);
-  color: var(--color-dark-text);
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode td {
   border-color: rgba(255, 255, 255, 0.1);
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 /* Card & Container Dark Mode */
 body.dark-mode .table-card,
 body.dark-mode .chart-card {
-  background: var(--color-dark-bg-alt);
-  color: var(--color-dark-text);
+  background: var(--color-card-dark);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode .table-header h2,
 body.dark-mode .chart-header h2 {
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode .chart-header p {
-  color: var(--color-dark-text-secondary);
+  color: var(--db-chart-text-dark);
 }
 
 body.dark-mode .member-name,
 body.dark-mode .member-desc {
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 body.dark-mode .member-role {
-  color: var(--color-dark-text);
+  color: var(--color-text-dark);
 }
 
 /* ========================================
@@ -208,7 +291,7 @@ body.dark-mode .member-role {
 }
 
 .content-card {
-  background: var(--color-bg-white);
+  background: var(--color-card-light);
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 8px 25px rgba(44, 83, 100, 1);

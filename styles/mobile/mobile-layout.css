@@ -136,8 +136,8 @@
 
 .m-page-dashboard .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
 .m-page-dashboard .unit {
@@ -331,6 +331,7 @@
 .m-page-data .mood-scale {
   margin-top: 20px;
   padding-top: 20px;
+  font-size: 13px;
 }
 
 /* ===== Source: feedback.css | page: .m-page-feedback ===== */
@@ -545,7 +546,7 @@
 
 .m-page-home .hero-copy {
   max-width: 100%;
-  margin-left: 0;
+  margin-left: 12px;
   margin-top: 20px;
 }
 
@@ -566,19 +567,21 @@
 
 .m-page-home .mascot-chat-bubble {
   position: relative;
-  top: -10px;
+  top: -2px;
   z-index: 5;
-  left: -20px;
-  max-width: 100%;
-  padding: 8px 10px;
+  left: -8px;
+  max-width: 220px;
+  padding: 7px 9px;
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .m-page-home .mascot-chat-bubble::after {
   position: absolute;
-  right: 22px;
-  bottom: -9px;
-  width: 16px;
-  height: 16px;
+  right: 16px;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
 }
 
 .m-page-home .mascot-composition img {
@@ -652,6 +655,9 @@
   position: relative;
   margin-top: 120px;
   margin-bottom: 80px;
+  min-height: auto;
+  display: block;
+  overflow: visible;
 }
 
 .m-page-login .logout-theme-toggle {
@@ -664,10 +670,15 @@
 .m-page-login .form-box {
   width: 100%;
   padding: 28px 22px;
+  align-items: stretch;
+  transform: none;
+  animation: none;
 }
 
 .m-page-login .brand {
   display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
   margin-bottom: 16px;
   padding: 6px 12px;
 }
@@ -693,20 +704,51 @@
   inset: 0;
   width: 100%;
   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
 .m-page-login
   .login-container:not(.signup-mode):not(.forgot-mode)
   .login-form-content {
   visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .m-page-login .login-container.signup-mode .signup-form {
   visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.m-page-login .login-container.signup-mode .form-box,
+.m-page-login .login-container.forgot-mode .form-box {
+  width: 100%;
+  max-height: none;
+  align-items: stretch;
+  transform: none !important;
+  animation: none;
 }
 
 .m-page-login .login-container.forgot-mode .forgot-form {
   visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.m-page-login .login-container.forgot-mode {
+  display: block;
+  height: auto;
+  margin-top: 120px;
+  overflow: visible !important;
 }
 
 .m-page-login input[type="text"],
@@ -746,14 +788,27 @@
   position: fixed;
   top: 0;
   left: 50%;
-  width: 140%;
-  height: 25%;
+  width: 150%;
+  height: 230px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 20px 20px;
+  padding: 44px 20px 20px;
   z-index: 1;
+  right: auto;
+  overflow: hidden;
+  text-align: center;
+  transform: translateX(-50%);
+  animation: none;
+  border-radius: 0 0 50% 50%;
+}
+
+.m-page-login .info-circle::before,
+.m-page-login .info-circle::after {
+  opacity: 0.45;
+  transform: none;
+  animation: none;
 }
 
 .m-page-login .info-circle .kicker {
@@ -1320,12 +1375,12 @@
   width: 100%;
   margin: 0 auto;
   height: auto;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   padding: 8px 0 0;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .m-page-profile .main-container.page-active {
@@ -1337,19 +1392,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 420px;
+  min-height: 280px !important;
 }
 
 .m-page-profile .carousel-container {
   width: 100%;
-  max-width: 380px;
-  height: 380px;
-  min-height: 350px;
+  max-width: 280px !important;
+  height: 280px !important;
+  min-height: 260px !important;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .m-page-profile .carousel-container .nav-arrow {
@@ -1368,8 +1423,8 @@
 
 .m-page-profile .slide {
   position: absolute;
-  width: 204px;
-  height: 248px;
+  width: 150px !important;
+  height: 186px !important;
   overflow: hidden;
 }
 
@@ -1381,22 +1436,27 @@
 
 .m-page-profile .slide.center {
   z-index: 10;
+  transform: scale(1.01) translateZ(0) !important;
 }
 
 .m-page-profile .slide.up-2 {
   z-index: 1;
+  transform: translateY(-82px) scale(0.8) translateZ(-120px) !important;
 }
 
 .m-page-profile .slide.up-1 {
   z-index: 5;
+  transform: translateY(-44px) scale(0.9) translateZ(-50px) !important;
 }
 
 .m-page-profile .slide.down-1 {
   z-index: 5;
+  transform: translateY(44px) scale(0.9) translateZ(-50px) !important;
 }
 
 .m-page-profile .slide.down-2 {
   z-index: 1;
+  transform: translateY(82px) scale(0.8) translateZ(-120px) !important;
 }
 
 .m-page-profile .controls-section {
@@ -1405,21 +1465,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .m-page-profile .member-info {
   position: relative;
-  padding: 9px;
-  width: 100%;
-  min-height: 150px;
+  padding: 10px 12px !important;
+  width: calc(100% - 12px);
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 88px !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .m-page-profile .member-name {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  font-size: 0.82rem !important;
   display: block;
 }
 
@@ -1431,15 +1495,18 @@
 }
 
 .m-page-profile .member-role {
-  padding: 5px 9px;
+  font-size: 0.52rem !important;
+  padding: 3px 6px !important;
   margin-top: 4px;
   display: inline-block;
 }
 
 .m-page-profile .member-desc {
-  margin-top: 9px;
+  margin-top: 4px;
+  font-size: 10px !important;
+  line-height: 1.35;
   max-width: 100%;
-  padding: 7px 8px;
+  padding: 4px 5px !important;
 }
 
 .m-page-profile .dots-container {

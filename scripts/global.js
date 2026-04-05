@@ -61,7 +61,48 @@ showSocial("user-btn", "user-social");
 
 // Function to load user data
 const loadUserData = async () => {
-  if (!window.auth || !window.db) return;
+  const ensureFirebaseContext = async () => {
+    if (window.auth && window.db) return true;
+
+    try {
+      const { initializeApp, getApps, getApp } =
+        await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+      const { getAuth } =
+        await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+      const { getFirestore } =
+        await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCI1lghCfgBf5S-PEfZ_6DEHaSYu76aUT4",
+        authDomain: "priahitam71-000000.firebaseapp.com",
+        projectId: "priahitam71-000000",
+        storageBucket: "priahitam71-000000.firebasestorage.app",
+        messagingSenderId: "543874144759",
+        appId: "1:543874144759:web:d55e0dd1bc7f2d201276f2",
+        measurementId: "G-JS7VFF76YX",
+      };
+
+      const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+      window.auth = getAuth(app);
+      window.db = getFirestore(app);
+      return true;
+    } catch (error) {
+      console.error("Firebase init error:", error);
+      return false;
+    }
+  };
+
+  const waitForFirebaseContext = async (maxAttempts = 30, delayMs = 100) => {
+    for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+      if (window.auth && window.db) return true;
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+    return false;
+  };
+
+  const initialized = await ensureFirebaseContext();
+  const isReady = initialized || (await waitForFirebaseContext());
+  if (!isReady) return;
 
   const { onAuthStateChanged } =
     await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
@@ -71,16 +112,20 @@ const loadUserData = async () => {
   onAuthStateChanged(window.auth, async (user) => {
     if (user) {
       try {
+        let username =
+          user.displayName || user.email?.split("@")[0] || "Student";
+
         const userDoc = await getDoc(doc(window.db, "users", user.uid));
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          const username = userData.username;
-          // Update all user-name elements
-          const userNameElements = document.querySelectorAll(".user-name");
-          userNameElements.forEach((el) => {
-            el.textContent = username;
-          });
+          username = userData.username || username;
         }
+
+        // Update all user-name elements
+        const userNameElements = document.querySelectorAll(".user-name");
+        userNameElements.forEach((el) => {
+          el.textContent = username;
+        });
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -88,5 +133,151 @@ const loadUserData = async () => {
   });
 };
 
+document.addEventListener("DOMContentLoaded", loadUserData);
+
 // Load user data when DOM is ready
 document.addEventListener("DOMContentLoaded", loadUserData);
+
+(() => {
+  const TABLET_MIN_SHORT_EDGE = 600;
+  const TABLET_MAX_LONG_EDGE = 1600;
+  const SYNC_RETRY_DELAYS = [0, 120, 260, 520, 900];
+  const KEYBOARD_HEIGHT_THRESHOLD = 120;
+
+  let redirectTimer = null;
+  let retryTimers = [];
+
+  function getCurrentLayout(pathname) {
+    if (/\/pages\/mobile\/[^/]+\.html$/i.test(pathname)) return "mobile";
+    if (/\/pages\/desktop\/[^/]+\.html$/i.test(pathname)) return "desktop";
+    return null;
+  }
+
+  function getViewportSize() {
+    // Use layout viewport size so on-screen keyboard changes do not fake rotation.
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    return { vw, vh };
+  }
+
+  function isFormFieldFocused() {
+    const el = document.activeElement;
+    if (!el) return false;
+    if (el instanceof HTMLInputElement) return true;
+    if (el instanceof HTMLTextAreaElement) return true;
+    if (el instanceof HTMLSelectElement) return true;
+    return el.isContentEditable;
+  }
+
+  function isVirtualKeyboardActive() {
+    if (!window.visualViewport) return false;
+    if (!isFormFieldFocused()) return false;
+    return (
+      window.innerHeight - window.visualViewport.height >
+      KEYBOARD_HEIGHT_THRESHOLD
+    );
+  }
+
+  function getOrientationMode() {
+    const orientationType = window.screen?.orientation?.type;
+    if (orientationType) {
+      return orientationType.includes("landscape") ? "landscape" : "portrait";
+    }
+
+    if (window.matchMedia("(orientation: portrait)").matches) {
+      return "portrait";
+    }
+
+    return window.matchMedia("(orientation: landscape)").matches
+      ? "landscape"
+      : "portrait";
+  }
+
+  function isTabletLikeViewport() {
+    const { vw, vh } = getViewportSize();
+    const shortEdge = Math.min(vw, vh);
+    const longEdge = Math.max(vw, vh);
+    return (
+      shortEdge >= TABLET_MIN_SHORT_EDGE && longEdge <= TABLET_MAX_LONG_EDGE
+    );
+  }
+
+  function getTargetLayout(currentLayout) {
+    if (!isTabletLikeViewport()) return null;
+
+    const orientation = getOrientationMode();
+
+    if (currentLayout === "mobile" && orientation === "landscape")
+      return "desktop";
+    if (currentLayout === "desktop" && orientation === "portrait")
+      return "mobile";
+
+    return currentLayout;
+  }
+
+  function buildTargetPath(pathname, targetLayout) {
+    if (!targetLayout) return null;
+    return pathname.replace(
+      /\/pages\/(mobile|desktop)\//i,
+      `/pages/${targetLayout}/`,
+    );
+  }
+
+  function syncTabletOrientationLayout() {
+    if (isVirtualKeyboardActive()) return;
+
+    const pathname = window.location.pathname;
+    const currentLayout = getCurrentLayout(pathname);
+
+    if (!currentLayout) return;
+
+    const targetLayout = getTargetLayout(currentLayout);
+    if (!targetLayout || targetLayout === currentLayout) return;
+
+    const targetPath = buildTargetPath(pathname, targetLayout);
+    if (!targetPath || targetPath === pathname) return;
+
+    window.location.replace(targetPath);
+  }
+
+  function clearRetryTimers() {
+    retryTimers.forEach((timerId) => clearTimeout(timerId));
+    retryTimers = [];
+  }
+
+  function runScheduledSyncPasses() {
+    clearRetryTimers();
+    SYNC_RETRY_DELAYS.forEach((delay) => {
+      const timerId = setTimeout(syncTabletOrientationLayout, delay);
+      retryTimers.push(timerId);
+    });
+  }
+
+  function scheduleLayoutSync() {
+    if (isVirtualKeyboardActive()) return;
+
+    if (redirectTimer) clearTimeout(redirectTimer);
+    redirectTimer = setTimeout(runScheduledSyncPasses, 90);
+  }
+
+  window.addEventListener("orientationchange", scheduleLayoutSync, {
+    passive: true,
+  });
+  window.addEventListener("resize", scheduleLayoutSync, { passive: true });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", scheduleLayoutSync, {
+      passive: true,
+    });
+  }
+
+  // Re-check once keyboard is dismissed.
+  document.addEventListener("focusout", scheduleLayoutSync, { passive: true });
+
+  if (window.screen?.orientation?.addEventListener) {
+    window.screen.orientation.addEventListener("change", scheduleLayoutSync);
+  }
+
+  // Initial check in case user opens a page directly on tablet orientation.
+  runScheduledSyncPasses();
+})();

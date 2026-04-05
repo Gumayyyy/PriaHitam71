@@ -11,8 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../../styles/global.css" />
     <link rel="stylesheet" href="../../styles/desktop/desktop-layout.css" />
     <link rel="stylesheet" href="../../styles/desktop/desktop-style.css" />
+    <link rel="stylesheet" href="../../styles/tablet/tablet.css" />
   </head>
   <body>
     <div class="style-node layout-node login-container">
@@ -26,16 +28,31 @@
               Sign in and continue building your best study routine.
             </p>
             <form id="loginForm">
-              <input type="email" id="loginEmail" placeholder="Email" required />
-              <input type="password" id="loginPassword" placeholder="Password" required />
+              <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email"
+                required
+              />
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+              />
 
-            <div class="style-node layout-node options">
+              <div class="style-node layout-node options">
                 <label><input type="checkbox" />Remember me</label>
                 <a href="#" id="forgotPasswordBtn">Forgot password?</a>
               </div>
 
-            <button class="style-node layout-node login-btn" type="submit">Login</button>
-              <div id="loginError" class="style-node layout-node error-message"></div>
+              <button class="style-node layout-node login-btn" type="submit">
+                Login
+              </button>
+              <div
+                id="loginError"
+                class="style-node layout-node error-message"
+              ></div>
               <p class="style-node layout-node register-text">
                 Don't have an account? <a href="#" id="signupBtn">Sign up</a>
               </p>
@@ -80,8 +97,13 @@
                 required
               />
 
-              <button class="style-node layout-node login-btn" type="submit">Sign Up</button>
-              <div id="signupError" class="style-node layout-node error-message"></div>
+              <button class="style-node layout-node login-btn" type="submit">
+                Sign Up
+              </button>
+              <div
+                id="signupError"
+                class="style-node layout-node error-message"
+              ></div>
               <p class="style-node layout-node register-text">
                 Already have an account? <a href="#" id="backLogin">Login</a>
               </p>
@@ -100,9 +122,17 @@
                 placeholder="Email"
                 required
               />
-              <button class="style-node layout-node login-btn" type="submit">Send Reset Link</button>
-              <div id="forgotError" class="style-node layout-node error-message"></div>
-              <div id="forgotSuccess" class="style-node layout-node success-message"></div>
+              <button class="style-node layout-node login-btn" type="submit">
+                Send Reset Link
+              </button>
+              <div
+                id="forgotError"
+                class="style-node layout-node error-message"
+              ></div>
+              <div
+                id="forgotSuccess"
+                class="style-node layout-node success-message"
+              ></div>
               <p class="style-node layout-node register-text">
                 Remembered your password?
                 <a href="#" id="backFromForgot">Login</a>
@@ -113,7 +143,10 @@
       </div>
 
       <div class="style-node layout-node info-circle">
-        <label class="style-node layout-node theme-toggle login-theme-toggle" title="Toggle dark mode">
+        <label
+          class="style-node layout-node theme-toggle login-theme-toggle"
+          title="Toggle dark mode"
+        >
           <input type="checkbox" id="toggleMode" />
           <span class="style-node layout-node slider">
             <span class="style-node layout-node icon moon-icon">🌙</span>
@@ -154,7 +187,3 @@
     <script type="module" src="../../scripts/login.js"></script>
   </body>
 </html>
-
-
-
-

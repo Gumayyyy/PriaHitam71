@@ -1,0 +1,718 @@
+/* ====================================== */
+/* Tablet Responsive Overrides */
+/* ====================================== */
+
+/* ====================================== */
+/* Tablet Portrait (768px - 1024px) */
+/* Mobile shell with larger scale */
+/* ====================================== */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  body[class*="m-page-"] {
+    font-size: 1.04rem;
+  }
+
+  body[class*="m-page-"] .m-app-navbar h2 {
+    font-size: 1.18rem;
+  }
+
+  body[class*="m-page-"] .m-app-navbar .profile-menu .dropdown a {
+    font-size: 0.96rem;
+  }
+
+  body[class*="m-page-"] .main-content,
+  body[class*="m-page-"] .cards-wrapper,
+  body[class*="m-page-"] .guide-page,
+  body[class*="m-page-"] .notes-page,
+  body[class*="m-page-"] .home-page {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body[class*="m-page-"] .card,
+  body[class*="m-page-"] .chart-box,
+  body[class*="m-page-"] .analysis-box,
+  body[class*="m-page-"] .burnout-box,
+  body[class*="m-page-"] .tips-card,
+  body[class*="m-page-"] .table-card,
+  body[class*="m-page-"] .content-card {
+    padding: 20px;
+  }
+
+  body[class*="m-page-"] .stats,
+  body[class*="m-page-"] .charts-container,
+  body[class*="m-page-"] .content,
+  body[class*="m-page-"] .bottom-row,
+  body[class*="m-page-"] .analysis-container,
+  body[class*="m-page-"] .notes-grid {
+    gap: 20px;
+  }
+
+  body[class*="m-page-"] .card h3 {
+    font-size: clamp(15px, 2.2vw, 18px);
+  }
+
+  body[class*="m-page-"] .card h1 {
+    font-size: clamp(28px, 4.8vw, 40px);
+  }
+
+  body[class*="m-page-"] .lead,
+  body[class*="m-page-"] .content-text,
+  body[class*="m-page-"] p,
+  body[class*="m-page-"] li {
+    font-size: 1.02em;
+  }
+
+  /* Login portrait: increase readability on tablet */
+  .m-page-login .login-container {
+    max-width: 700px !important;
+    margin-top: 210px !important;
+    margin-bottom: 90px !important;
+  }
+
+  .m-page-login .form-box {
+    padding: 38px 34px !important;
+    align-items: center !important;
+  }
+
+  .m-page-login .brand {
+    font-size: 1rem !important;
+    letter-spacing: 0.16em !important;
+    padding: 5px 10px !important;
+    align-self: flex-start !important;
+    margin-left: 25px !important;
+    margin-right: 0 !important;
+  }
+
+  .m-page-login .auth-forms {
+    min-height: 620px !important;
+  }
+
+  .m-page-login .login-form-content,
+  .m-page-login .signup-form,
+  .m-page-login .forgot-form {
+    width: min(100%, 540px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .m-page-login .form-box h2,
+  .m-page-login .subtitle,
+  .m-page-login form {
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .m-page-login .login-form-content h2,
+  .m-page-login .signup-form h2,
+  .m-page-login .forgot-form h2,
+  .m-page-login .form-box h2 {
+    font-size: clamp(2.1rem, 4.2vw, 2.6rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  .m-page-login .login-form-content .subtitle,
+  .m-page-login .signup-form .subtitle,
+  .m-page-login .forgot-form .subtitle,
+  .m-page-login .subtitle {
+    font-size: 1.06rem !important;
+    line-height: 1.75 !important;
+    margin: 16px 0 26px !important;
+    max-width: 100% !important;
+  }
+
+  .m-page-login input[type="text"],
+  .m-page-login input[type="email"],
+  .m-page-login input[type="password"] {
+    font-size: 1.03rem !important;
+    padding: 16px 18px !important;
+    margin-bottom: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .m-page-login .options,
+  .m-page-login .register-text,
+  .m-page-login .login-btn {
+    font-size: 1rem !important;
+  }
+
+  .m-page-login .options {
+    margin: 8px 0 24px !important;
+  }
+
+  .m-page-login .options label {
+    gap: 10px !important;
+  }
+
+  .m-page-login .options label input {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .m-page-login .login-btn {
+    min-height: 56px !important;
+    border-radius: 14px !important;
+  }
+
+  .m-page-login .info-circle {
+    height: auto !important;
+    min-height: 280px !important;
+    padding: 56px 28px 30px !important;
+  }
+
+  .m-page-login .info-circle .kicker {
+    font-size: 0.8rem !important;
+    letter-spacing: 2.8px !important;
+  }
+
+  .m-page-login .info-circle h1 {
+    font-size: 2.35rem !important;
+    line-height: 1.14 !important;
+  }
+
+  .m-page-login .info-circle p {
+    font-size: 1.1rem !important;
+    line-height: 1.78 !important;
+    max-width: 620px !important;
+  }
+
+  /* Home: keep mobile flow, but full-width on tablet portrait */
+  .m-page-home .home-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-top: 96px !important;
+    padding-bottom: 170px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .m-page-home .hero-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+    padding: 12px 0 0 !important;
+  }
+
+  .m-page-home .hero-copy {
+    max-width: 100% !important;
+    margin: 20px 16px 0 16px !important;
+  }
+
+  .m-page-home .hero-copy h1,
+  .m-page-home .lead {
+    max-width: 100% !important;
+  }
+
+  .m-page-home .kicker {
+    font-size: 0.92rem !important;
+    padding: 8px 12px !important;
+  }
+
+  .m-page-home .hero-copy h1 {
+    font-size: clamp(34px, 5.6vw, 48px) !important;
+    line-height: 1.16 !important;
+  }
+
+  .m-page-home .lead {
+    font-size: 1.08rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .m-page-home .get-started-btn {
+    min-height: 52px !important;
+    padding: 0 28px !important;
+    font-size: 1rem !important;
+  }
+
+  .m-page-home .mascot-composition {
+    max-width: 560px !important;
+    width: 100% !important;
+    min-height: 480px !important;
+    margin: 0 auto !important;
+    top: 250px !important;
+  }
+
+  .m-page-home .hero-mascot {
+    margin-bottom: 240px !important;
+    position: relative !important;
+  }
+
+  .m-page-home .mascot-composition img {
+    max-width: 560px !important;
+    width: 100% !important;
+  }
+
+  .m-page-home .mascot-chat-bubble {
+    position: absolute !important;
+    top: -70px !important;
+    left: calc(50% - 380px) !important;
+    max-width: 320px !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    z-index: 6 !important;
+  }
+
+  .m-page-home .mascot-chat-bubble::after {
+    right: 20px !important;
+  }
+
+  .m-page-home .mascot-crown {
+    top: 1% !important;
+  }
+
+  .m-page-home .mascot-hand {
+    top: 4% !important;
+  }
+
+  /* About Us/Profile: remove narrow centered width caps from mobile rules */
+  .m-page-profile .about-page,
+  .m-page-profile .about-page .main,
+  .m-page-profile .main-container,
+  .m-page-profile .philosophy-page,
+  .m-page-profile .content-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .m-page-profile .about-page .main {
+    padding: 92px 16px 72px !important;
+  }
+
+  .m-page-profile .philosophy-hero {
+    padding: 16px !important;
+  }
+
+  .m-page-profile .philosophy-hero h1 {
+    font-size: clamp(1.5rem, 3.6vw, 2rem) !important;
+  }
+
+  .m-page-profile .philosophy-page .lead {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .m-page-profile .philosophy-content-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .m-page-profile .philosophy-card-wide {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+
+  .m-page-profile .philosophy-card {
+    padding: 14px !important;
+    top: 30px !important;
+  }
+
+  .m-page-profile .philosophy-card h3 {
+    font-size: 1.05rem !important;
+  }
+
+  .m-page-profile .philosophy-card p,
+  .m-page-profile .philosophy-list {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .m-page-profile .main-container {
+    gap: 24px !important;
+    padding-top: 14px !important;
+  }
+
+  .m-page-profile .carousel-section {
+    min-height: 560px !important;
+  }
+
+  .m-page-profile .carousel-container {
+    max-width: 500px !important;
+    height: 500px !important;
+    min-height: 460px !important;
+  }
+
+  .m-page-profile .slide {
+    width: 260px !important;
+    height: 320px !important;
+  }
+
+  .m-page-profile .member-info {
+    padding: 16px !important;
+    min-height: 200px !important;
+  }
+
+  .m-page-profile .member-name {
+    font-size: 1.3rem !important;
+  }
+
+  .m-page-profile .member-role {
+    font-size: 0.85rem !important;
+  }
+
+  .m-page-profile .member-desc {
+    font-size: 1rem !important;
+    line-height: 1.62 !important;
+  }
+
+  .m-page-profile .next-page-btn,
+  .m-page-profile .prev-page-btn {
+    width: 58px !important;
+    height: 58px !important;
+    bottom: 18px !important;
+  }
+
+  .m-page-profile .nav-arrow {
+    width: 55px !important;
+    height: 55px !important;
+    margin-top: 10px !important;
+  }
+
+  .m-page-profile .nav-arrow img {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .m-page-profile .dots {
+    gap: 10px !important;
+    margin-top: 10px !important;
+  }
+
+  .m-page-profile .dot {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .m-page-profile .carousel-container,
+  .m-page-profile .content-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Dashboard: desktop-like structure, scaled down */
+  .m-page-dashboard .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Match dashboard side gaps for data/productivity/burnout */
+  .m-page-data,
+  .m-page-productivity,
+  .m-page-burnout {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .m-page-data .cards-wrapper {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .m-page-dashboard .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .m-page-dashboard .charts-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .m-page-dashboard .charts-container .chart-box {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .m-page-dashboard .charts-container .circular-container {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .m-page-dashboard .charts-container .circular-chart {
+    max-width: 260px;
+  }
+
+  .m-page-dashboard .bottom-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Productivity: desktop-like chart + analysis arrangement */
+  .m-page-productivity .stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 0 16px !important;
+  }
+
+  .m-page-productivity .card,
+  .m-page-productivity .content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .m-page-productivity .chart-analysis-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-items: start;
+  }
+
+  .m-page-productivity .chart-box,
+  .m-page-productivity .analysis-box {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Burnout: circle + line charts in one row, analysis panels below */
+  .m-page-burnout .analysis-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-items: start;
+  }
+
+  .m-page-burnout .analysis-container .analysis-box {
+    grid-column: 1 / -1;
+  }
+
+  .m-page-burnout .analysis-container > .chart-box:nth-child(-n + 2) {
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .m-page-burnout .card,
+  .m-page-burnout .chart-box,
+  .m-page-burnout .analysis-box,
+  .m-page-burnout .tips-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* ====================================== */
+/* Tablet Landscape (768px - 1024px) */
+/* Desktop shell with compact spacing */
+/* ====================================== */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+  :root {
+    --sidebar-width: 220px;
+    --spacing-main: 16px;
+    --spacing-top: 12px;
+    --gap-content: 16px;
+  }
+
+  .layout {
+    min-height: 100dvh;
+  }
+
+  .main,
+  .about-page .main {
+    min-height: 100dvh;
+    padding: 16px 24px 24px;
+  }
+
+  .desk-sidebar {
+    left: 12px;
+    top: 12px;
+    height: calc(100dvh - 24px);
+    padding: 14px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .desk-sidebar-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .desk-sidebar ul li a {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .desk-sidebar .user {
+    margin-top: 16px;
+    margin-bottom: 0;
+    padding-bottom: 4px;
+  }
+
+  .desk-navbar {
+    height: 62px;
+    padding: 0 18px;
+  }
+
+  .desk-navbar h2 {
+    font-size: 22px;
+  }
+
+  .stats,
+  .charts-container,
+  .content,
+  .bottom-row,
+  .analysis-container,
+  .cards-wrapper,
+  .notes-grid {
+    gap: 16px;
+  }
+
+  .card,
+  .chart-box,
+  .analysis-box,
+  .burnout-box,
+  .tips-card,
+  .table-card,
+  .chart-card,
+  .content-card {
+    padding: 16px;
+  }
+
+  .content-page {
+    width: min(1280px, 95vw);
+  }
+
+  @keyframes circleToSignupTabletLandscape {
+    0% {
+      transform: translateX(0) scale(1.01);
+      border-radius: 80% 20% 28% 72% / 54% 50% 50% 46%;
+    }
+
+    60% {
+      transform: translateX(-114%) scale(1.03);
+      border-radius: 28% 72% 70% 30% / 54% 50% 50% 46%;
+    }
+
+    100% {
+      transform: translateX(-110%) scale(1.01);
+      border-radius: 20% 80% 72% 28% / 54% 50% 50% 46%;
+    }
+  }
+
+  @keyframes circleToLoginTabletLandscape {
+    0% {
+      transform: translateX(-110%) scale(1.01);
+      border-radius: 20% 80% 72% 28% / 54% 50% 50% 46%;
+    }
+
+    60% {
+      transform: translateX(-2%) scale(1.03);
+      border-radius: 74% 26% 30% 70% / 54% 50% 50% 46%;
+    }
+
+    100% {
+      transform: translateX(0) scale(1.01);
+      border-radius: 80% 20% 28% 72% / 54% 50% 50% 46%;
+    }
+  }
+
+  /* Login panel alignment fix on tablet landscape */
+  body:not(.m-page-login) .login-container .info-circle {
+    right: -120px !important;
+    padding: 58px 132px 78px 112px !important;
+    border-radius: 80% 20% 28% 72% / 54% 50% 50% 46%;
+    transform: translateX(0) scale(1.01);
+    animation: circleToLoginTabletLandscape 1.1s cubic-bezier(0.22, 1, 0.36, 1)
+      both !important;
+  }
+
+  body:not(.m-page-login) .login-container.signup-mode .info-circle {
+    left: auto !important;
+    right: 60px !important;
+    padding: 58px 112px 78px 132px !important;
+    border-radius: 20% 80% 72% 28% / 54% 50% 50% 46%;
+    transform: translateX(-110%) scale(1.01);
+    animation: circleToSignupTabletLandscape 1.1s cubic-bezier(0.22, 1, 0.36, 1)
+      both !important;
+  }
+}
+
+/* Keep tablet-portrait login sizing stable while virtual keyboard is open */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .m-page-login .login-container:focus-within {
+    max-width: 700px !important;
+    margin-top: 210px !important;
+    margin-bottom: 90px !important;
+  }
+
+  .m-page-login .login-container:focus-within .form-box {
+    padding: 38px 34px !important;
+    align-items: center !important;
+  }
+
+  .m-page-login .login-container:focus-within .brand {
+    font-size: 1rem !important;
+    align-self: flex-start !important;
+    margin-left: 25px !important;
+    margin-right: 0 !important;
+  }
+
+  .m-page-login .login-container:focus-within .auth-forms {
+    min-height: 620px !important;
+  }
+
+  .m-page-login .login-container:focus-within .login-form-content,
+  .m-page-login .login-container:focus-within .signup-form,
+  .m-page-login .login-container:focus-within .forgot-form {
+    width: min(100%, 540px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .m-page-login .login-container:focus-within .form-box h2,
+  .m-page-login .login-container:focus-within .subtitle,
+  .m-page-login .login-container:focus-within form {
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .m-page-login .login-container:focus-within input[type="text"],
+  .m-page-login .login-container:focus-within input[type="email"],
+  .m-page-login .login-container:focus-within input[type="password"] {
+    font-size: 1.03rem !important;
+    padding: 16px 18px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .m-page-login .login-container:focus-within .options,
+  .m-page-login .login-container:focus-within .register-text,
+  .m-page-login .login-container:focus-within .login-btn {
+    font-size: 1rem !important;
+  }
+
+  .m-page-login .login-container:focus-within .login-btn {
+    min-height: 56px !important;
+  }
+}
