@@ -90,7 +90,7 @@
 
               <a href="feedback.html" class="style-node layout-node user-link">
                 <span>
-                  <i class="style-node layout-node fa-regular fa-inbox"></i>
+                  <i class="style-node layout-node fa-solid fa-inbox"></i>
                 </span>
               </a>
 
@@ -177,6 +177,7 @@
     </div>
 
     <script src="../../scripts/global.js"></script>
+    <script src="../../scripts/feedback.js"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -196,6 +197,5 @@
       window.auth = getAuth(app);
       window.db = getFirestore(app);
     </script>
-    <script src="../scripts/feedback.js"></script>
   </body>
 </html>

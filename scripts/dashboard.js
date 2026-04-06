@@ -2,21 +2,77 @@ function getCssVar(name) {
   return getComputedStyle(document.body).getPropertyValue(name).trim();
 }
 
-const EMPTY_MESSAGE =
-  "⚠ Belum ada data untuk ditampilkan";
+const EMPTY_MESSAGE = "⚠ Belum ada data untuk ditampilkan";
 
 const CHART_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const PREVIEW_SERIES = Array(CHART_LABELS.length).fill(null);
+const TRACKER_STORAGE_KEY = "trackerData";
+const AUTH_READY_TIMEOUT_MS = 5000;
 
 let productivityChart = null;
 let burnoutChart = null;
+
+function getUserScopedTrackerKey(uid) {
+  return uid ? `${TRACKER_STORAGE_KEY}:${uid}` : TRACKER_STORAGE_KEY;
+}
+
+function readTrackerCache(user) {
+  const scopedKey = getUserScopedTrackerKey(user?.uid);
+  const fallbackKeys = [scopedKey, TRACKER_STORAGE_KEY].filter(
+    (key, index, list) => list.indexOf(key) === index,
+  );
+
+  for (const key of fallbackKeys) {
+    const raw = localStorage.getItem(key);
+    if (!raw) continue;
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {
+      // Ignore malformed cache and try next key.
+    }
+  }
+
+  return [];
+}
+
+async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
+  if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
+    return null;
+  }
+
+  if (window.auth.currentUser) return window.auth.currentUser;
+
+  return new Promise((resolve) => {
+    let settled = false;
+    let unsubscribe = () => {};
+
+    const finish = (user) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      unsubscribe();
+      resolve(user || null);
+    };
+
+    unsubscribe = window.auth.onAuthStateChanged((user) => {
+      finish(user);
+    });
+
+    const timer = setTimeout(() => {
+      finish(window.auth.currentUser || null);
+    }, timeoutMs);
+  });
+}
 
 async function parseTrackerData() {
   // Try to load from Firestore first
   if (window.auth && window.db) {
     try {
-      const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const user = window.auth.currentUser;
+      const { doc, getDoc } =
+        await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const user = await waitForCurrentUser();
       if (user) {
         const userDoc = await getDoc(doc(window.db, "userData", user.uid));
         if (userDoc.exists()) {
@@ -30,16 +86,8 @@ async function parseTrackerData() {
     }
   }
 
-  // Fallback to localStorage
-  const raw = localStorage.getItem("trackerData");
-  if (!raw) return [];
-
-  try {
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  const user = await waitForCurrentUser(800);
+  return readTrackerCache(user);
 }
 
 function isMeaningfulValue(value) {
@@ -516,7 +564,8 @@ window.addEventListener("load", async function () {
 });
 
 window.addEventListener("storage", (e) => {
-  if (e.key === "trackerData") {
+  const scopedKey = getUserScopedTrackerKey(window.auth?.currentUser?.uid);
+  if (e.key === scopedKey || e.key === TRACKER_STORAGE_KEY) {
     renderDashboard();
   }
 });

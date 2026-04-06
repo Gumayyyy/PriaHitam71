@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", loadUserData);
 
 (() => {
   const TABLET_MIN_SHORT_EDGE = 600;
-  const TABLET_MAX_LONG_EDGE = 1600;
+  const TABLET_MAX_LONG_EDGE = 1800;
   const SYNC_RETRY_DELAYS = [0, 120, 260, 520, 900];
   const KEYBOARD_HEIGHT_THRESHOLD = 120;
 

@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 });
 
-function saveData() {
+async function saveData() {
   // Persist table content into Firestore in day-order.
   const data = [];
 
@@ -90,26 +90,7 @@ function saveData() {
     data.push({ belajar, tidur, hp, mood });
   });
 
-  // Save to localStorage for immediate UI update
-  localStorage.setItem("trackerData", JSON.stringify(data));
-
-  // Save to Firestore if user is logged in
-  if (window.auth && window.db) {
-    window.auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        try {
-          const { doc, setDoc } =
-            await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-          await setDoc(doc(window.db, "userData", user.uid), {
-            trackerData: data,
-            lastUpdated: new Date(),
-          });
-        } catch (error) {
-          console.error("Error saving to Firestore:", error);
-        }
-      }
-    });
-  }
+  await persistTrackerData(data);
 
   hitungData(); // Update chart setelah save
 }
@@ -120,15 +101,15 @@ async function loadData() {
     try {
       const { doc, getDoc } =
         await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const user = window.auth.currentUser;
+      const user = await waitForCurrentUser();
       if (user) {
         const userDoc = await getDoc(doc(window.db, "userData", user.uid));
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const data = userData.trackerData || [];
           populateTable(data);
-          // Also save to localStorage for consistency
-          localStorage.setItem("trackerData", JSON.stringify(data));
+          // Also save to local cache for consistency.
+          writeTrackerCache(data, user);
           // Display chart if there's data
           if (
             data.some(
@@ -145,11 +126,10 @@ async function loadData() {
     }
   }
 
-  // Fallback to localStorage
-  const saved = localStorage.getItem("trackerData");
-  if (!saved) return;
+  const fallbackUser = await waitForCurrentUser(800);
+  const data = readTrackerCache(fallbackUser);
+  if (!Array.isArray(data) || data.length === 0) return;
 
-  const data = JSON.parse(saved);
   populateTable(data);
   // Display chart if there's data
   if (data.some((item) => item.belajar || item.tidur || item.hp || item.mood)) {
@@ -259,6 +239,96 @@ function loadAndDisplayChart(data) {
 }
 
 let chart;
+const TRACKER_STORAGE_KEY = "trackerData";
+const AUTH_READY_TIMEOUT_MS = 5000;
+
+function getUserScopedTrackerKey(uid) {
+  return uid ? `${TRACKER_STORAGE_KEY}:${uid}` : TRACKER_STORAGE_KEY;
+}
+
+function getTrackerStorageKey(user) {
+  return getUserScopedTrackerKey(user?.uid);
+}
+
+function readTrackerCache(user) {
+  const preferredKey = getTrackerStorageKey(user);
+  const fallbackKeys = [preferredKey, TRACKER_STORAGE_KEY].filter(
+    (key, index, list) => list.indexOf(key) === index,
+  );
+
+  for (const key of fallbackKeys) {
+    const raw = localStorage.getItem(key);
+    if (!raw) continue;
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {
+      // Ignore malformed cache and continue checking fallback keys.
+    }
+  }
+
+  return [];
+}
+
+function writeTrackerCache(data, user) {
+  const key = getTrackerStorageKey(user);
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
+  if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
+    return null;
+  }
+
+  if (window.auth.currentUser) {
+    return window.auth.currentUser;
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    let unsubscribe = () => {};
+
+    const finish = (user) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      unsubscribe();
+      resolve(user || null);
+    };
+
+    unsubscribe = window.auth.onAuthStateChanged((user) => {
+      finish(user);
+    });
+
+    const timer = setTimeout(() => {
+      finish(window.auth.currentUser || null);
+    }, timeoutMs);
+  });
+}
+
+async function persistTrackerData(data) {
+  const user = await waitForCurrentUser();
+  writeTrackerCache(data, user);
+
+  if (!user || !window.db) return;
+
+  try {
+    const { doc, setDoc } =
+      await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+
+    await setDoc(
+      doc(window.db, "userData", user.uid),
+      {
+        trackerData: data,
+        lastUpdated: new Date(),
+      },
+      { merge: true },
+    );
+  } catch (error) {
+    console.error("Error saving to Firestore:", error);
+  }
+}
 
 function hasAnyFilledInput(data) {
   if (!Array.isArray(data) || data.length === 0) return false;
@@ -320,7 +390,7 @@ function getInputChartPalette(chartContext) {
   };
 }
 
-function hitungData() {
+async function hitungData() {
   // Collect current form data and save it
   const data = [];
 
@@ -337,26 +407,7 @@ function hitungData() {
     data.push({ belajar, tidur, hp, mood });
   });
 
-  // Save to localStorage and Firestore
-  localStorage.setItem("trackerData", JSON.stringify(data));
-
-  // Save to Firestore if user is logged in
-  if (window.auth && window.db) {
-    window.auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        try {
-          const { doc, setDoc } =
-            await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-          await setDoc(doc(window.db, "userData", user.uid), {
-            trackerData: data,
-            lastUpdated: new Date(),
-          });
-        } catch (error) {
-          console.error("Error saving to Firestore:", error);
-        }
-      }
-    });
-  }
+  await persistTrackerData(data);
 
   // Display the chart
   loadAndDisplayChart(data);
@@ -367,9 +418,8 @@ if (themeToggle) {
   themeToggle.addEventListener("change", () => {
     requestAnimationFrame(() => {
       // Re-render chart with current data without saving
-      const saved = localStorage.getItem("trackerData");
-      if (saved) {
-        const data = JSON.parse(saved);
+      const data = readTrackerCache(window.auth?.currentUser || null);
+      if (data.length) {
         loadAndDisplayChart(data);
       }
     });
@@ -378,10 +428,10 @@ if (themeToggle) {
 
 // Sync chart ketika tab lain mengubah data di localStorage
 window.addEventListener("storage", (e) => {
-  if (e.key === "trackerData") {
-    const saved = localStorage.getItem("trackerData");
-    if (saved) {
-      const data = JSON.parse(saved);
+  const currentKey = getTrackerStorageKey(window.auth?.currentUser || null);
+  if (e.key === currentKey || e.key === TRACKER_STORAGE_KEY) {
+    const data = readTrackerCache(window.auth?.currentUser || null);
+    if (data.length) {
       loadAndDisplayChart(data);
     }
   }
