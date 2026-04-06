@@ -653,7 +653,7 @@
   max-width: 420px;
   padding: 20px;
   position: relative;
-  margin-top: 120px;
+  margin-top: 136px;
   margin-bottom: 80px;
   min-height: auto;
   display: block;
@@ -788,20 +788,20 @@
   position: fixed;
   top: 0;
   left: 50%;
-  width: 150%;
-  height: 230px;
+  width: 138%;
+  height: 188px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 44px 20px 20px;
+  padding: 30px 16px 14px;
   z-index: 1;
   right: auto;
   overflow: hidden;
   text-align: center;
   transform: translateX(-50%);
   animation: none;
-  border-radius: 0 0 50% 50%;
+  border-radius: 0 0 46% 46%;
 }
 
 .m-page-login .info-circle::before,
@@ -820,7 +820,7 @@
 }
 
 .m-page-login .info-circle p {
-  max-width: 280px;
+  max-width: 236px;
   margin-top: 6px;
 }
 

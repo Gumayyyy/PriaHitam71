@@ -1466,7 +1466,7 @@ input[type="password"]:hover {
   margin: 0 0 10px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 0.9rem;
+  font-size: 0.74rem;
   color: var(--kicker-highlight-light) !important;
   font-weight: 700;
   position: relative;
@@ -1476,9 +1476,9 @@ input[type="password"]:hover {
 .m-page-login .info-circle h1 {
   margin: 0;
   font-family: "Outfit", "Segoe UI", sans-serif;
-  font-size: clamp(2.4rem, 3.8vw, 3.35rem);
-  line-height: 1.1;
-  max-width: 400px;
+  font-size: clamp(1.08rem, 4.2vw, 1.24rem);
+  line-height: 1.08;
+  max-width: 300px;
   position: relative;
   z-index: 1;
   color: var(--color-text-light);
@@ -1487,9 +1487,9 @@ input[type="password"]:hover {
 
 .m-page-login .info-circle p {
   margin: 0;
-  max-width: 400px;
-  font-size: 1.12rem;
-  line-height: 1.82;
+  max-width: 300px;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--color-text-light);
   position: relative;
   z-index: 1;
@@ -1497,7 +1497,7 @@ input[type="password"]:hover {
 }
 
 .m-page-login .info-circle p:last-child {
-  margin-top: 22px;
+  margin-top: 10px;
 }
 
 .login-container .theme-toggle,
