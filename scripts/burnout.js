@@ -1,35 +1,9 @@
 const hari = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const PREVIEW_SERIES = Array(hari.length).fill(null);
 let sleepChart = null;
-const TRACKER_STORAGE_KEY = "trackerData";
 const AUTH_READY_TIMEOUT_MS = 5000;
 
 const EMPTY_MESSAGE = "⚠ Belum ada data untuk ditampilkan";
-
-function getUserScopedTrackerKey(uid) {
-  return uid ? `${TRACKER_STORAGE_KEY}:${uid}` : TRACKER_STORAGE_KEY;
-}
-
-function readTrackerCache(user) {
-  const scopedKey = getUserScopedTrackerKey(user?.uid);
-  const fallbackKeys = [scopedKey, TRACKER_STORAGE_KEY].filter(
-    (key, index, list) => list.indexOf(key) === index,
-  );
-
-  for (const key of fallbackKeys) {
-    const raw = localStorage.getItem(key);
-    if (!raw) continue;
-
-    try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
-    } catch {
-      // Ignore malformed cache and try next key.
-    }
-  }
-
-  return [];
-}
 
 async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
   if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
@@ -112,7 +86,6 @@ function chartOptions() {
 }
 
 async function parseTrackerData() {
-  // Try to load from Firestore first
   if (window.auth && window.db) {
     try {
       const { doc, getDoc } =
@@ -131,25 +104,33 @@ async function parseTrackerData() {
     }
   }
 
-  const user = await waitForCurrentUser(800);
-  return readTrackerCache(user);
+  return [];
 }
 
 function isMeaningfulValue(value) {
-  if (value === null || value === undefined) return false;
-  if (typeof value === "number") return Number.isFinite(value) && value > 0;
+  return toFiniteNumber(value) !== null;
+}
+
+function toFiniteNumber(value) {
+  if (value === null || value === undefined) return null;
+
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : null;
+  }
 
   if (typeof value === "string") {
     const trimmed = value.trim();
-    if (!trimmed) return false;
+    if (!trimmed) return null;
 
-    const asNumber = Number(trimmed);
-    if (!Number.isNaN(asNumber)) return asNumber > 0;
-
-    return false;
+    const parsed = Number(trimmed);
+    return Number.isFinite(parsed) ? parsed : null;
   }
 
-  return false;
+  return null;
+}
+
+function getMetricSeries(data, key) {
+  return data.map((item) => toFiniteNumber(item?.[key]));
 }
 
 function hasValidData(data, metricKeys) {
@@ -339,8 +320,8 @@ async function hitungBurnout() {
     return;
   }
 
-  const sleepData = data.map((item) => Number(item.tidur || 0));
-  const moodData = data.map((item) => Number(item.mood || 0));
+  const sleepData = getMetricSeries(data, "tidur");
+  const moodData = getMetricSeries(data, "mood");
 
   const avgSleepData = sleepData.filter((value) => Number.isFinite(value));
   const avgMoodData = moodData.filter((value) => Number.isFinite(value));
@@ -355,8 +336,8 @@ async function hitungBurnout() {
   const chartSleepData = sleepData.slice(0, 7);
   const chartMoodData = moodData.slice(0, 7);
 
-  while (chartSleepData.length < 7) chartSleepData.push(0);
-  while (chartMoodData.length < 7) chartMoodData.push(0);
+  while (chartSleepData.length < 7) chartSleepData.push(null);
+  while (chartMoodData.length < 7) chartMoodData.push(null);
 
   const skor = hitungSkorBurnout(rataTidur, rataMood);
   let status = "Low";
@@ -381,10 +362,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Recalculate automatically when trackerData changes in another tab.
-window.addEventListener("storage", (e) => {
-  const scopedKey = getUserScopedTrackerKey(window.auth?.currentUser?.uid);
-  if (e.key === scopedKey || e.key === TRACKER_STORAGE_KEY) {
+// Refresh from Firestore when tab becomes active.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
     hitungBurnout();
   }
 });

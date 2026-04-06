@@ -6,35 +6,9 @@ const EMPTY_MESSAGE = "⚠ Belum ada data untuk ditampilkan";
 
 const CHART_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const PREVIEW_SERIES = Array(CHART_LABELS.length).fill(null);
-const TRACKER_STORAGE_KEY = "trackerData";
 const AUTH_READY_TIMEOUT_MS = 5000;
 
 let myChart = null;
-
-function getUserScopedTrackerKey(uid) {
-  return uid ? `${TRACKER_STORAGE_KEY}:${uid}` : TRACKER_STORAGE_KEY;
-}
-
-function readTrackerCache(user) {
-  const scopedKey = getUserScopedTrackerKey(user?.uid);
-  const fallbackKeys = [scopedKey, TRACKER_STORAGE_KEY].filter(
-    (key, index, list) => list.indexOf(key) === index,
-  );
-
-  for (const key of fallbackKeys) {
-    const raw = localStorage.getItem(key);
-    if (!raw) continue;
-
-    try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
-    } catch {
-      // Ignore malformed cache and try next key.
-    }
-  }
-
-  return [];
-}
 
 async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
   if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
@@ -66,7 +40,6 @@ async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
 }
 
 async function parseTrackerData() {
-  // Try to load from Firestore first
   if (window.auth && window.db) {
     try {
       const { doc, getDoc } =
@@ -85,25 +58,33 @@ async function parseTrackerData() {
     }
   }
 
-  const user = await waitForCurrentUser(800);
-  return readTrackerCache(user);
+  return [];
 }
 
 function isMeaningfulValue(value) {
-  if (value === null || value === undefined) return false;
-  if (typeof value === "number") return Number.isFinite(value) && value > 0;
+  return toFiniteNumber(value) !== null;
+}
+
+function toFiniteNumber(value) {
+  if (value === null || value === undefined) return null;
+
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : null;
+  }
 
   if (typeof value === "string") {
     const trimmed = value.trim();
-    if (!trimmed) return false;
+    if (!trimmed) return null;
 
-    const asNumber = Number(trimmed);
-    if (!Number.isNaN(asNumber)) return asNumber > 0;
-
-    return false;
+    const parsed = Number(trimmed);
+    return Number.isFinite(parsed) ? parsed : null;
   }
 
-  return false;
+  return null;
+}
+
+function getMetricSeries(data, key) {
+  return data.map((item) => toFiniteNumber(item?.[key]));
 }
 
 function hasValidData(data, metricKeys) {
@@ -276,8 +257,15 @@ function renderAnalysis(belajar, tidur, hp, avgBelajar, avgTidur, avgHP) {
     analysisBoxes.innerHTML = "";
 
     const boxes = [];
-    const kurangTidur = tidur.filter((t) => t < 6).length;
-    const hpDominan = hp.filter((h, i) => h > (belajar[i] || 0)).length;
+    const kurangTidur = tidur.filter((t) => Number.isFinite(t) && t < 6).length;
+    const hpDominan = hp.reduce((total, currentHp, index) => {
+      const currentBelajar = belajar[index];
+      if (!Number.isFinite(currentHp) || !Number.isFinite(currentBelajar)) {
+        return total;
+      }
+
+      return currentHp > currentBelajar ? total + 1 : total;
+    }, 0);
 
     if (kurangTidur >= 3)
       boxes.push({ text: "⚠ Risiko kurang tidur!", cls: "risk" });
@@ -346,12 +334,16 @@ async function renderProductivityPage() {
     return;
   }
 
-  const belajar = data.map((item) => Number(item.belajar || 0));
-  const tidur = data.map((item) => Number(item.tidur || 0));
-  const hp = data.map((item) => Number(item.hp || 0));
+  const belajar = getMetricSeries(data, "belajar");
+  const tidur = getMetricSeries(data, "tidur");
+  const hp = getMetricSeries(data, "hp");
 
-  const avg = (arr) =>
-    arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+  const avg = (arr) => {
+    const valid = arr.filter((value) => Number.isFinite(value));
+    if (!valid.length) return 0;
+
+    return valid.reduce((a, b) => a + b, 0) / valid.length;
+  };
 
   const avgBelajar = avg(belajar);
   const avgTidur = avg(tidur);
@@ -384,10 +376,9 @@ window.addEventListener("load", async function () {
   }
 });
 
-// Refresh when data changes from another browser tab.
-window.addEventListener("storage", (e) => {
-  const scopedKey = getUserScopedTrackerKey(window.auth?.currentUser?.uid);
-  if (e.key === scopedKey || e.key === TRACKER_STORAGE_KEY) {
+// Refresh from Firestore when tab becomes active.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
     renderProductivityPage();
   }
 });

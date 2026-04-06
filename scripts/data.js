@@ -96,7 +96,7 @@ async function saveData() {
 }
 
 async function loadData() {
-  // Try to load from Firestore first, fallback to localStorage
+  // Load tracker data from Firestore only.
   if (window.auth && window.db) {
     try {
       const { doc, getDoc } =
@@ -108,8 +108,6 @@ async function loadData() {
           const userData = userDoc.data();
           const data = userData.trackerData || [];
           populateTable(data);
-          // Also save to local cache for consistency.
-          writeTrackerCache(data, user);
           // Display chart if there's data
           if (
             data.some(
@@ -124,16 +122,6 @@ async function loadData() {
     } catch (error) {
       console.error("Error loading from Firestore:", error);
     }
-  }
-
-  const fallbackUser = await waitForCurrentUser(800);
-  const data = readTrackerCache(fallbackUser);
-  if (!Array.isArray(data) || data.length === 0) return;
-
-  populateTable(data);
-  // Display chart if there's data
-  if (data.some((item) => item.belajar || item.tidur || item.hp || item.mood)) {
-    loadAndDisplayChart(data);
   }
 }
 
@@ -239,42 +227,7 @@ function loadAndDisplayChart(data) {
 }
 
 let chart;
-const TRACKER_STORAGE_KEY = "trackerData";
 const AUTH_READY_TIMEOUT_MS = 5000;
-
-function getUserScopedTrackerKey(uid) {
-  return uid ? `${TRACKER_STORAGE_KEY}:${uid}` : TRACKER_STORAGE_KEY;
-}
-
-function getTrackerStorageKey(user) {
-  return getUserScopedTrackerKey(user?.uid);
-}
-
-function readTrackerCache(user) {
-  const preferredKey = getTrackerStorageKey(user);
-  const fallbackKeys = [preferredKey, TRACKER_STORAGE_KEY].filter(
-    (key, index, list) => list.indexOf(key) === index,
-  );
-
-  for (const key of fallbackKeys) {
-    const raw = localStorage.getItem(key);
-    if (!raw) continue;
-
-    try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
-    } catch {
-      // Ignore malformed cache and continue checking fallback keys.
-    }
-  }
-
-  return [];
-}
-
-function writeTrackerCache(data, user) {
-  const key = getTrackerStorageKey(user);
-  localStorage.setItem(key, JSON.stringify(data));
-}
 
 async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
   if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
@@ -309,7 +262,6 @@ async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
 
 async function persistTrackerData(data) {
   const user = await waitForCurrentUser();
-  writeTrackerCache(data, user);
 
   if (!user || !window.db) return;
 
@@ -390,14 +342,12 @@ function getInputChartPalette(chartContext) {
   };
 }
 
-async function hitungData() {
-  // Collect current form data and save it
+function collectTableData() {
   const data = [];
-
   const rows = document.querySelectorAll("tr");
 
   rows.forEach((row, index) => {
-    if (index === 0) return; // skip header
+    if (index === 0) return;
 
     const belajar = row.querySelector(".belajar")?.value || "";
     const tidur = row.querySelector(".tidur")?.value || "";
@@ -406,6 +356,13 @@ async function hitungData() {
 
     data.push({ belajar, tidur, hp, mood });
   });
+
+  return data;
+}
+
+async function hitungData() {
+  // Collect current form data and save it
+  const data = collectTableData();
 
   await persistTrackerData(data);
 
@@ -417,22 +374,16 @@ const themeToggle = document.getElementById("toggleMode");
 if (themeToggle) {
   themeToggle.addEventListener("change", () => {
     requestAnimationFrame(() => {
-      // Re-render chart with current data without saving
-      const data = readTrackerCache(window.auth?.currentUser || null);
-      if (data.length) {
-        loadAndDisplayChart(data);
-      }
+      // Re-render chart from current form values without saving.
+      const data = collectTableData();
+      loadAndDisplayChart(data);
     });
   });
 }
 
-// Sync chart ketika tab lain mengubah data di localStorage
-window.addEventListener("storage", (e) => {
-  const currentKey = getTrackerStorageKey(window.auth?.currentUser || null);
-  if (e.key === currentKey || e.key === TRACKER_STORAGE_KEY) {
-    const data = readTrackerCache(window.auth?.currentUser || null);
-    if (data.length) {
-      loadAndDisplayChart(data);
-    }
+// Refresh from Firestore when tab becomes active again.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    loadData();
   }
 });
