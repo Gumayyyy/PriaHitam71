@@ -15,7 +15,7 @@
     window.location.replace(getLoginPath());
   };
 
-  const waitForAuth = async (timeoutMs = 2000, intervalMs = 100) => {
+  const waitForAuth = async (timeoutMs = 5000, intervalMs = 100) => {
     const start = Date.now();
     while (!window.auth && Date.now() - start < timeoutMs) {
       await new Promise((resolve) => setTimeout(resolve, intervalMs));

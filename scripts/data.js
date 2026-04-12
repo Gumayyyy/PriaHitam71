@@ -119,6 +119,19 @@ async function loadData() {
           return;
         }
       }
+
+      if (window.auth && typeof window.auth.onAuthStateChanged === "function") {
+        // Auth may still be restoring from persistence. Retry when the state changes.
+        return new Promise((resolve) => {
+          const unsubscribe = window.auth.onAuthStateChanged(async (nextUser) => {
+            if (nextUser) {
+              unsubscribe();
+              await loadData();
+              resolve();
+            }
+          });
+        });
+      }
     } catch (error) {
       console.error("Error loading from Firestore:", error);
     }
@@ -227,7 +240,7 @@ function loadAndDisplayChart(data) {
 }
 
 let chart;
-const AUTH_READY_TIMEOUT_MS = 5000;
+const AUTH_READY_TIMEOUT_MS = 15000;
 
 async function waitForCurrentUser(timeoutMs = AUTH_READY_TIMEOUT_MS) {
   if (!window.auth || typeof window.auth.onAuthStateChanged !== "function") {
