@@ -99,12 +99,8 @@
 }
 
 .card::before {
-  content: "";
-  background: radial-gradient(
-    circle,
-    var(--color-shadow-light) -70%,
-    transparent 70%
-  );
+  content: '';
+  background: radial-gradient(circle, var(--color-shadow-light) -70%, transparent 70%);
   opacity: 0;
   transition: 0.5s;
   pointer-events: none;
@@ -561,7 +557,7 @@ body.dark-mode .mood-scale h3 {
 .contact-container {
   max-width: 980px;
   margin: 28px auto 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--color-text-light);
   padding: 30px 24px;
   border-radius: 18px;
@@ -597,7 +593,7 @@ body.dark-mode .mood-scale h3 {
 }
 
 .contact-container .sub-heading:after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -12px;
@@ -623,7 +619,7 @@ body.dark-mode .mood-scale h3 {
   border-radius: 10px;
   background: var(--color-card-light);
   box-shadow: 0 2px 5px var(--color-shadow-light);
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -684,7 +680,7 @@ body.dark-mode .mood-scale h3 {
   color: var(--color-text-light);
 }
 
-.contact-container input[type="submit"] {
+.contact-container input[type='submit'] {
   background: var(--accent-bg-light);
   color: var(--color-text-light);
   box-shadow: 0 2px 12px var(--color-shadow-light);
@@ -695,7 +691,7 @@ body.dark-mode .mood-scale h3 {
   padding-right: 42px;
 }
 
-body.dark-mode .contact-container input[type="submit"] {
+body.dark-mode .contact-container input[type='submit'] {
   background: var(--accent-bg-dark);
   color: var(--color-text-dark);
   box-shadow: 0 2px 12px var(--color-shadow-dark);
@@ -737,16 +733,14 @@ body.dark-mode .contact-container .sub-heading:after {
   background-color: var(--color-text-dark);
 }
 
-body.dark-mode .contact-container input[type="date"],
-body.dark-mode .contact-container input[type="text"] {
+body.dark-mode .contact-container input[type='date'],
+body.dark-mode .contact-container input[type='text'] {
   background: var(--color-card-dark);
   color: var(--color-text-dark) !important;
   box-shadow: 0 2px 5px var(--color-shadow-dark);
 }
 
-body.dark-mode
-  .contact-container
-  input[type="date"]::-webkit-calendar-picker-indicator {
+body.dark-mode .contact-container input[type='date']::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
 
@@ -758,7 +752,7 @@ body.dark-mode .contact-container textarea {
 /* ===== Source: guide.css ===== */
 
 .guide-page {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   color: var(--color-text-light);
   background: var(--color-bg-light);
@@ -889,7 +883,7 @@ body.dark-mode .guide-page .start-btn:hover {
 }
 
 .step::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 14px;
   left: 0;
@@ -957,7 +951,7 @@ body.dark-mode .step:before {
 /* ===== Source: home.css ===== */
 
 .home-page {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   color: var(--color-bg-light);
   background: var(--color-bg-light);
@@ -1018,7 +1012,7 @@ body.dark-mode .step:before {
 }
 
 .mascot-chat-bubble::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 22px;
   bottom: -9px;
@@ -1227,7 +1221,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
   color: var(--color-text-light);
   background: var(--color-bg-light);
   transition:
@@ -1341,7 +1335,7 @@ body {
 
 .form-box h2 {
   margin: 0;
-  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 3.4vw, 2.8rem);
   line-height: 1.05;
@@ -1359,9 +1353,9 @@ form {
   width: min(100%, 460px);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type='text'],
+input[type='email'],
+input[type='password'] {
   width: 100%;
   padding: 14px 16px;
   border: 1px solid var(--color-shadow-light);
@@ -1378,16 +1372,16 @@ input[type="password"] {
   margin-bottom: 14px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus {
   border-width: 2px;
   border-color: var(--accent-focus) !important;
 }
 
-input[type="text"]:hover,
-input[type="email"]:hover,
-input[type="password"]:hover {
+input[type='text']:hover,
+input[type='email']:hover,
+input[type='password']:hover {
   border-color: var(--accent-focus);
   transform: translateY(-2px);
   transition: all 0.2s ease;
@@ -1439,7 +1433,7 @@ input[type="password"]:hover {
   padding: 0 24px;
   border: none;
   border-radius: 12px;
-  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
   color: var(--color-text-light);
   font-size: 15px;
   font-weight: 700;
@@ -1658,7 +1652,7 @@ input[type="password"]:hover {
 
 .info-circle::before,
 .info-circle::after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
@@ -1674,12 +1668,7 @@ input[type="password"]:hover {
   height: 600px;
   right: -200px;
   top: -140px;
-  background: radial-gradient(
-    circle,
-    var(--color-shadow-dark) 0%,
-    var(--db-chart-grid-dark) 36%,
-    transparent 78%
-  );
+  background: radial-gradient(circle, var(--color-shadow-dark) 0%, var(--db-chart-grid-dark) 36%, transparent 78%);
 }
 
 .info-circle::after {
@@ -1687,12 +1676,7 @@ input[type="password"]:hover {
   height: 440px;
   left: 42%;
   bottom: -220px;
-  background: radial-gradient(
-    circle,
-    var(--color-shadow-dark) 0%,
-    var(--db-chart-grid-dark) 36%,
-    transparent 78%
-  );
+  background: radial-gradient(circle, var(--color-shadow-dark) 0%, var(--db-chart-grid-dark) 36%, transparent 78%);
 }
 
 .login-container.signup-mode .info-circle::before {
@@ -1723,7 +1707,7 @@ input[type="password"]:hover {
 
 .login-container .info-circle h1 {
   margin: 0;
-  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
   font-size: clamp(2.4rem, 3.8vw, 3.35rem);
   line-height: 1.1;
   max-width: 400px;
@@ -1780,7 +1764,7 @@ input[type="password"]:hover {
 
 .login-container .slider::before,
 .logout-theme-toggle .slider::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 22px;
   height: 22px;
@@ -1865,9 +1849,9 @@ body.dark-mode .login-container .register-text {
   color: var(--color-text-dark);
 }
 
-body.dark-mode .login-container input[type="text"],
-body.dark-mode .login-container input[type="email"],
-body.dark-mode .login-container input[type="password"] {
+body.dark-mode .login-container input[type='text'],
+body.dark-mode .login-container input[type='email'],
+body.dark-mode .login-container input[type='password'] {
   background: var(--color-card-dark);
   color: var(--color-text-dark);
 }
@@ -2250,12 +2234,7 @@ body.dark-mode #newTask {
 }
 
 .task input {
-  accent-color: linear-gradient(
-    180deg,
-    var(--color-bg-dark),
-    var(--db-tooltip-bg),
-    var(--db-tooltip-bg)
-  );
+  accent-color: linear-gradient(180deg, var(--color-bg-dark), var(--db-tooltip-bg), var(--db-tooltip-bg));
 }
 
 .task p {
@@ -2440,9 +2419,9 @@ body.dark-mode .note-action-btn.delete {
   .notes-grid {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "todo"
-      "boost"
-      "mind";
+      'todo'
+      'boost'
+      'mind';
   }
 
   .notes-grid > .card {
@@ -2473,12 +2452,8 @@ body.dark-mode .note-action-btn.delete {
 }
 
 .card::before {
-  content: "";
-  background: radial-gradient(
-    circle,
-    var(--color-shadow-light) -70%,
-    transparent 70%
-  );
+  content: '';
+  background: radial-gradient(circle, var(--color-shadow-light) -70%, transparent 70%);
   opacity: 0;
   transition: 0.5s;
   pointer-events: none;
@@ -2628,11 +2603,7 @@ body.dark-mode .note-action-btn.delete {
 }
 
 .dark-mode .card::before {
-  background: radial-gradient(
-    circle,
-    var(--color-shadow-dark) -70%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, var(--color-shadow-dark) -70%, transparent 70%);
 }
 
 .dark-mode .card:hover {
@@ -2686,7 +2657,7 @@ body.dark-mode .note-action-btn.delete {
 
 .about-page {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: var(--color-bg-light);
   transition: 0.3s;
   overflow: visible;
@@ -2710,28 +2681,14 @@ body.dark-mode .about-page {
 /* About Us card hover shadows follow active theme */
 body:not(.dark-mode)
   .about-page
-  :is(
-    .philosophy-card,
-    .member-info,
-    .member-desc,
-    .insight-item,
-    .interactive-item,
-    .impact-note
-  ):hover,
+  :is(.philosophy-card, .member-info, .member-desc, .insight-item, .interactive-item, .impact-note):hover,
 body:not(.dark-mode) .about-page .impact-note[open] {
   box-shadow: 0 14px 28px var(--color-shadow-light) !important;
 }
 
 .dark-mode
   .about-page
-  :is(
-    .philosophy-card,
-    .member-info,
-    .member-desc,
-    .insight-item,
-    .interactive-item,
-    .impact-note
-  ):hover,
+  :is(.philosophy-card, .member-info, .member-desc, .insight-item, .interactive-item, .impact-note):hover,
 .dark-mode .about-page .impact-note[open] {
   box-shadow: 0 14px 28px var(--color-shadow-dark) !important;
 }
@@ -2749,6 +2706,14 @@ body:not(.dark-mode) .about-page .impact-note[open] {
   margin-left: 0;
   width: 100%;
   padding: 94px 0 0;
+}
+
+.about-page .main,
+.about-page .philosophy-page,
+.about-page .content-page,
+.about-page .main-container,
+.about-page .logo-philosophy-card {
+  box-sizing: border-box;
 }
 
 .page {
@@ -2792,10 +2757,10 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 }
 
 .philosophy-page {
-  width: min(1320px, 96vw);
-  max-width: none;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: min(1180px, 92vw);
+  max-width: 1180px;
+  margin: 0 auto;
+  transform: none;
   padding: 14px 10px;
 }
 
@@ -2863,7 +2828,7 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 }
 
 .philosophy-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 14px;
   left: 0;
@@ -2895,6 +2860,34 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 
 .philosophy-card-wide {
   grid-column: span 2;
+}
+
+.logo-philosophy-card .logo-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.logo-philosophy-card .logo-image img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--color-shadow-light);
+  background: var(--color-card-light);
+}
+
+.logo-philosophy-card .logo-text {
+  display: grid;
+  gap: 8px;
+}
+
+.logo-philosophy-card .logo-text h3 {
+  margin: 0;
+}
+
+.logo-philosophy-card .logo-text p {
+  margin: 0;
 }
 
 .highlight {
@@ -2954,8 +2947,8 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 
 .main-container {
   display: none;
-  width: 100%;
-  max-width: 1200px; /* tambah: biar konten tidak terlalu mepet kiri */
+  width: min(1180px, 92vw);
+  max-width: 1180px;
   margin: 0 auto; /* tambah: center dalam area main */
   height: auto;
   gap: 40px;
@@ -2971,7 +2964,7 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 /* Shift both slider and member info as one group (desktop) */
 .about-page .main-container.page-active {
   justify-content: center;
-  transform: translateX(-56px);
+  transform: none;
 }
 
 .carousel-section {
@@ -3162,7 +3155,7 @@ body:not(.dark-mode) .about-page .impact-note[open] {
 }
 
 .member-name::after {
-  content: "";
+  content: '';
   display: block;
   margin: 8px 0 0 0;
   width: 60px;
@@ -3352,11 +3345,7 @@ body.dark-mode .nav-arrow:hover img {
 }
 
 .dark-mode .member-name::after {
-  background: linear-gradient(
-    90deg,
-    var(--color-shadow-dark),
-    var(--color-shadow-dark)
-  );
+  background: linear-gradient(90deg, var(--color-shadow-dark), var(--color-shadow-dark));
 }
 
 .dark-mode .member-role {
@@ -3393,10 +3382,10 @@ body.dark-mode .nav-arrow:hover img {
 }
 
 .content-page {
-  width: min(1320px, 96vw);
-  max-width: none;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: min(1180px, 92vw);
+  max-width: 1180px;
+  margin: 0 auto;
+  transform: none;
   padding: 14px 10px;
 }
 
@@ -3572,7 +3561,7 @@ body.dark-mode .nav-arrow:hover img {
 }
 
 .goal-bar::before {
-  content: "";
+  content: '';
   display: block;
   height: 8px;
   border-radius: 999px;
@@ -3793,4 +3782,9 @@ body.dark-mode .prev-page-btn img {
 
 .prev-page-btn {
   left: 30px;
+}
+
+.dark-mode .logo-philosophy-card .logo-image img {
+  border-color: var(--color-shadow-dark);
+  background: var(--color-card-dark);
 }
